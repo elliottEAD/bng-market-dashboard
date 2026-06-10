@@ -1,0 +1,18 @@
+{
+  "generated_at": "2026-06-10T19:47:41.580Z",
+  "methodology_note": "Removed records are excluded. Registered supply is based on proposed habitat, hedgerow and watercourse extents. Allocated area/length is calculated from allocation habitat rows. Allocated units are deduplicated at allocation level because a single allocation unit value may relate to multiple habitat component rows. Remaining figures are remaining registered area/length, not remaining biodiversity units.",
+  "total_gain_sites": 264,
+  "registered_habitat_hectares": 7584.18,
+  "registered_hedgerow_km": 294.4,
+  "registered_watercourse_km": 58.03,
+  "allocated_habitat_area": 529.79,
+  "allocated_hedgerow_km": 5.79,
+  "allocated_watercourse_km": 4.77,
+  "remaining_habitat_area": 7054.39,
+  "remaining_hedgerow_km": 288.61,
+  "remaining_watercourse_km": 53.26,
+  "allocated_habitat_units": 2222.05,
+  "allocated_hedgerow_units": 29.85,
+  "allocated_watercourse_units": 10.9,
+  "remaining_units_available": false
+}

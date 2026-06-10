@@ -1,0 +1,650 @@
+[
+  {
+    "habitat": "Grassland - Other neutral grassland",
+    "habitat_type": "habitat",
+    "site_count": 215,
+    "registered_extent": 3780.33,
+    "allocated_extent": 303.9,
+    "remaining_extent": 3476.42,
+    "allocation_row_count": 1269
+  },
+  {
+    "habitat": "Heathland and shrub - Mixed scrub",
+    "habitat_type": "habitat",
+    "site_count": 176,
+    "registered_extent": 960.65,
+    "allocated_extent": 60.57,
+    "remaining_extent": 900.08,
+    "allocation_row_count": 402
+  },
+  {
+    "habitat": "Grassland - Lowland meadows",
+    "habitat_type": "habitat",
+    "site_count": 82,
+    "registered_extent": 679.46,
+    "allocated_extent": 42.95,
+    "remaining_extent": 636.5,
+    "allocation_row_count": 435
+  },
+  {
+    "habitat": "Woodland and forest - Lowland mixed deciduous woodland",
+    "habitat_type": "habitat",
+    "site_count": 55,
+    "registered_extent": 407.92,
+    "allocated_extent": 22.28,
+    "remaining_extent": 385.64,
+    "allocation_row_count": 47
+  },
+  {
+    "habitat": "Woodland and forest - Other woodland; broadleaved",
+    "habitat_type": "habitat",
+    "site_count": 100,
+    "registered_extent": 323.34,
+    "allocated_extent": 17.01,
+    "remaining_extent": 306.32,
+    "allocation_row_count": 66
+  },
+  {
+    "habitat": "Grassland - Floodplain wetland mosaic and CFGM",
+    "habitat_type": "habitat",
+    "site_count": 16,
+    "registered_extent": 263.4,
+    "allocated_extent": 8.91,
+    "remaining_extent": 254.49,
+    "allocation_row_count": 37
+  },
+  {
+    "habitat": "Grassland - Traditional orchards",
+    "habitat_type": "habitat",
+    "site_count": 62,
+    "registered_extent": 211.04,
+    "allocated_extent": 29.42,
+    "remaining_extent": 181.61,
+    "allocation_row_count": 175
+  },
+  {
+    "habitat": "Grassland - Upland acid grassland",
+    "habitat_type": "habitat",
+    "site_count": 5,
+    "registered_extent": 141.75,
+    "allocated_extent": 2.84,
+    "remaining_extent": 138.91,
+    "allocation_row_count": 9
+  },
+  {
+    "habitat": "Species-rich native hedgerow with trees",
+    "habitat_type": "hedgerow",
+    "site_count": 99,
+    "registered_extent": 132.03,
+    "allocated_extent": 1.8,
+    "remaining_extent": 130.23,
+    "allocation_row_count": 102
+  },
+  {
+    "habitat": "Woodland and forest - Wood-pasture and parkland",
+    "habitat_type": "habitat",
+    "site_count": 4,
+    "registered_extent": 121.58,
+    "allocated_extent": 5.81,
+    "remaining_extent": 115.77,
+    "allocation_row_count": 11
+  },
+  {
+    "habitat": "Wetland - Blanket bog",
+    "habitat_type": "habitat",
+    "site_count": 1,
+    "registered_extent": 111.5,
+    "allocated_extent": 0,
+    "remaining_extent": 111.5,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Species-rich native hedgerow",
+    "habitat_type": "hedgerow",
+    "site_count": 82,
+    "registered_extent": 92.45,
+    "allocated_extent": 2.18,
+    "remaining_extent": 90.27,
+    "allocation_row_count": 117
+  },
+  {
+    "habitat": "Grassland - Lowland calcareous grassland",
+    "habitat_type": "habitat",
+    "site_count": 11,
+    "registered_extent": 69.45,
+    "allocated_extent": 2.16,
+    "remaining_extent": 67.29,
+    "allocation_row_count": 7
+  },
+  {
+    "habitat": "Woodland and forest - Other woodland; mixed",
+    "habitat_type": "habitat",
+    "site_count": 18,
+    "registered_extent": 58.23,
+    "allocated_extent": 2.86,
+    "remaining_extent": 55.36,
+    "allocation_row_count": 5
+  },
+  {
+    "habitat": "Grassland - Other lowland acid grassland",
+    "habitat_type": "habitat",
+    "site_count": 8,
+    "registered_extent": 51.5,
+    "allocated_extent": 4.03,
+    "remaining_extent": 47.48,
+    "allocation_row_count": 17
+  },
+  {
+    "habitat": "Woodland and forest - Wet woodland",
+    "habitat_type": "habitat",
+    "site_count": 24,
+    "registered_extent": 47.66,
+    "allocated_extent": 1.23,
+    "remaining_extent": 46.43,
+    "allocation_row_count": 11
+  },
+  {
+    "habitat": "Individual trees - Rural tree",
+    "habitat_type": "habitat",
+    "site_count": 86,
+    "registered_extent": 45.68,
+    "allocated_extent": 5.83,
+    "remaining_extent": 39.85,
+    "allocation_row_count": 94
+  },
+  {
+    "habitat": "Wetland - Fens (upland and lowland)",
+    "habitat_type": "habitat",
+    "site_count": 7,
+    "registered_extent": 40.79,
+    "allocated_extent": 1.35,
+    "remaining_extent": 39.44,
+    "allocation_row_count": 2
+  },
+  {
+    "habitat": "Lakes - Ponds (non-priority habitat)",
+    "habitat_type": "habitat",
+    "site_count": 53,
+    "registered_extent": 40.45,
+    "allocated_extent": 5.38,
+    "remaining_extent": 35.06,
+    "allocation_row_count": 6
+  },
+  {
+    "habitat": "Ditches",
+    "habitat_type": "watercourse",
+    "site_count": 43,
+    "registered_extent": 32.49,
+    "allocated_extent": 3.66,
+    "remaining_extent": 28.84,
+    "allocation_row_count": 75
+  },
+  {
+    "habitat": "Urban - Open Mosaic Habitats on Previously Developed Land",
+    "habitat_type": "habitat",
+    "site_count": 7,
+    "registered_extent": 32.05,
+    "allocated_extent": 5.7,
+    "remaining_extent": 26.35,
+    "allocation_row_count": 11
+  },
+  {
+    "habitat": "Grassland - Upland hay meadows",
+    "habitat_type": "habitat",
+    "site_count": 3,
+    "registered_extent": 28.03,
+    "allocated_extent": 0.4,
+    "remaining_extent": 27.63,
+    "allocation_row_count": 2
+  },
+  {
+    "habitat": "Heathland and shrub - Lowland Heathland",
+    "habitat_type": "habitat",
+    "site_count": 2,
+    "registered_extent": 26.59,
+    "allocated_extent": 0,
+    "remaining_extent": 26.59,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Other rivers and streams",
+    "habitat_type": "watercourse",
+    "site_count": 28,
+    "registered_extent": 22.8,
+    "allocated_extent": 1.08,
+    "remaining_extent": 21.72,
+    "allocation_row_count": 18
+  },
+  {
+    "habitat": "Species-rich native hedgerow with trees - associated with bank or ditch",
+    "habitat_type": "hedgerow",
+    "site_count": 38,
+    "registered_extent": 21.45,
+    "allocated_extent": 0.28,
+    "remaining_extent": 21.17,
+    "allocation_row_count": 11
+  },
+  {
+    "habitat": "Native Hedgerow",
+    "habitat_type": "hedgerow",
+    "site_count": 30,
+    "registered_extent": 16.51,
+    "allocated_extent": 0.97,
+    "remaining_extent": 15.54,
+    "allocation_row_count": 37
+  },
+  {
+    "habitat": "Lakes - Ponds (Priority Habitat)",
+    "habitat_type": "habitat",
+    "site_count": 38,
+    "registered_extent": 16.25,
+    "allocated_extent": 0.31,
+    "remaining_extent": 15.93,
+    "allocation_row_count": 3
+  },
+  {
+    "habitat": "Grassland - Modified grassland",
+    "habitat_type": "habitat",
+    "site_count": 13,
+    "registered_extent": 15.76,
+    "allocated_extent": 1.4,
+    "remaining_extent": 14.37,
+    "allocation_row_count": 10
+  },
+  {
+    "habitat": "Woodland and forest - Upland oakwood",
+    "habitat_type": "habitat",
+    "site_count": 1,
+    "registered_extent": 15.46,
+    "allocated_extent": 0,
+    "remaining_extent": 15.46,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Heathland and shrub - Upland Heathland",
+    "habitat_type": "habitat",
+    "site_count": 1,
+    "registered_extent": 13.7,
+    "allocated_extent": 0,
+    "remaining_extent": 13.7,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Heathland and shrub - Willow scrub",
+    "habitat_type": "habitat",
+    "site_count": 6,
+    "registered_extent": 13.46,
+    "allocated_extent": 0.01,
+    "remaining_extent": 13.45,
+    "allocation_row_count": 1
+  },
+  {
+    "habitat": "Urban - Open mosaic habitats on previously developed land",
+    "habitat_type": "habitat",
+    "site_count": 2,
+    "registered_extent": 12.21,
+    "allocated_extent": 3.43,
+    "remaining_extent": 8.78,
+    "allocation_row_count": 9
+  },
+  {
+    "habitat": "Native hedgerow with trees",
+    "habitat_type": "hedgerow",
+    "site_count": 23,
+    "registered_extent": 10.68,
+    "allocated_extent": 0.19,
+    "remaining_extent": 10.49,
+    "allocation_row_count": 12
+  },
+  {
+    "habitat": "Grassland - Lowland dry acid grassland",
+    "habitat_type": "habitat",
+    "site_count": 2,
+    "registered_extent": 10.1,
+    "allocated_extent": 0.49,
+    "remaining_extent": 9.61,
+    "allocation_row_count": 4
+  },
+  {
+    "habitat": "Wetland - Purple moor grass and rush pastures",
+    "habitat_type": "habitat",
+    "site_count": 1,
+    "registered_extent": 8.96,
+    "allocated_extent": 0,
+    "remaining_extent": 8.96,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Heathland and shrub - Other Neutral Grassland",
+    "habitat_type": "habitat",
+    "site_count": 1,
+    "registered_extent": 7.24,
+    "allocated_extent": 0,
+    "remaining_extent": 7.24,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Species-rich native hedgerow - associated with bank or ditch",
+    "habitat_type": "hedgerow",
+    "site_count": 16,
+    "registered_extent": 6.65,
+    "allocated_extent": 0.37,
+    "remaining_extent": 6.28,
+    "allocation_row_count": 20
+  },
+  {
+    "habitat": "Wetland - Reedbeds",
+    "habitat_type": "habitat",
+    "site_count": 8,
+    "registered_extent": 5.94,
+    "allocated_extent": 0.85,
+    "remaining_extent": 5.09,
+    "allocation_row_count": 4
+  },
+  {
+    "habitat": "Line of Trees",
+    "habitat_type": "hedgerow",
+    "site_count": 14,
+    "registered_extent": 4.53,
+    "allocated_extent": 0,
+    "remaining_extent": 4.53,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Ecologically valuable line of trees - associated with bank or ditch",
+    "habitat_type": "hedgerow",
+    "site_count": 2,
+    "registered_extent": 4.51,
+    "allocated_extent": 0,
+    "remaining_extent": 4.51,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Woodland and forest - Willow scrub",
+    "habitat_type": "habitat",
+    "site_count": 1,
+    "registered_extent": 3.52,
+    "allocated_extent": 0,
+    "remaining_extent": 3.52,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Woodland and forest - Other coniferous woodland",
+    "habitat_type": "habitat",
+    "site_count": 3,
+    "registered_extent": 3,
+    "allocated_extent": 0,
+    "remaining_extent": 3,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Priority habitat",
+    "habitat_type": "watercourse",
+    "site_count": 3,
+    "registered_extent": 2.7,
+    "allocated_extent": 0.04,
+    "remaining_extent": 2.66,
+    "allocation_row_count": 3
+  },
+  {
+    "habitat": "Native hedgerow - associated with bank or ditch",
+    "habitat_type": "hedgerow",
+    "site_count": 4,
+    "registered_extent": 2.32,
+    "allocated_extent": 0,
+    "remaining_extent": 2.32,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Sparsely vegetated land - Tall forbs",
+    "habitat_type": "habitat",
+    "site_count": 5,
+    "registered_extent": 2.31,
+    "allocated_extent": 0,
+    "remaining_extent": 2.31,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Woodland and forest - Other Scot's Pine woodland",
+    "habitat_type": "habitat",
+    "site_count": 2,
+    "registered_extent": 2.15,
+    "allocated_extent": 0.03,
+    "remaining_extent": 2.13,
+    "allocation_row_count": 2
+  },
+  {
+    "habitat": "Other Rivers and Steams",
+    "habitat_type": "habitat",
+    "site_count": 1,
+    "registered_extent": 1.83,
+    "allocated_extent": 0,
+    "remaining_extent": 1.83,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Cropland - Arable field margins game bird mix",
+    "habitat_type": "habitat",
+    "site_count": 2,
+    "registered_extent": 1.7,
+    "allocated_extent": 0,
+    "remaining_extent": 1.7,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Urban - Developed land; sealed surface",
+    "habitat_type": "habitat",
+    "site_count": 5,
+    "registered_extent": 1.41,
+    "allocated_extent": 0,
+    "remaining_extent": 1.41,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Native hedgerow with trees - associated with bank or ditch",
+    "habitat_type": "hedgerow",
+    "site_count": 6,
+    "registered_extent": 1.24,
+    "allocated_extent": 0,
+    "remaining_extent": 1.24,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Sparsely vegetated land - Ruderal/Ephemeral",
+    "habitat_type": "habitat",
+    "site_count": 1,
+    "registered_extent": 1.21,
+    "allocated_extent": 0,
+    "remaining_extent": 1.21,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Line of Trees - Associated with bank or ditch",
+    "habitat_type": "hedgerow",
+    "site_count": 4,
+    "registered_extent": 1.15,
+    "allocated_extent": 0,
+    "remaining_extent": 1.15,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Individual trees - Urban tree",
+    "habitat_type": "habitat",
+    "site_count": 6,
+    "registered_extent": 1.05,
+    "allocated_extent": 0.15,
+    "remaining_extent": 0.9,
+    "allocation_row_count": 3
+  },
+  {
+    "habitat": "Heathland and shrub - Traditional Orchards",
+    "habitat_type": "habitat",
+    "site_count": 1,
+    "registered_extent": 0.96,
+    "allocated_extent": 0.27,
+    "remaining_extent": 0.69,
+    "allocation_row_count": 4
+  },
+  {
+    "habitat": "Ecologically valuable line of trees",
+    "habitat_type": "hedgerow",
+    "site_count": 3,
+    "registered_extent": 0.87,
+    "allocated_extent": 0,
+    "remaining_extent": 0.87,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Heathland and shrub - Blackthorn scrub",
+    "habitat_type": "habitat",
+    "site_count": 4,
+    "registered_extent": 0.77,
+    "allocated_extent": 0,
+    "remaining_extent": 0.77,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Heathland and shrub - Hazel scrub",
+    "habitat_type": "habitat",
+    "site_count": 1,
+    "registered_extent": 0.69,
+    "allocated_extent": 0,
+    "remaining_extent": 0.69,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Cropland - Arable field margins tussocky",
+    "habitat_type": "habitat",
+    "site_count": 1,
+    "registered_extent": 0.67,
+    "allocated_extent": 0,
+    "remaining_extent": 0.67,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Heathland and shrub - Bramble scrub",
+    "habitat_type": "habitat",
+    "site_count": 2,
+    "registered_extent": 0.5,
+    "allocated_extent": 0,
+    "remaining_extent": 0.5,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Urban - Bare ground",
+    "habitat_type": "habitat",
+    "site_count": 1,
+    "registered_extent": 0.34,
+    "allocated_extent": 0,
+    "remaining_extent": 0.34,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Heathland and shrub - Hawthorn scrub",
+    "habitat_type": "habitat",
+    "site_count": 3,
+    "registered_extent": 0.31,
+    "allocated_extent": 0,
+    "remaining_extent": 0.31,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Sparsely vegetated land - Coastal sand dunes",
+    "habitat_type": "habitat",
+    "site_count": 1,
+    "registered_extent": 0.21,
+    "allocated_extent": 0.21,
+    "remaining_extent": 0,
+    "allocation_row_count": 1
+  },
+  {
+    "habitat": "Cropland - Arable field margins cultivated annually",
+    "habitat_type": "habitat",
+    "site_count": 1,
+    "registered_extent": 0.21,
+    "allocated_extent": 0,
+    "remaining_extent": 0.21,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Woodland and forest - Other neutral grassland",
+    "habitat_type": "habitat",
+    "site_count": 1,
+    "registered_extent": 0.19,
+    "allocated_extent": 0,
+    "remaining_extent": 0.19,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Urban - Artificial unvegetated, unsealed surface",
+    "habitat_type": "habitat",
+    "site_count": 3,
+    "registered_extent": 0.14,
+    "allocated_extent": 0,
+    "remaining_extent": 0.14,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "undefined - Other neutral grassland",
+    "habitat_type": "habitat",
+    "site_count": 1,
+    "registered_extent": 0.13,
+    "allocated_extent": 0,
+    "remaining_extent": 0.13,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Heathland and shrub - Other woodland; broadleaved",
+    "habitat_type": "habitat",
+    "site_count": 1,
+    "registered_extent": 0.12,
+    "allocated_extent": 0,
+    "remaining_extent": 0.12,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Heathland and shrub - Gorse scrub",
+    "habitat_type": "habitat",
+    "site_count": 1,
+    "registered_extent": 0.12,
+    "allocated_extent": 0,
+    "remaining_extent": 0.12,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Lakes - Temporary lakes ponds and pools (H3170)",
+    "habitat_type": "habitat",
+    "site_count": 2,
+    "registered_extent": 0.11,
+    "allocated_extent": 0,
+    "remaining_extent": 0.11,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Watercourse footprint - Watercourse footprint",
+    "habitat_type": "habitat",
+    "site_count": 1,
+    "registered_extent": 0.05,
+    "allocated_extent": 0,
+    "remaining_extent": 0.05,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "Culvert",
+    "habitat_type": "watercourse",
+    "site_count": 2,
+    "registered_extent": 0.04,
+    "allocated_extent": 0,
+    "remaining_extent": 0.04,
+    "allocation_row_count": 0
+  },
+  {
+    "habitat": "undefined - undefined",
+    "habitat_type": "habitat",
+    "site_count": 1,
+    "registered_extent": 0,
+    "allocated_extent": 0,
+    "remaining_extent": 0,
+    "allocation_row_count": 0
+  }
+]

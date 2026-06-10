@@ -1,0 +1,324 @@
+[
+  {
+    "lnrs": "Cheshire",
+    "site_count": 14,
+    "registered_habitat_hectares": 264.85,
+    "registered_hedgerow_km": 14.17,
+    "registered_watercourse_km": 1.51
+  },
+  {
+    "lnrs": "Norfolk",
+    "site_count": 14,
+    "registered_habitat_hectares": 625.36,
+    "registered_hedgerow_km": 16.45,
+    "registered_watercourse_km": 9.53
+  },
+  {
+    "lnrs": "Devon",
+    "site_count": 11,
+    "registered_habitat_hectares": 422.33,
+    "registered_hedgerow_km": 14.07,
+    "registered_watercourse_km": 5.2
+  },
+  {
+    "lnrs": "North Yorkshire and York",
+    "site_count": 11,
+    "registered_habitat_hectares": 259.26,
+    "registered_hedgerow_km": 13.28,
+    "registered_watercourse_km": 5.41
+  },
+  {
+    "lnrs": "East Sussex and Brighton & Hove",
+    "site_count": 10,
+    "registered_habitat_hectares": 244,
+    "registered_hedgerow_km": 8.96,
+    "registered_watercourse_km": 2.32
+  },
+  {
+    "lnrs": "Oxfordshire",
+    "site_count": 10,
+    "registered_habitat_hectares": 200.05,
+    "registered_hedgerow_km": 5.12,
+    "registered_watercourse_km": 0
+  },
+  {
+    "lnrs": "Staffordshire and Stoke-on-Trent",
+    "site_count": 10,
+    "registered_habitat_hectares": 136.43,
+    "registered_hedgerow_km": 3.11,
+    "registered_watercourse_km": 1.05
+  },
+  {
+    "lnrs": "Cambridgeshire and Peterborough",
+    "site_count": 10,
+    "registered_habitat_hectares": 245.68,
+    "registered_hedgerow_km": 7.09,
+    "registered_watercourse_km": 0
+  },
+  {
+    "lnrs": "Buckinghamshire and Milton Keynes",
+    "site_count": 9,
+    "registered_habitat_hectares": 208.21,
+    "registered_hedgerow_km": 3.87,
+    "registered_watercourse_km": 0
+  },
+  {
+    "lnrs": "Greater Essex",
+    "site_count": 9,
+    "registered_habitat_hectares": 453.13,
+    "registered_hedgerow_km": 9.59,
+    "registered_watercourse_km": 1.64
+  },
+  {
+    "lnrs": "Kent and Medway",
+    "site_count": 9,
+    "registered_habitat_hectares": 172.28,
+    "registered_hedgerow_km": 34.66,
+    "registered_watercourse_km": 0.49
+  },
+  {
+    "lnrs": "Somerset",
+    "site_count": 9,
+    "registered_habitat_hectares": 197.02,
+    "registered_hedgerow_km": 11.94,
+    "registered_watercourse_km": 2.03
+  },
+  {
+    "lnrs": "North of Tyne",
+    "site_count": 8,
+    "registered_habitat_hectares": 346.5,
+    "registered_hedgerow_km": 9.81,
+    "registered_watercourse_km": 3.47
+  },
+  {
+    "lnrs": "Greater Lincolnshire",
+    "site_count": 7,
+    "registered_habitat_hectares": 395,
+    "registered_hedgerow_km": 4.24,
+    "registered_watercourse_km": 2.42
+  },
+  {
+    "lnrs": "County Durham",
+    "site_count": 7,
+    "registered_habitat_hectares": 306.49,
+    "registered_hedgerow_km": 4.52,
+    "registered_watercourse_km": 1.75
+  },
+  {
+    "lnrs": "West of England",
+    "site_count": 6,
+    "registered_habitat_hectares": 266.32,
+    "registered_hedgerow_km": 12.52,
+    "registered_watercourse_km": 2.27
+  },
+  {
+    "lnrs": "Greater Manchester",
+    "site_count": 6,
+    "registered_habitat_hectares": 123.33,
+    "registered_hedgerow_km": 4.39,
+    "registered_watercourse_km": 1.74
+  },
+  {
+    "lnrs": "West Sussex",
+    "site_count": 6,
+    "registered_habitat_hectares": 271.13,
+    "registered_hedgerow_km": 18.58,
+    "registered_watercourse_km": 0.11
+  },
+  {
+    "lnrs": "Hertfordshire",
+    "site_count": 6,
+    "registered_habitat_hectares": 168.23,
+    "registered_hedgerow_km": 8,
+    "registered_watercourse_km": 0.89
+  },
+  {
+    "lnrs": "Warwickshire",
+    "site_count": 5,
+    "registered_habitat_hectares": 97.52,
+    "registered_hedgerow_km": 2.84,
+    "registered_watercourse_km": 1.49
+  },
+  {
+    "lnrs": "Nottinghamshire and Nottingham",
+    "site_count": 5,
+    "registered_habitat_hectares": 133.17,
+    "registered_hedgerow_km": 20.15,
+    "registered_watercourse_km": 1.9
+  },
+  {
+    "lnrs": "Hampshire",
+    "site_count": 5,
+    "registered_habitat_hectares": 171.99,
+    "registered_hedgerow_km": 6.41,
+    "registered_watercourse_km": 0.17
+  },
+  {
+    "lnrs": "Leicestershire, Leicester and Rutland",
+    "site_count": 5,
+    "registered_habitat_hectares": 131.93,
+    "registered_hedgerow_km": 2.9,
+    "registered_watercourse_km": 0
+  },
+  {
+    "lnrs": "Tees Valley",
+    "site_count": 5,
+    "registered_habitat_hectares": 101.28,
+    "registered_hedgerow_km": 3.15,
+    "registered_watercourse_km": 1.28
+  },
+  {
+    "lnrs": "Surrey",
+    "site_count": 5,
+    "registered_habitat_hectares": 145.01,
+    "registered_hedgerow_km": 3.28,
+    "registered_watercourse_km": 1
+  },
+  {
+    "lnrs": "South Yorkshire",
+    "site_count": 4,
+    "registered_habitat_hectares": 69.97,
+    "registered_hedgerow_km": 2.45,
+    "registered_watercourse_km": 0.25
+  },
+  {
+    "lnrs": "Gloucestershire",
+    "site_count": 4,
+    "registered_habitat_hectares": 70.71,
+    "registered_hedgerow_km": 3.34,
+    "registered_watercourse_km": 0.24
+  },
+  {
+    "lnrs": "Bedfordshire",
+    "site_count": 4,
+    "registered_habitat_hectares": 49.55,
+    "registered_hedgerow_km": 3.51,
+    "registered_watercourse_km": 0.16
+  },
+  {
+    "lnrs": "West Yorkshire",
+    "site_count": 4,
+    "registered_habitat_hectares": 106.44,
+    "registered_hedgerow_km": 1.11,
+    "registered_watercourse_km": 1.7
+  },
+  {
+    "lnrs": "Lancashire",
+    "site_count": 4,
+    "registered_habitat_hectares": 56.01,
+    "registered_hedgerow_km": 1.69,
+    "registered_watercourse_km": 1.21
+  },
+  {
+    "lnrs": "Cornwall and the Isles of Scilly",
+    "site_count": 4,
+    "registered_habitat_hectares": 54.18,
+    "registered_hedgerow_km": 0.89,
+    "registered_watercourse_km": 0
+  },
+  {
+    "lnrs": "Derbyshire",
+    "site_count": 4,
+    "registered_habitat_hectares": 74.2,
+    "registered_hedgerow_km": 0.89,
+    "registered_watercourse_km": 0
+  },
+  {
+    "lnrs": "Suffolk",
+    "site_count": 3,
+    "registered_habitat_hectares": 47.77,
+    "registered_hedgerow_km": 2.76,
+    "registered_watercourse_km": 0.53
+  },
+  {
+    "lnrs": "Dorset",
+    "site_count": 3,
+    "registered_habitat_hectares": 116.81,
+    "registered_hedgerow_km": 1.82,
+    "registered_watercourse_km": 1.98
+  },
+  {
+    "lnrs": "Shropshire and Telford & Wrekin",
+    "site_count": 3,
+    "registered_habitat_hectares": 91.85,
+    "registered_hedgerow_km": 0.43,
+    "registered_watercourse_km": 0.11
+  },
+  {
+    "lnrs": "Worcestershire",
+    "site_count": 3,
+    "registered_habitat_hectares": 38.42,
+    "registered_hedgerow_km": 0.49,
+    "registered_watercourse_km": 0
+  },
+  {
+    "lnrs": "North Northamptonshire",
+    "site_count": 3,
+    "registered_habitat_hectares": 210.78,
+    "registered_hedgerow_km": 8.18,
+    "registered_watercourse_km": 1.16
+  },
+  {
+    "lnrs": "Isle of Wight",
+    "site_count": 3,
+    "registered_habitat_hectares": 69.64,
+    "registered_hedgerow_km": 2.72,
+    "registered_watercourse_km": 0.21
+  },
+  {
+    "lnrs": "Berkshire",
+    "site_count": 3,
+    "registered_habitat_hectares": 166.22,
+    "registered_hedgerow_km": 7.49,
+    "registered_watercourse_km": 0
+  },
+  {
+    "lnrs": "South of Tyne and Wear",
+    "site_count": 3,
+    "registered_habitat_hectares": 17.53,
+    "registered_hedgerow_km": 0.37,
+    "registered_watercourse_km": 0
+  },
+  {
+    "lnrs": "Hull and East Yorkshire",
+    "site_count": 2,
+    "registered_habitat_hectares": 53.89,
+    "registered_hedgerow_km": 2.91,
+    "registered_watercourse_km": 1.25
+  },
+  {
+    "lnrs": "West Northamptonshire",
+    "site_count": 2,
+    "registered_habitat_hectares": 61.79,
+    "registered_hedgerow_km": 4.8,
+    "registered_watercourse_km": 0
+  },
+  {
+    "lnrs": "Wiltshire and Swindon",
+    "site_count": 2,
+    "registered_habitat_hectares": 86.7,
+    "registered_hedgerow_km": 2.69,
+    "registered_watercourse_km": 1.56
+  },
+  {
+    "lnrs": "Greater London",
+    "site_count": 2,
+    "registered_habitat_hectares": 29.83,
+    "registered_hedgerow_km": 0.74,
+    "registered_watercourse_km": 0
+  },
+  {
+    "lnrs": "Cumbria",
+    "site_count": 1,
+    "registered_habitat_hectares": 12.98,
+    "registered_hedgerow_km": 0,
+    "registered_watercourse_km": 0
+  },
+  {
+    "lnrs": "Liverpool City Region",
+    "site_count": 1,
+    "registered_habitat_hectares": 12.41,
+    "registered_hedgerow_km": 2,
+    "registered_watercourse_km": 0
+  }
+]

@@ -1,0 +1,227 @@
+[
+  {
+    "code": "BGS-150526002",
+    "title": "Biodiversity gain site",
+    "lpa": "Cheshire East LPA",
+    "nca": "",
+    "lnrs": "Cheshire",
+    "gainSiteSizeHa": 23.22,
+    "first_seen_date": "2026-06-10"
+  },
+  {
+    "code": "BGS-150526003",
+    "title": "Biodiversity gain site",
+    "lpa": "Cheshire East LPA",
+    "nca": "",
+    "lnrs": "Cheshire",
+    "gainSiteSizeHa": 4.3,
+    "first_seen_date": "2026-06-10"
+  },
+  {
+    "code": "BGS-150526001",
+    "title": "Biodiversity gain site",
+    "lpa": "Cheshire East LPA",
+    "nca": "",
+    "lnrs": "Cheshire",
+    "gainSiteSizeHa": 13.74,
+    "first_seen_date": "2026-06-10"
+  },
+  {
+    "code": "BGS-060326001",
+    "title": "Biodiversity gain site",
+    "lpa": "Bradford LPA",
+    "nca": "",
+    "lnrs": "West Yorkshire",
+    "gainSiteSizeHa": 44.9,
+    "first_seen_date": "2026-06-10"
+  },
+  {
+    "code": "BGS-130326002",
+    "title": "Biodiversity gain site",
+    "lpa": "King’s Lynn and West Norfolk LPA",
+    "nca": "",
+    "lnrs": "Norfolk",
+    "gainSiteSizeHa": 34.8,
+    "first_seen_date": "2026-06-09"
+  },
+  {
+    "code": "BGS-120226002",
+    "title": "Biodiversity gain site",
+    "lpa": "Test Valley LPA",
+    "nca": "",
+    "lnrs": "Hampshire",
+    "gainSiteSizeHa": 20.24,
+    "first_seen_date": "2026-06-09"
+  },
+  {
+    "code": "BGS-060226001",
+    "title": "Biodiversity gain site",
+    "lpa": "North Norfolk LPA",
+    "nca": "",
+    "lnrs": "Norfolk",
+    "gainSiteSizeHa": 0.55,
+    "first_seen_date": "2026-06-06"
+  },
+  {
+    "code": "BGS-281124001 - 05/06/2026 08:16",
+    "title": "Biodiversity gain site",
+    "lpa": "Bath and North East Somerset LPA",
+    "nca": "",
+    "lnrs": "West of England",
+    "gainSiteSizeHa": 0,
+    "first_seen_date": "2026-06-06"
+  },
+  {
+    "code": "BGS-110226002",
+    "title": "Biodiversity gain site",
+    "lpa": "Isles of Scilly LPA",
+    "nca": "",
+    "lnrs": "Cornwall and the Isles of Scilly",
+    "gainSiteSizeHa": 2.62,
+    "first_seen_date": "2026-06-04"
+  },
+  {
+    "code": "BGS-070426002",
+    "title": "Biodiversity gain site",
+    "lpa": "Tonbridge and Malling LPA",
+    "nca": "",
+    "lnrs": "Kent and Medway",
+    "gainSiteSizeHa": 40.44,
+    "first_seen_date": "2026-06-03"
+  },
+  {
+    "code": "BGS-130226001",
+    "title": "Biodiversity gain site",
+    "lpa": "Test Valley LPA",
+    "nca": "",
+    "lnrs": "Hampshire",
+    "gainSiteSizeHa": 41.32,
+    "first_seen_date": "2026-05-29"
+  },
+  {
+    "code": "BGS-020326001",
+    "title": "Biodiversity gain site",
+    "lpa": "Stroud LPA",
+    "nca": "",
+    "lnrs": "Gloucestershire",
+    "gainSiteSizeHa": 23.49,
+    "first_seen_date": "2026-05-28"
+  },
+  {
+    "code": "BGS-260226001",
+    "title": "Biodiversity gain site",
+    "lpa": "Cheshire West and Chester LPA",
+    "nca": "",
+    "lnrs": "Cheshire",
+    "gainSiteSizeHa": 74.73,
+    "first_seen_date": "2026-05-28"
+  },
+  {
+    "code": "BGS-130226002",
+    "title": "Biodiversity gain site",
+    "lpa": "St Albans LPA",
+    "nca": "",
+    "lnrs": "Hertfordshire",
+    "gainSiteSizeHa": 0.49,
+    "first_seen_date": "2026-05-28"
+  },
+  {
+    "code": "BGS-060324001",
+    "title": "Biodiversity gain site",
+    "lpa": "Aylesbury Vale LPA",
+    "nca": "",
+    "lnrs": "Buckinghamshire and Milton Keynes",
+    "gainSiteSizeHa": 19.74,
+    "first_seen_date": "2026-05-26"
+  },
+  {
+    "code": "BGS-160125001",
+    "title": "Biodiversity gain site",
+    "lpa": "East Suffolk LPA",
+    "nca": "",
+    "lnrs": "Suffolk",
+    "gainSiteSizeHa": 6.89,
+    "first_seen_date": "2026-05-26"
+  },
+  {
+    "code": "BGS-210825001",
+    "title": "Biodiversity gain site",
+    "lpa": "Cheshire East LPA",
+    "nca": "",
+    "lnrs": "Cheshire",
+    "gainSiteSizeHa": 10.19,
+    "first_seen_date": "2026-05-26"
+  },
+  {
+    "code": "BGS-230125001",
+    "title": "Biodiversity gain site",
+    "lpa": "Barnsley LPA",
+    "nca": "",
+    "lnrs": "South Yorkshire",
+    "gainSiteSizeHa": 9.35,
+    "first_seen_date": "2026-05-26"
+  },
+  {
+    "code": "BGS-191124001",
+    "title": "Biodiversity gain site",
+    "lpa": "Wealden LPA",
+    "nca": "",
+    "lnrs": "East Sussex and Brighton & Hove",
+    "gainSiteSizeHa": 16.13,
+    "first_seen_date": "2026-05-26"
+  },
+  {
+    "code": "BGS-131125001",
+    "title": "Biodiversity gain site",
+    "lpa": "Stratford-on-Avon LPA",
+    "nca": "",
+    "lnrs": "Warwickshire",
+    "gainSiteSizeHa": 2.65,
+    "first_seen_date": "2026-05-26"
+  },
+  {
+    "code": "BGS-020625001",
+    "title": "Biodiversity gain site",
+    "lpa": "Dorset LPA",
+    "nca": "",
+    "lnrs": "Dorset",
+    "gainSiteSizeHa": 16.28,
+    "first_seen_date": "2026-05-26"
+  },
+  {
+    "code": "BGS-121125001",
+    "title": "Biodiversity gain site",
+    "lpa": "Vale of White Horse LPA",
+    "nca": "",
+    "lnrs": "Oxfordshire",
+    "gainSiteSizeHa": 10.39,
+    "first_seen_date": "2026-05-26"
+  },
+  {
+    "code": "BGS-190325001",
+    "title": "Biodiversity gain site",
+    "lpa": "Epping Forest LPA",
+    "nca": "",
+    "lnrs": "Greater Essex",
+    "gainSiteSizeHa": 197.27,
+    "first_seen_date": "2026-05-26"
+  },
+  {
+    "code": "BGS-080425001",
+    "title": "Biodiversity gain site",
+    "lpa": "Newcastle-under-Lyme LPA",
+    "nca": "",
+    "lnrs": "Staffordshire and Stoke-on-Trent",
+    "gainSiteSizeHa": 8.72,
+    "first_seen_date": "2026-05-26"
+  },
+  {
+    "code": "BGS-270625001",
+    "title": "Biodiversity gain site",
+    "lpa": "Sevenoaks LPA",
+    "nca": "",
+    "lnrs": "Kent and Medway",
+    "gainSiteSizeHa": 0.5,
+    "first_seen_date": "2026-05-26"
+  }
+]

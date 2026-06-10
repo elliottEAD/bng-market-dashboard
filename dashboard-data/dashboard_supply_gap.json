@@ -1,0 +1,252 @@
+[
+  {
+    "lpa": "Wakefield LPA",
+    "site_count": 1,
+    "registered_habitat_hectares": 3.97,
+    "allocated_habitat_area": 3.97,
+    "remaining_habitat_area": 0,
+    "allocated_habitat_units": 18.52,
+    "utilisation_percent": 100,
+    "opportunity_score": 213.7
+  },
+  {
+    "lpa": "Blackpool LPA",
+    "site_count": 1,
+    "registered_habitat_hectares": 1.04,
+    "allocated_habitat_area": 1.04,
+    "remaining_habitat_area": 0,
+    "allocated_habitat_units": 4.11,
+    "utilisation_percent": 100,
+    "opportunity_score": 210.8
+  },
+  {
+    "lpa": "Sunderland LPA",
+    "site_count": 1,
+    "registered_habitat_hectares": 0.6,
+    "allocated_habitat_area": 0.6,
+    "remaining_habitat_area": 0,
+    "allocated_habitat_units": 3.35,
+    "utilisation_percent": 100,
+    "opportunity_score": 210.7
+  },
+  {
+    "lpa": "North York Moors National Park LPA",
+    "site_count": 1,
+    "registered_habitat_hectares": 1.41,
+    "allocated_habitat_area": 1.41,
+    "remaining_habitat_area": 0,
+    "allocated_habitat_units": 2.45,
+    "utilisation_percent": 100,
+    "opportunity_score": 210.5
+  },
+  {
+    "lpa": "Folkestone and Hythe LPA",
+    "site_count": 1,
+    "registered_habitat_hectares": 0.19,
+    "allocated_habitat_area": 0.19,
+    "remaining_habitat_area": 0,
+    "allocated_habitat_units": 0.54,
+    "utilisation_percent": 100,
+    "opportunity_score": 210.1
+  },
+  {
+    "lpa": "Barnsley LPA",
+    "site_count": 2,
+    "registered_habitat_hectares": 24.58,
+    "allocated_habitat_area": 16.93,
+    "remaining_habitat_area": 7.64,
+    "allocated_habitat_units": 99.32,
+    "utilisation_percent": 68.9,
+    "opportunity_score": 167.6
+  },
+  {
+    "lpa": "Redcar and Cleveland LPA",
+    "site_count": 1,
+    "registered_habitat_hectares": 47.89,
+    "allocated_habitat_area": 33.61,
+    "remaining_habitat_area": 14.29,
+    "allocated_habitat_units": 80.08,
+    "utilisation_percent": 70.2,
+    "opportunity_score": 166.4
+  },
+  {
+    "lpa": "Elmbridge LPA",
+    "site_count": 1,
+    "registered_habitat_hectares": 14.83,
+    "allocated_habitat_area": 10.4,
+    "remaining_habitat_area": 4.43,
+    "allocated_habitat_units": 36.33,
+    "utilisation_percent": 70.1,
+    "opportunity_score": 157.5
+  },
+  {
+    "lpa": "North Kesteven LPA",
+    "site_count": 2,
+    "registered_habitat_hectares": 14.58,
+    "allocated_habitat_area": 10.1,
+    "remaining_habitat_area": 4.48,
+    "allocated_habitat_units": 21.41,
+    "utilisation_percent": 69.3,
+    "opportunity_score": 152.8
+  },
+  {
+    "lpa": "Halton LPA",
+    "site_count": 1,
+    "registered_habitat_hectares": 12.41,
+    "allocated_habitat_area": 6.73,
+    "remaining_habitat_area": 5.68,
+    "allocated_habitat_units": 26.89,
+    "utilisation_percent": 54.2,
+    "opportunity_score": 123.8
+  },
+  {
+    "lpa": "Northumberland LPA",
+    "site_count": 7,
+    "registered_habitat_hectares": 342.44,
+    "allocated_habitat_area": 103.95,
+    "remaining_habitat_area": 238.49,
+    "allocated_habitat_units": 230.02,
+    "utilisation_percent": 30.4,
+    "opportunity_score": 106.7
+  },
+  {
+    "lpa": "Wigan LPA",
+    "site_count": 2,
+    "registered_habitat_hectares": 35.2,
+    "allocated_habitat_area": 13.35,
+    "remaining_habitat_area": 21.86,
+    "allocated_habitat_units": 87.3,
+    "utilisation_percent": 37.9,
+    "opportunity_score": 103.3
+  },
+  {
+    "lpa": "Malvern Hills LPA",
+    "site_count": 2,
+    "registered_habitat_hectares": 21.21,
+    "allocated_habitat_area": 8.21,
+    "remaining_habitat_area": 12.99,
+    "allocated_habitat_units": 41.28,
+    "utilisation_percent": 38.7,
+    "opportunity_score": 95.7
+  },
+  {
+    "lpa": "Fareham LPA",
+    "site_count": 1,
+    "registered_habitat_hectares": 6.71,
+    "allocated_habitat_area": 2.45,
+    "remaining_habitat_area": 4.26,
+    "allocated_habitat_units": 15.53,
+    "utilisation_percent": 36.5,
+    "opportunity_score": 86.1
+  },
+  {
+    "lpa": "Exeter LPA",
+    "site_count": 1,
+    "registered_habitat_hectares": 3.24,
+    "allocated_habitat_area": 1.12,
+    "remaining_habitat_area": 2.12,
+    "allocated_habitat_units": 9.22,
+    "utilisation_percent": 34.6,
+    "opportunity_score": 81
+  },
+  {
+    "lpa": "North Warwickshire LPA",
+    "site_count": 1,
+    "registered_habitat_hectares": 10.39,
+    "allocated_habitat_area": 3.44,
+    "remaining_habitat_area": 6.95,
+    "allocated_habitat_units": 21.57,
+    "utilisation_percent": 33.1,
+    "opportunity_score": 80.5
+  },
+  {
+    "lpa": "West Lancashire LPA",
+    "site_count": 1,
+    "registered_habitat_hectares": 21.01,
+    "allocated_habitat_area": 6.3,
+    "remaining_habitat_area": 14.71,
+    "allocated_habitat_units": 40.12,
+    "utilisation_percent": 30,
+    "opportunity_score": 78
+  },
+  {
+    "lpa": "Newcastle-under-Lyme LPA",
+    "site_count": 1,
+    "registered_habitat_hectares": 8.76,
+    "allocated_habitat_area": 2.6,
+    "remaining_habitat_area": 6.16,
+    "allocated_habitat_units": 11.63,
+    "utilisation_percent": 29.7,
+    "opportunity_score": 71.7
+  },
+  {
+    "lpa": "Tendring LPA",
+    "site_count": 1,
+    "registered_habitat_hectares": 18.52,
+    "allocated_habitat_area": 5.06,
+    "remaining_habitat_area": 13.46,
+    "allocated_habitat_units": 11.07,
+    "utilisation_percent": 27.3,
+    "opportunity_score": 66.9
+  },
+  {
+    "lpa": "South Norfolk LPA",
+    "site_count": 3,
+    "registered_habitat_hectares": 47.66,
+    "allocated_habitat_area": 12.51,
+    "remaining_habitat_area": 35.15,
+    "allocated_habitat_units": 71.34,
+    "utilisation_percent": 26.2,
+    "opportunity_score": 66.8
+  },
+  {
+    "lpa": "Wychavon LPA",
+    "site_count": 1,
+    "registered_habitat_hectares": 17.21,
+    "allocated_habitat_area": 4.42,
+    "remaining_habitat_area": 12.79,
+    "allocated_habitat_units": 18.44,
+    "utilisation_percent": 25.7,
+    "opportunity_score": 65.1
+  },
+  {
+    "lpa": "Vale of White Horse LPA",
+    "site_count": 3,
+    "registered_habitat_hectares": 56.48,
+    "allocated_habitat_area": 13.09,
+    "remaining_habitat_area": 43.39,
+    "allocated_habitat_units": 75.89,
+    "utilisation_percent": 23.2,
+    "opportunity_score": 61.5
+  },
+  {
+    "lpa": "Rochdale LPA",
+    "site_count": 1,
+    "registered_habitat_hectares": 28.38,
+    "allocated_habitat_area": 5.97,
+    "remaining_habitat_area": 22.41,
+    "allocated_habitat_units": 33.41,
+    "utilisation_percent": 21,
+    "opportunity_score": 58.8
+  },
+  {
+    "lpa": "Bolton LPA",
+    "site_count": 3,
+    "registered_habitat_hectares": 59.75,
+    "allocated_habitat_area": 13.12,
+    "remaining_habitat_area": 46.63,
+    "allocated_habitat_units": 61.73,
+    "utilisation_percent": 22,
+    "opportunity_score": 56.3
+  },
+  {
+    "lpa": "Milton Keynes LPA",
+    "site_count": 1,
+    "registered_habitat_hectares": 37.91,
+    "allocated_habitat_area": 6.68,
+    "remaining_habitat_area": 31.24,
+    "allocated_habitat_units": 37.35,
+    "utilisation_percent": 17.6,
+    "opportunity_score": 52.7
+  }
+]

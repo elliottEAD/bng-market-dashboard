@@ -1,0 +1,42 @@
+[
+  {
+    "area": "Devon",
+    "site_count": 11,
+    "registered_habitat_hectares": 422.33,
+    "allocated_habitat_area": 15.63,
+    "remaining_habitat_area": 406.7,
+    "utilisation_percent": 3.7,
+    "registered_hedgerow_km": 14.07,
+    "registered_watercourse_km": 5.2
+  },
+  {
+    "area": "Somerset",
+    "site_count": 9,
+    "registered_habitat_hectares": 197.02,
+    "allocated_habitat_area": 3.13,
+    "remaining_habitat_area": 193.89,
+    "utilisation_percent": 1.6,
+    "registered_hedgerow_km": 11.94,
+    "registered_watercourse_km": 2.03
+  },
+  {
+    "area": "Dorset",
+    "site_count": 3,
+    "registered_habitat_hectares": 116.81,
+    "allocated_habitat_area": 8.52,
+    "remaining_habitat_area": 108.29,
+    "utilisation_percent": 7.3,
+    "registered_hedgerow_km": 1.82,
+    "registered_watercourse_km": 1.98
+  },
+  {
+    "area": "Cornwall and the Isles of Scilly",
+    "site_count": 4,
+    "registered_habitat_hectares": 54.18,
+    "allocated_habitat_area": 2.79,
+    "remaining_habitat_area": 51.39,
+    "utilisation_percent": 5.1,
+    "registered_hedgerow_km": 0.89,
+    "registered_watercourse_km": 0
+  }
+]
