@@ -246,7 +246,7 @@
     <p class="note" id="map-status">Loading map...</p>
 
     <p class="note">
-      Some registered gain sites may not appear on the map where published location data could not be converted to coordinates.
+      Red markers indicate sites with no remaining registered habitat availability shown in the dashboard data. These sites are shown on the unfiltered map for completeness, but are excluded from habitat filters and nearest-site search results.
     </p>
 
   </div>
@@ -732,9 +732,27 @@ function yellowIcon() {
   });
 }
 
+  function redIcon() {
+  return new L.Icon({
+    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-red.png",
+    shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png",
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+  });
+}
+  
 function resetMarkerColours() {
-  siteMarkers.forEach(marker => {
-    marker.setIcon(new L.Icon.Default());
+  siteMarkers.forEach((marker, code) => {
+    const site = sites.find(s => s.code === code);
+
+    if (site && isFullyAllocated(site)) {
+      marker.setIcon(redIcon());
+    } else {
+      marker.setIcon(new L.Icon.Default());
+    }
+
     marker.setZIndexOffset(0);
   });
 }
@@ -826,16 +844,28 @@ if (
       maximumFractionDigits: 2
     }) + " " + row.unit;
   }
+function isFullyAllocated(site) {
+  return !site.remaining || site.remaining.length === 0;
+}
 
   function siteMatchesFilter(site, selectedBroadGroup, selectedHabitat) {
-    return (site.remaining || []).some(row => {
-      const matchesBroad = !selectedBroadGroup || rowBroadGroup(row) === selectedBroadGroup;
-      const matchesHabitat = !selectedHabitat || row.habitat === selectedHabitat;
-      const hasRemaining = Number(row.remaining_extent || 0) > 0;
 
-      return matchesBroad && matchesHabitat && hasRemaining;
-    });
+  if (!selectedBroadGroup && !selectedHabitat) {
+    return true;
   }
+
+  if (isFullyAllocated(site)) {
+    return false;
+  }
+
+  return (site.remaining || []).some(row => {
+    const matchesBroad = !selectedBroadGroup || rowBroadGroup(row) === selectedBroadGroup;
+    const matchesHabitat = !selectedHabitat || row.habitat === selectedHabitat;
+    const hasRemaining = Number(row.remaining_extent || 0) > 0;
+
+    return matchesBroad && matchesHabitat && hasRemaining;
+  });
+}
 
   function popupHtml(site, selectedHabitat) {
     const selectedBroadGroup = broadHabitatFilter.value;
@@ -849,6 +879,21 @@ if (
     const allRowsForSite = site.remaining || [];
     let availabilityHtml = "";
 
+    if (isFullyAllocated(site)) {
+  availabilityHtml = `
+    <br><strong>Status:</strong> Fully allocated / no remaining registered habitat availability shown in dashboard data.
+  `;
+
+  return `
+    <strong>${site.code || "BNG site"}</strong><br>
+    <strong>LPA:</strong> ${site.lpa || "Unknown"}<br>
+    <strong>LNRS:</strong> ${site.lnrs || "Unknown"}<br>
+    ${site.sizeHa ? `<strong>Site size:</strong> ${Number(site.sizeHa).toLocaleString("en-GB", { maximumFractionDigits: 2 })} ha<br>` : ""}
+    ${availabilityHtml}
+    ${site.link ? `<br><a href="${site.link}" target="_blank" rel="noopener">View register record</a>` : ""}
+  `;
+}
+    
     if (selectedBroadGroup || selectedHabitat) {
       availabilityHtml = matchingRows.length
         ? matchingRows.map(row =>
@@ -897,7 +942,9 @@ visibleSites.forEach(site => {
   const marker = L.marker([
     Number(site.latitude),
     Number(site.longitude)
-  ]).addTo(markerLayer);
+  ], {
+    icon: isFullyAllocated(site) ? redIcon() : new L.Icon.Default()
+  }).addTo(markerLayer);
 
   marker.bindPopup(popupHtml(site, selectedHabitat));
   siteMarkers.set(site.code, marker);
@@ -912,11 +959,18 @@ visibleSites.forEach(site => {
     }
 
 if (mapStatus) {
+  const fullyAllocatedCount = visibleSites.filter(isFullyAllocated).length;
+
   mapStatus.innerHTML =
-"Map showing " +
-visibleSites.length.toLocaleString("en-GB") +
-" mapped gain site markers" +
-    filterText;
+    "Map showing " +
+    visibleSites.length.toLocaleString("en-GB") +
+    " mapped gain site markers" +
+    filterText +
+    (!selectedBroadGroup && !selectedHabitat
+      ? " Red markers indicate sites with no remaining registered habitat availability shown in dashboard data (" +
+        fullyAllocatedCount.toLocaleString("en-GB") +
+        ")."
+      : "");
 }
 
     if (visibleSites.length > 0) {
@@ -1062,12 +1116,13 @@ visibleSites.length.toLocaleString("en-GB") +
     const clickLpa = containingBoundaryName(latlng, lpaGeojson);
     const clickLnrs = containingBoundaryName(latlng, lnrsGeojson);
 
-    const candidates = sites
-      .filter(site =>
-        Number.isFinite(Number(site.latitude)) &&
-        Number.isFinite(Number(site.longitude)) &&
-        siteMatchesFilter(site, selectedBroadGroup, selectedHabitat)
-      )
+const candidates = sites
+  .filter(site =>
+    Number.isFinite(Number(site.latitude)) &&
+    Number.isFinite(Number(site.longitude)) &&
+    !isFullyAllocated(site) &&
+    siteMatchesFilter(site, selectedBroadGroup, selectedHabitat)
+  )
       .map(site => {
         const distance = haversineKm(
           { lat: latlng.lat, lng: latlng.lng },
