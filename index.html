@@ -35,6 +35,15 @@
       margin: 24px 0;
     }
 
+    .map-grid {
+      align-items: stretch;
+    }
+
+#nearest-panel {
+  height: 600px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
     .card {
       background: #fff;
       border: 1px solid #ddd;
@@ -185,10 +194,15 @@
     </p>
 
     <div class="methodology" style="margin-bottom:14px;">
-      <label for="habitat-filter"><strong>Filter by remaining registered habitat type:</strong></label>
-      <select id="habitat-filter">
-        <option value="">All gain sites</option>
-      </select>
+<label for="broad-habitat-filter"><strong>Broad habitat type:</strong></label>
+<select id="broad-habitat-filter">
+  <option value="">All broad habitat types</option>
+</select>
+
+<label for="habitat-filter" style="display:block;margin-top:10px;"><strong>Habitat type:</strong></label>
+<select id="habitat-filter">
+  <option value="">All habitat types</option>
+</select>
       <p class="note">
         Filtering is based on remaining registered area or length: proposed extent minus allocated extent. Only sites with positive remaining area/length for the selected habitat are displayed.
       </p>
@@ -656,24 +670,46 @@
       lpaLayer.addData(lpaGeojson);
       lnrsLayer.addData(lnrsGeojson);
 
-      const habitatFilter = document.getElementById("habitat-filter");
-      const nearestPanel = document.getElementById("nearest-panel");
-      const mapStatus = document.getElementById("map-status");
+const broadHabitatFilter = document.getElementById("broad-habitat-filter");
+const habitatFilter = document.getElementById("habitat-filter");
+const nearestPanel = document.getElementById("nearest-panel");
+const mapStatus = document.getElementById("map-status");
 
-      const allHabitats = Array.from(
-        new Set(
-          sites.flatMap(site =>
-            (site.remaining || []).map(row => row.habitat)
-          )
-        )
-      ).sort();
+const allRows = sites.flatMap(site => site.remaining || []);
 
-      allHabitats.forEach(habitat => {
-        const option = document.createElement("option");
-        option.value = habitat;
-        option.textContent = habitat;
-        habitatFilter.appendChild(option);
-      });
+const allBroadGroups = Array.from(
+  new Set(allRows.map(row => rowBroadGroup(row)))
+).sort();
+
+allBroadGroups.forEach(group => {
+  const option = document.createElement("option");
+  option.value = group;
+  option.textContent = group;
+  broadHabitatFilter.appendChild(option);
+});
+
+function populateHabitatDropdown() {
+  const selectedBroadGroup = broadHabitatFilter.value;
+
+  habitatFilter.innerHTML = '<option value="">All habitat types</option>';
+
+  const habitats = Array.from(
+    new Set(
+      allRows
+        .filter(row => !selectedBroadGroup || rowBroadGroup(row) === selectedBroadGroup)
+        .map(row => row.habitat)
+    )
+  ).sort();
+
+  habitats.forEach(habitat => {
+    const option = document.createElement("option");
+    option.value = habitat;
+    option.textContent = habitat;
+    habitatFilter.appendChild(option);
+  });
+}
+
+populateHabitatDropdown();
 
       function formatExtent(row) {
         return Number(row.remaining_extent || 0).toLocaleString("en-GB", {
@@ -682,23 +718,28 @@
         }) + " " + row.unit;
       }
 
-      function siteMatchesFilter(site, selectedHabitat) {
-        if (!selectedHabitat) return true;
-        return (site.remaining || []).some(row =>
-          row.habitat === selectedHabitat &&
-          Number(row.remaining_extent || 0) > 0
-        );
-      }
+    function siteMatchesFilter(site, selectedBroadGroup, selectedHabitat) {
+  return (site.remaining || []).some(row => {
+    const matchesBroad = !selectedBroadGroup || rowBroadGroup(row) === selectedBroadGroup;
+    const matchesHabitat = !selectedHabitat || row.habitat === selectedHabitat;
+    const hasRemaining = Number(row.remaining_extent || 0) > 0;
+
+    return matchesBroad && matchesHabitat && hasRemaining;
+  });
+}
 
       function popupHtml(site, selectedHabitat) {
-        const matchingRows = selectedHabitat
-          ? (site.remaining || []).filter(row => row.habitat === selectedHabitat)
-          : [];
+        const selectedBroadGroup = broadHabitatFilter.value;
+      const matchingRows = (site.remaining || []).filter(row => {
+        const matchesBroad = !selectedBroadGroup || rowBroadGroup(row) === selectedBroadGroup;
+        const matchesHabitat = !selectedHabitat || row.habitat === selectedHabitat;
+        return matchesBroad && matchesHabitat;
+      });
 
         const allRows = site.remaining || [];
         let availabilityHtml = "";
 
-        if (selectedHabitat) {
+        if (selectedBroadGroup || selectedHabitat) {
           availabilityHtml = matchingRows.length
             ? matchingRows.map(row =>
                 `<br><strong>Remaining ${row.habitat}:</strong> ${formatExtent(row)}`
@@ -729,13 +770,14 @@
       }
 
       function renderMarkers() {
-        const selectedHabitat = habitatFilter.value;
+      const selectedBroadGroup = broadHabitatFilter.value;
+      const selectedHabitat = habitatFilter.value;
         markerLayer.clearLayers();
 
         const visibleSites = sites.filter(site =>
           Number.isFinite(Number(site.latitude)) &&
           Number.isFinite(Number(site.longitude)) &&
-          siteMatchesFilter(site, selectedHabitat)
+          siteMatchesFilter(site, selectedBroadGroup, selectedHabitat)
         );
 
         visibleSites.forEach(site => {
@@ -747,19 +789,23 @@
           marker.bindPopup(popupHtml(site, selectedHabitat));
         });
 
-        if (mapStatus) {
-          mapStatus.innerHTML =
-            "Map showing " +
-            visibleSites.length.toLocaleString("en-GB") +
-            " gain site markers" +
-            (selectedHabitat ? " with remaining " + selectedHabitat + "." : ".");
-        }
+if (mapStatus) {
+  let filterText = "";
 
-        if (visibleSites.length > 0) {
-          const group = L.featureGroup(markerLayer.getLayers());
-          map.fitBounds(group.getBounds(), { padding: [30, 30] });
-        }
-      }
+  if (selectedBroadGroup && selectedHabitat) {
+    filterText = " with remaining " + selectedHabitat + " within " + selectedBroadGroup + ".";
+  } else if (selectedBroadGroup) {
+    filterText = " with remaining habitat in " + selectedBroadGroup + ".";
+  } else {
+    filterText = ".";
+  }
+
+  mapStatus.innerHTML =
+    "Map showing " +
+    visibleSites.length.toLocaleString("en-GB") +
+    " gain site markers" +
+    filterText;
+}
 
       function getFeatureName(feature) {
         const p = feature.properties || {};
@@ -891,6 +937,7 @@
       }
 
       function renderNearestPanel(latlng) {
+        const selectedBroadGroup = broadHabitatFilter.value;
         const selectedHabitat = habitatFilter.value;
         const clickLpa = containingBoundaryName(latlng, lpaGeojson);
         const clickLnrs = containingBoundaryName(latlng, lnrsGeojson);
@@ -899,7 +946,7 @@
           .filter(site =>
             Number.isFinite(Number(site.latitude)) &&
             Number.isFinite(Number(site.longitude)) &&
-            siteMatchesFilter(site, selectedHabitat)
+            siteMatchesFilter(site, selectedBroadGroup, selectedHabitat)
           )
           .map(site => {
             const distance = haversineKm(
@@ -919,7 +966,7 @@
             a.priority - b.priority ||
             a.distance - b.distance
           )
-          .slice(0, 10);
+          .slice(0, 5);
 
         nearestPanel.innerHTML = `
           <strong>Nearest gain sites</strong>
@@ -927,7 +974,8 @@
             Click location:<br>
             ${clickLpa ? "<strong>LPA:</strong> " + clickLpa + "<br>" : ""}
             ${clickLnrs ? "<strong>LNRS:</strong> " + clickLnrs + "<br>" : ""}
-            ${selectedHabitat ? "<strong>Filter:</strong> " + selectedHabitat : "<strong>Filter:</strong> All gain sites"}
+            ${selectedBroadGroup ? "<strong>Broad habitat:</strong> " + selectedBroadGroup + "<br>" : ""}
+            ${selectedHabitat ? "<strong>Habitat type:</strong> " + selectedHabitat : "<strong>Habitat type:</strong> All"}
           </p>
 
           ${candidates.map((item, index) => `
@@ -942,9 +990,14 @@
         `;
       }
 
-      habitatFilter.addEventListener("change", function () {
+      broadHabitatFilter.addEventListener("change", function () {
+        populateHabitatDropdown();
         renderMarkers();
       });
+
+habitatFilter.addEventListener("change", function () {
+  renderMarkers();
+});
 
       map.on("click", function (event) {
         renderNearestPanel(event.latlng);
