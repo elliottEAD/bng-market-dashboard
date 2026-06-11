@@ -39,6 +39,29 @@
       align-items: stretch;
     }
 
+    .filter-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  align-items: end;
+}
+
+.filter-grid label {
+  display: block;
+}
+
+.filter-grid select {
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+}
+
+@media (max-width: 700px) {
+  .filter-grid {
+    grid-template-columns: 1fr;
+  }
+}
+    
 #nearest-panel {
   height: 600px;
   overflow-y: auto;
@@ -194,27 +217,39 @@
     </p>
 
     <div class="methodology" style="margin-bottom:14px;">
-<label for="broad-habitat-filter"><strong>Broad habitat type:</strong></label>
-<select id="broad-habitat-filter">
-  <option value="">All broad habitat types</option>
-</select>
+<div class="filter-grid">
+  <div>
+    <label for="broad-habitat-filter"><strong>Broad habitat type:</strong></label>
+    <select id="broad-habitat-filter">
+      <option value="">All broad habitat types</option>
+    </select>
+  </div>
 
-<label for="habitat-filter" style="display:block;margin-top:10px;"><strong>Habitat type:</strong></label>
-<select id="habitat-filter">
-  <option value="">All habitat types</option>
-</select>
+  <div>
+    <label for="habitat-filter"><strong>Habitat type:</strong></label>
+    <select id="habitat-filter">
+      <option value="">All habitat types</option>
+    </select>
+  </div>
+</div>
       <p class="note">
         Filtering is based on remaining registered area or length: proposed extent minus allocated extent. Only sites with positive remaining area/length for the selected habitat are displayed.
       </p>
     </div>
 
-    <div class="map-grid">
-      <div>
-        <div id="bng-map"></div>
-        <p class="note" id="map-status">Loading map...</p>
-      </div>
+<div class="map-grid">
+  <div>
+    <div id="bng-map"></div>
 
-      <div id="nearest-panel" class="methodology">
+    <p class="note" id="map-status">Loading map...</p>
+
+    <p class="note">
+      Some registered gain sites may not appear on the map where published location data could not be converted to coordinates.
+    </p>
+
+  </div>
+
+  <div id="nearest-panel" class="methodology">
         <strong>Nearest gain sites</strong>
         <p class="note">
           Click anywhere on the map to find the nearest gain sites. Results prioritise sites in the same LPA or LNRS, then sort by distance.
@@ -636,7 +671,8 @@ async function initBngMap() {
   }, 500);
 
   const markerLayer = L.layerGroup().addTo(map);
-
+  const siteMarkers = new Map();
+  
   const lpaLayer = L.geoJSON(null, {
     interactive: false,
     style: {
@@ -675,6 +711,40 @@ async function initBngMap() {
   const nearestPanel = document.getElementById("nearest-panel");
   const mapStatus = document.getElementById("map-status");
 
+  function defaultIcon() {
+  return new L.Icon.Default();
+}
+
+function yellowIcon() {
+  return new L.Icon({
+    iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-yellow.png",
+    shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png",
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+  });
+}
+
+function resetMarkerColours() {
+  siteMarkers.forEach(marker => {
+    marker.setIcon(new L.Icon.Default());
+    marker.setZIndexOffset(0);
+  });
+}
+
+function highlightNearestMarkers(candidates) {
+  resetMarkerColours();
+
+  candidates.forEach(item => {
+    const marker = siteMarkers.get(item.site.code);
+    if (marker) {
+      marker.setIcon(yellowIcon());
+      marker.setZIndexOffset(1000);
+    }
+  });
+}
+  
   function broadHabitatGroup(habitat, habitatType) {
     const h = String(habitat || "").toLowerCase();
 
@@ -682,8 +752,20 @@ async function initBngMap() {
     if (habitatType === "watercourse") return "Watercourse";
 
     if (h.includes("grassland")) return "Grassland";
-    if (h.includes("woodland") || h.includes("forest")) return "Woodland and Forest";
-    if (h.includes("tree")) return "Individual Trees";
+if (
+  h.includes("individual tree") ||
+  h.includes("individual trees") ||
+  h.includes("street tree")
+) {
+  return "Individual Trees";
+}
+
+if (
+  h.includes("woodland") ||
+  h.includes("forest")
+) {
+  return "Woodland and Forest";
+}
     if (h.includes("heath") || h.includes("scrub") || h.includes("shrub")) return "Heathland and Scrub";
     if (h.includes("fen") || h.includes("bog") || h.includes("wetland") || h.includes("reed")) return "Wetland";
     if (h.includes("pond") || h.includes("lake")) return "Open Water";
@@ -803,14 +885,17 @@ async function initBngMap() {
       siteMatchesFilter(site, selectedBroadGroup, selectedHabitat)
     );
 
-    visibleSites.forEach(site => {
-      const marker = L.marker([
-        Number(site.latitude),
-        Number(site.longitude)
-      ]).addTo(markerLayer);
+  siteMarkers.clear();
 
-      marker.bindPopup(popupHtml(site, selectedHabitat));
-    });
+visibleSites.forEach(site => {
+  const marker = L.marker([
+    Number(site.latitude),
+    Number(site.longitude)
+  ]).addTo(markerLayer);
+
+  marker.bindPopup(popupHtml(site, selectedHabitat));
+  siteMarkers.set(site.code, marker);
+});
 
     let filterText = ".";
 
@@ -820,13 +905,13 @@ async function initBngMap() {
       filterText = " with remaining habitat in " + selectedBroadGroup + ".";
     }
 
-    if (mapStatus) {
-      mapStatus.innerHTML =
-        "Map showing " +
-        visibleSites.length.toLocaleString("en-GB") +
-        " gain site markers" +
-        filterText;
-    }
+if (mapStatus) {
+  mapStatus.innerHTML =
+    "Map showing " +
+    visibleSites.length.toLocaleString("en-GB") +
+    " mapped gain site markers" +
+    filterText;
+}
 
     if (visibleSites.length > 0) {
       const group = L.featureGroup(markerLayer.getLayers());
@@ -996,7 +1081,7 @@ async function initBngMap() {
         a.distance - b.distance
       )
       .slice(0, 5);
-
+highlightNearestMarkers(candidates);
     nearestPanel.innerHTML = `
       <strong>Nearest 5 gain sites</strong>
       <p class="note">
@@ -1019,14 +1104,16 @@ async function initBngMap() {
     `;
   }
 
-  broadHabitatFilter.addEventListener("change", function () {
-    populateHabitatDropdown();
-    renderMarkers();
-  });
+broadHabitatFilter.addEventListener("change", function () {
+  populateHabitatDropdown();
+  resetMarkerColours();
+  renderMarkers();
+});
 
-  habitatFilter.addEventListener("change", function () {
-    renderMarkers();
-  });
+habitatFilter.addEventListener("change", function () {
+  resetMarkerColours();
+  renderMarkers();
+});
 
   map.on("click", function (event) {
     renderNearestPanel(event.latlng);
