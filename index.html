@@ -575,27 +575,96 @@ async function initBngMap() {
   const mapEl = document.getElementById("bng-map");
   if (!mapEl) return;
 
-  const map = L.map("bng-map").setView([52.8, -1.5], 6);
+  const map = L.map("bng-map", {
+    scrollWheelZoom: false
+  }).setView([52.8, -1.5], 6);
 
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 18,
     attribution: "&copy; OpenStreetMap contributors"
   }).addTo(map);
 
-  const response = await fetch("dashboard-data/bng_sites_enriched.json?v=" + Date.now());
-  const sites = await response.json();
+  setTimeout(function () {
+    map.invalidateSize();
+  }, 500);
+
+  const markerLayer = L.layerGroup().addTo(map);
+  const lpaLayer = L.geoJSON(null, {
+    style: {
+      color: "#0066cc",
+      weight: 1,
+      opacity: 0.7,
+      fillOpacity: 0
+    },
+    onEachFeature: function (feature, layer) {
+      const p = feature.properties || {};
+      const name =
+        p.LPA23NM ||
+        p.LAD23NM ||
+        p.LPA21NM ||
+        p.name ||
+        p.Name ||
+        p.NAME ||
+        "LPA boundary";
+
+      layer.bindPopup("<strong>LPA:</strong> " + name);
+    }
+  });
+
+  const lnrsLayer = L.geoJSON(null, {
+    style: {
+      color: "#2f855a",
+      weight: 1.5,
+      opacity: 0.8,
+      fillOpacity: 0.03
+    },
+    onEachFeature: function (feature, layer) {
+      const p = feature.properties || {};
+      const name =
+        p.LNRS_NAME ||
+        p.LNRS ||
+        p.name ||
+        p.Name ||
+        p.NAME ||
+        "LNRS boundary";
+
+      layer.bindPopup("<strong>LNRS:</strong> " + name);
+    }
+  });
+
+  const [sitesResponse, lpaResponse, lnrsResponse] = await Promise.all([
+    fetch("dashboard-data/bng_sites_enriched.json?v=" + Date.now()),
+    fetch("dashboard-data/boundaries/lpa.geojson?v=" + Date.now()),
+    fetch("dashboard-data/boundaries/lnrs.geojson?v=" + Date.now())
+  ]);
+
+  const sites = await sitesResponse.json();
+  const lpaGeojson = await lpaResponse.json();
+  const lnrsGeojson = await lnrsResponse.json();
+
+  lpaLayer.addData(lpaGeojson);
+  lnrsLayer.addData(lnrsGeojson);
 
   const markers = [];
 
   sites
-    .filter(site => String(site.record_status || "").toLowerCase() !== "removed")
-    .forEach(site => {
+    .filter(function (site) {
+      return String(site.record_status || "").toLowerCase() !== "removed";
+    })
+    .forEach(function (site) {
       const lat = Number(site.latitude);
       const lng = Number(site.longitude);
 
       if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
 
-      const marker = L.marker([lat, lng]).addTo(map);
+      const sizeNum = Number(site.gainSiteSizeHa || 0);
+
+      const marker = L.circleMarker([lat, lng], {
+        radius: Math.max(5, Math.min(15, Math.sqrt(sizeNum || 1))),
+        weight: 1,
+        opacity: 0.9,
+        fillOpacity: 0.75
+      }).addTo(markerLayer);
 
       const size = site.gainSiteSizeHa
         ? Number(site.gainSiteSizeHa).toLocaleString("en-GB", {
@@ -615,13 +684,33 @@ async function initBngMap() {
       markers.push(marker);
     });
 
+  const baseLayers = {};
+  const overlayLayers = {
+    "Gain sites": markerLayer,
+    "LPA boundaries": lpaLayer,
+    "LNRS boundaries": lnrsLayer
+  };
+
+  L.control.layers(baseLayers, overlayLayers, {
+    collapsed: false
+  }).addTo(map);
+
+  markerLayer.addTo(map);
+
   if (markers.length > 0) {
     const group = L.featureGroup(markers);
     map.fitBounds(group.getBounds(), { padding: [30, 30] });
   }
+
+  const mapNote = document.createElement("p");
+  mapNote.className = "note";
+  mapNote.innerHTML =
+    "Map loaded " + markers.length.toLocaleString("en-GB") +
+    " active gain site markers. LPA and LNRS boundaries can be toggled using the layer control.";
+  mapEl.insertAdjacentElement("afterend", mapNote);
 }
 
-initBngMap().catch(error => {
+initBngMap().catch(function (error) {
   console.error("Map load failed", error);
   const mapEl = document.getElementById("bng-map");
   if (mapEl) {
