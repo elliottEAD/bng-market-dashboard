@@ -125,6 +125,10 @@
       }
     }
   </style>
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
 </head>
 
 <body>
@@ -301,16 +305,19 @@
     </table>
   </div>
 
-  <div class="section">
-    <h3>National Gain Site Map</h3>
+<div class="section">
+  <h3>National Gain Site Map</h3>
 
-    <div style="background:#f7f7f7;border:1px dashed #bbb;border-radius:14px;padding:36px;text-align:center;margin:20px 0;">
-      <h4 style="margin-top:0;">Interactive map coming soon</h4>
-      <p style="max-width:700px;margin:0 auto;color:#555;">
-        A national map layer will be added using the enriched site data. The map will show registered gain sites, site size, LPA, LNRS area and direct register links.
-      </p>
-    </div>
-  </div>
+  <p>
+    Registered biodiversity gain sites from the public BNG register. Markers are shown where coordinates are available in the enriched dataset.
+  </p>
+
+  <div id="bng-map" style="height:560px;border:1px solid #ddd;border-radius:14px;"></div>
+
+  <p class="note">
+    Map locations are based on enriched register data derived from published grid references and should be interpreted as indicative site locations.
+  </p>
+</div>
 
   <div class="section">
     <h3>Methodology and limitations</h3>
@@ -561,5 +568,66 @@ initDashboard().catch(error => {
 });
 </script>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+async function initBngMap() {
+  const mapEl = document.getElementById("bng-map");
+  if (!mapEl) return;
+
+  const map = L.map("bng-map").setView([52.8, -1.5], 6);
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 18,
+    attribution: "&copy; OpenStreetMap contributors"
+  }).addTo(map);
+
+  const response = await fetch("dashboard-data/bng_sites_enriched.json?v=" + Date.now());
+  const sites = await response.json();
+
+  const markers = [];
+
+  sites
+    .filter(site => String(site.record_status || "").toLowerCase() !== "removed")
+    .forEach(site => {
+      const lat = Number(site.latitude);
+      const lng = Number(site.longitude);
+
+      if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+
+      const marker = L.marker([lat, lng]).addTo(map);
+
+      const size = site.gainSiteSizeHa
+        ? Number(site.gainSiteSizeHa).toLocaleString("en-GB", {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 2
+          }) + " ha"
+        : "";
+
+      marker.bindPopup(`
+        <strong>${site.code || "BNG site"}</strong><br>
+        ${site.lpa_boundary_name || site.authority || ""}<br>
+        ${site.lnrs_name || ""}<br>
+        ${size ? "Site size: " + size + "<br>" : ""}
+        ${site.link ? `<a href="${site.link}" target="_blank" rel="noopener">View register record</a>` : ""}
+      `);
+
+      markers.push(marker);
+    });
+
+  if (markers.length > 0) {
+    const group = L.featureGroup(markers);
+    map.fitBounds(group.getBounds(), { padding: [30, 30] });
+  }
+}
+
+initBngMap().catch(error => {
+  console.error("Map load failed", error);
+  const mapEl = document.getElementById("bng-map");
+  if (mapEl) {
+    mapEl.innerHTML = "<p style='padding:20px;'>Map data could not be loaded.</p>";
+  }
+});
+</script>
 </body>
 </html>
