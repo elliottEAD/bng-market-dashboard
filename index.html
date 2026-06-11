@@ -203,7 +203,9 @@
       Summary of registered biodiversity gain sites and allocations from the public BNG register.
       Figures update automatically from EAD Ecology's BNG register analysis pipeline.
     </p>
-
+<p id="last-updated" class="note">
+  Loading update information...
+</p>
     <div class="kpi-grid" id="summary-kpis">
       <div class="card">Loading...</div>
     </div>
@@ -497,6 +499,14 @@
         loadJson("dashboard_recent.json")
       ]);
 
+      document.getElementById("last-updated").innerHTML =
+  "Last register scrape: " +
+  (summary.last_scrape_date
+    ? datePretty(summary.last_scrape_date)
+    : "Unknown") +
+  " | Dashboard generated: " +
+  new Date(summary.generated_at).toLocaleString("en-GB");
+
       document.getElementById("summary-kpis").innerHTML = `
         <div class="card">
           <div class="card-label">Registered Gain Sites</div>
@@ -711,10 +721,6 @@ async function initBngMap() {
   const nearestPanel = document.getElementById("nearest-panel");
   const mapStatus = document.getElementById("map-status");
 
-  function defaultIcon() {
-  return new L.Icon.Default();
-}
-
 function yellowIcon() {
   return new L.Icon({
     iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-yellow.png",
@@ -907,9 +913,9 @@ visibleSites.forEach(site => {
 
 if (mapStatus) {
   mapStatus.innerHTML =
-    "Map showing " +
-    visibleSites.length.toLocaleString("en-GB") +
-    " mapped gain site markers" +
+"Map showing " +
+visibleSites.length.toLocaleString("en-GB") +
+" mapped gain site markers" +
     filterText;
 }
 
