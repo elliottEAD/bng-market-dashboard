@@ -1,6 +1,8 @@
 {
-  "generated_at": "2026-06-11T10:02:48.149Z",
+  "generated_at": "2026-06-11T12:42:28.136Z",
   "removed_records_excluded": true,
+  "allocation_area_based_capacity": true,
+  "allocation_unit_based_capacity": false,
   "habitat_rows_deduplicated": false,
   "allocation_rows_deduplicated_for_area": false,
   "allocation_units_deduplicated_at_allocation_level": true,
@@ -9,11 +11,11 @@
   "pricing_is_indicative": true,
   "north_south_pricing_is_range_not_site_classification": true,
   "notes": [
-    "The dashboard reflects register rows as extracted, excluding removed records.",
     "Registered supply is calculated from proposed habitat, hedgerow and watercourse extents.",
     "Allocated area and length are calculated from allocation component rows.",
-    "Allocation unit values are deduplicated at allocation level because one allocation value may relate to multiple habitat component rows.",
-    "Remaining figures are remaining registered area or length, not remaining biodiversity units.",
-    "The public register does not provide sufficient metric data to calculate remaining biodiversity units with confidence."
+    "Remaining capacity is calculated as proposed extent minus allocated extent.",
+    "Remaining capacity is area or length only, not biodiversity units.",
+    "Allocation unit values may relate to multiple habitat components and are deduplicated at allocation level.",
+    "Indicative market values use Biodiversity Units UK February 2026 pricing assumptions."
   ]
 }
