@@ -11567,10 +11567,20 @@
     "lpa": "Bracknell Forest LPA",
     "lnrs": "Berkshire",
     "authority": "Bracknell Forest LPA",
-    "sizeHa": 0,
+    "sizeHa": 0.47,
     "first_seen_date": "2026-05-26",
     "record_status": "existing",
-    "remaining": []
+    "remaining": [
+      {
+        "habitat": "Grassland - Modified grassland",
+        "condition": "Good",
+        "habitat_type": "habitat",
+        "unit": "ha",
+        "proposed_extent": 0.47,
+        "allocated_extent": 0,
+        "remaining_extent": 0.47
+      }
+    ]
   },
   {
     "code": "BGS-060625001",

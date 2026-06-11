@@ -1,26 +1,26 @@
 {
-  "generated_at": "2026-06-11T12:42:28.072Z",
+  "generated_at": "2026-06-11T18:43:46.184Z",
   "pricing_source": "Biodiversity Units UK February 2026",
   "north_south_pricing_is_range_not_site_classification": true,
-  "registered_north_value": 214220223,
-  "registered_south_value": 296214181,
+  "registered_north_value": 214231973,
+  "registered_south_value": 296230631,
   "allocated_north_value": 14282402,
   "allocated_south_value": 19855060,
-  "remaining_north_value": 199937821,
-  "remaining_south_value": 276359121,
+  "remaining_north_value": 199949571,
+  "remaining_south_value": 276375571,
   "top_registered_value_habitats": [
     {
       "label": "Grassland",
       "habitat_type": "habitat",
-      "registered_extent": 5257.91,
+      "registered_extent": 5258.38,
       "allocated_extent": 399.7,
-      "remaining_extent": 4858.2,
-      "registered_north_value": 131447632,
-      "registered_south_value": 184026685,
+      "remaining_extent": 4858.67,
+      "registered_north_value": 131459382,
+      "registered_south_value": 184043135,
       "allocated_north_value": 9992520,
       "allocated_south_value": 13989528,
-      "remaining_north_value": 121455112,
-      "remaining_south_value": 170037157
+      "remaining_north_value": 121466862,
+      "remaining_south_value": 170053607
     },
     {
       "label": "Woodland and Trees",

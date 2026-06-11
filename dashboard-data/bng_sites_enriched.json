@@ -4085,7 +4085,7 @@
     "link": "https://environment.data.gov.uk/biodiversity-net-gain/search/BGS-220825001",
     "gridRef": "SU8824272682",
     "authority": "Bracknell Forest LPA",
-    "gainSiteSizeHa": "",
+    "gainSiteSizeHa": "0.47",
     "startDate": "",
     "landBoundaryLink": "",
     "first_seen_date": "2026-05-26",

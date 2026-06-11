@@ -978,9 +978,9 @@
   {
     "lpa": "Bracknell Forest LPA",
     "site_count": 1,
-    "registered_habitat_hectares": 0,
+    "registered_habitat_hectares": 0.47,
     "allocated_habitat_area": 0,
-    "remaining_habitat_area": 0,
+    "remaining_habitat_area": 0.47,
     "utilisation_percent": 0
   },
   {
