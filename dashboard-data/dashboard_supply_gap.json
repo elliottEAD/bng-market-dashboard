@@ -946,9 +946,9 @@
   {
     "lpa": "Bolsover LPA",
     "site_count": 1,
-    "registered_habitat_hectares": 6.41,
+    "registered_habitat_hectares": 0,
     "allocated_habitat_area": 0,
-    "remaining_habitat_area": 6.41,
+    "remaining_habitat_area": 0,
     "utilisation_percent": 0
   },
   {
