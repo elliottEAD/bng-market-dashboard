@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BNG Market Dashboard</title>
 
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -101,6 +103,14 @@
       color: #555;
     }
 
+    #bng-map {
+      width: 100%;
+      height: 600px;
+      min-height: 600px;
+      border: 1px solid #ddd;
+      border-radius: 14px;
+    }
+
     @media (max-width: 850px) {
       body {
         padding: 18px;
@@ -125,10 +135,6 @@
       }
     }
   </style>
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-/>
 </head>
 
 <body>
@@ -142,6 +148,20 @@
     <div class="kpi-grid" id="summary-kpis">
       <div class="card">Loading...</div>
     </div>
+  </div>
+
+  <div class="section">
+    <h3>National Gain Site Map</h3>
+
+    <p>
+      Registered biodiversity gain sites from the public BNG register. Site markers include LPA, LNRS, site size and register link. LPA and LNRS boundaries can be toggled on and off.
+    </p>
+
+    <div id="bng-map"></div>
+
+    <p class="note">
+      Map locations are based on enriched register data derived from published grid references and should be interpreted as indicative site locations.
+    </p>
   </div>
 
   <div class="section">
@@ -305,20 +325,6 @@
     </table>
   </div>
 
-<div class="section">
-  <h3>National Gain Site Map</h3>
-
-  <p>
-    Registered biodiversity gain sites from the public BNG register. Markers are shown where coordinates are available in the enriched dataset.
-  </p>
-
-  <div id="bng-map" style="height:560px;border:1px solid #ddd;border-radius:14px;"></div>
-
-  <p class="note">
-    Map locations are based on enriched register data derived from published grid references and should be interpreted as indicative site locations.
-  </p>
-</div>
-
   <div class="section">
     <h3>Methodology and limitations</h3>
 
@@ -342,381 +348,337 @@
     <strong>Key takeaway:</strong> Loading...
   </div>
 
-<script>
-const BASE = "https://elliottEAD.github.io/bng-market-dashboard/dashboard-data/";
-
-function fmtNum(n, dp = 0) {
-  return Number(n || 0).toLocaleString("en-GB", {
-    minimumFractionDigits: dp,
-    maximumFractionDigits: dp
-  });
-}
-
-function fmtMoney(n) {
-  return "£" + fmtNum(Number(n || 0) / 1000000, 1) + "m";
-}
-
-function moneyRange(north, south) {
-  return "<strong>" + fmtMoney(north) + " – " + fmtMoney(south) + "</strong>";
-}
-
-function datePretty(value) {
-  if (!value) return "";
-  const d = new Date(value + "T00:00:00");
-  if (isNaN(d)) return value;
-  return d.toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "short",
-    year: "numeric"
-  });
-}
-
-function unitForGroup(group) {
-  return group === "Hedgerow" || group === "Watercourse" ? " km" : " ha";
-}
-
-async function loadJson(file) {
-  const response = await fetch(BASE + file + "?v=" + Date.now());
-  if (!response.ok) throw new Error(file + " failed: " + response.status);
-  return response.json();
-}
-
-async function initDashboard() {
-  const [
-    summary,
-    value,
-    utilisation,
-    supplyGap,
-    southwest,
-    recent
-  ] = await Promise.all([
-    loadJson("dashboard_summary.json"),
-    loadJson("dashboard_market_value.json"),
-    loadJson("dashboard_habitat_utilisation.json"),
-    loadJson("dashboard_supply_gap.json"),
-    loadJson("dashboard_southwest.json"),
-    loadJson("dashboard_recent.json")
-  ]);
-
-  document.getElementById("summary-kpis").innerHTML = `
-    <div class="card">
-      <div class="card-label">Registered Gain Sites</div>
-      <div class="card-value">${fmtNum(summary.total_gain_sites)}</div>
-    </div>
-
-    <div class="card">
-      <div class="card-label">Registered Habitat Area</div>
-      <div class="card-value">${fmtNum(summary.registered_habitat_hectares, 0)}</div>
-      <div class="card-unit">hectares</div>
-    </div>
-
-    <div class="card">
-      <div class="card-label">Registered Hedgerows</div>
-      <div class="card-value">${fmtNum(summary.registered_hedgerow_km, 0)}</div>
-      <div class="card-unit">km</div>
-    </div>
-
-    <div class="card">
-      <div class="card-label">Registered Watercourses</div>
-      <div class="card-value">${fmtNum(summary.registered_watercourse_km, 0)}</div>
-      <div class="card-unit">km</div>
-    </div>
-  `;
-
-  document.getElementById("market-value-table").innerHTML = `
-    <tr>
-      <td>Registered Habitat Value</td>
-      <td class="right">${moneyRange(value.registered_north_value, value.registered_south_value)}</td>
-    </tr>
-    <tr>
-      <td>Allocated Habitat Value</td>
-      <td class="right">${moneyRange(value.allocated_north_value, value.allocated_south_value)}</td>
-    </tr>
-    <tr>
-      <td>Remaining Registered Habitat Value</td>
-      <td class="right">${moneyRange(value.remaining_north_value, value.remaining_south_value)}</td>
-    </tr>
-  `;
-
-  const topHabitat = value.top_registered_value_habitats && value.top_registered_value_habitats[0];
-
-  document.getElementById("market-intelligence").innerHTML = `
-    <li>The register currently contains approximately <strong>${fmtMoney(value.registered_south_value)}</strong> of indicative registered habitat value using South England pricing.</li>
-    <li>Approximately <strong>${fmtMoney(value.allocated_south_value)}</strong> of registered habitat value has been allocated to developments.</li>
-    <li>Approximately <strong>${fmtMoney(value.remaining_south_value)}</strong> of indicative registered habitat value remains unallocated by area.</li>
-    ${topHabitat ? `<li><strong>${topHabitat.label}</strong> represents the largest estimated habitat market segment, with approximately <strong>${fmtMoney(topHabitat.registered_south_value)}</strong> of indicative South England value.</li>` : ""}
-    <li>Remaining capacity is reported as area or length, not remaining biodiversity units.</li>
-  `;
-
-  document.getElementById("utilisation-table").innerHTML = utilisation.map(row => {
-    const unit = unitForGroup(row.group);
-    const remaining = row.available_extent !== undefined ? row.available_extent : row.remaining_extent;
-
-    return `
-      <tr>
-        <td>${row.group}</td>
-        <td class="right">${fmtNum(row.registered_extent, 2)}${unit}</td>
-        <td class="right">${fmtNum(row.allocated_extent, 2)}${unit}</td>
-        <td class="right">${fmtNum(remaining, 2)}${unit}</td>
-        <td class="right"><strong>${fmtNum(row.utilisation_percent, 1)}%</strong></td>
-      </tr>
-    `;
-  }).join("");
-
-  const ratio = value.allocated_south_value > 0
-    ? value.registered_south_value / value.allocated_south_value
-    : 0;
-
-  document.getElementById("value-kpis").innerHTML = `
-    <div class="card">
-      <div class="card-label">Registered Value</div>
-      <div class="card-value">${fmtMoney(value.registered_south_value)}</div>
-    </div>
-
-    <div class="card">
-      <div class="card-label">Allocated Value</div>
-      <div class="card-value">${fmtMoney(value.allocated_south_value)}</div>
-    </div>
-
-    <div class="card">
-      <div class="card-label">Remaining Value</div>
-      <div class="card-value">${fmtMoney(value.remaining_south_value)}</div>
-    </div>
-
-    <div class="card">
-      <div class="card-label">Registered : Allocated</div>
-      <div class="card-value">${fmtNum(ratio, 1)} : 1</div>
-    </div>
-  `;
-
-  document.getElementById("top-values-table").innerHTML =
-    (value.top_registered_value_habitats || []).slice(0, 5).map(row => {
-      const unit = row.habitat_type === "hedgerow" || row.habitat_type === "watercourse" ? " km" : " ha";
-
-      return `
-        <tr>
-          <td>${row.label}</td>
-          <td class="right">${fmtNum(row.registered_extent, 2)}${unit}</td>
-          <td class="right">${fmtMoney(row.registered_south_value)}</td>
-        </tr>
-      `;
-    }).join("");
-
-  document.getElementById("supply-gap-table").innerHTML =
-    supplyGap.slice(0, 10).map(row => {
-      const remaining = row.remaining_habitat_area !== undefined ? row.remaining_habitat_area : row.available_habitat_area;
-
-      return `
-        <tr>
-          <td>${row.lpa}</td>
-          <td class="right">${fmtNum(row.site_count)}</td>
-          <td class="right">${fmtNum(row.registered_habitat_hectares, 2)}</td>
-          <td class="right">${fmtNum(row.allocated_habitat_area, 2)}</td>
-          <td class="right">${fmtNum(remaining, 2)}</td>
-          <td class="right"><strong>${fmtNum(row.utilisation_percent, 1)}%</strong></td>
-        </tr>
-      `;
-    }).join("");
-
-  document.getElementById("southwest-table").innerHTML =
-    southwest.map(row => {
-      const remaining = row.remaining_habitat_area !== undefined ? row.remaining_habitat_area : row.available_habitat_area;
-
-      return `
-        <tr>
-          <td>${row.area}</td>
-          <td class="right">${fmtNum(row.site_count)}</td>
-          <td class="right">${fmtNum(row.registered_habitat_hectares, 2)}</td>
-          <td class="right">${fmtNum(row.allocated_habitat_area, 2)}</td>
-          <td class="right">${fmtNum(remaining, 2)}</td>
-          <td class="right"><strong>${fmtNum(row.utilisation_percent, 1)}%</strong></td>
-        </tr>
-      `;
-    }).join("");
-
-  const totalSW = southwest.reduce((sum, row) => sum + Number(row.registered_habitat_hectares || 0), 0);
-  const largestSW = [...southwest].sort((a, b) => b.registered_habitat_hectares - a.registered_habitat_hectares)[0];
-  const highestUtilSW = [...southwest].sort((a, b) => b.utilisation_percent - a.utilisation_percent)[0];
-
-  if (largestSW && highestUtilSW && totalSW > 0) {
-    document.getElementById("southwest-insight").innerHTML = `
-      <strong>South West Insight:</strong>
-      ${largestSW.area} currently contains the largest registered habitat supply in this South West snapshot, accounting for approximately ${fmtNum((largestSW.registered_habitat_hectares / totalSW) * 100, 1)}% of registered habitat area. ${highestUtilSW.area} currently shows the highest utilisation rate at ${fmtNum(highestUtilSW.utilisation_percent, 1)}%.
-    `;
-  }
-
-  document.getElementById("recent-table").innerHTML =
-    recent.slice(0, 8).map(row => `
-      <tr>
-        <td>${datePretty(row.first_seen_date)}</td>
-        <td>${row.code || ""}</td>
-        <td>${row.lpa || ""}</td>
-        <td>${row.lnrs || ""}</td>
-        <td class="right">${fmtNum(row.gainSiteSizeHa, 2)} ha</td>
-      </tr>
-    `).join("");
-
-  document.getElementById("key-takeaway").innerHTML = `
-    <strong>Key takeaway:</strong>
-    The register currently contains approximately ${fmtMoney(value.remaining_south_value)} of indicative unallocated registered habitat value using South England pricing. Remaining capacity is reported as remaining registered area or length, not remaining biodiversity units.
-  `;
-}
-
-initDashboard().catch(error => {
-  console.error("Dashboard load failed", error);
-  document.body.insertAdjacentHTML("beforeend", "<p style='color:red;'>Dashboard data could not be loaded.</p>");
-});
-</script>
-
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<script>
-async function initBngMap() {
-  const mapEl = document.getElementById("bng-map");
-  if (!mapEl) return;
+  <script>
+    const BASE = "https://elliottEAD.github.io/bng-market-dashboard/dashboard-data/";
 
-  const map = L.map("bng-map", {
-    scrollWheelZoom: false
-  }).setView([52.8, -1.5], 6);
-
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 18,
-    attribution: "&copy; OpenStreetMap contributors"
-  }).addTo(map);
-
-  setTimeout(function () {
-    map.invalidateSize();
-  }, 500);
-
-  const markerLayer = L.layerGroup().addTo(map);
-  const lpaLayer = L.geoJSON(null, {
-    style: {
-      color: "#0066cc",
-      weight: 1,
-      opacity: 0.7,
-      fillOpacity: 0
-    },
-    onEachFeature: function (feature, layer) {
-      const p = feature.properties || {};
-      const name =
-        p.LPA23NM ||
-        p.LAD23NM ||
-        p.LPA21NM ||
-        p.name ||
-        p.Name ||
-        p.NAME ||
-        "LPA boundary";
-
-      layer.bindPopup("<strong>LPA:</strong> " + name);
+    function fmtNum(n, dp = 0) {
+      return Number(n || 0).toLocaleString("en-GB", {
+        minimumFractionDigits: dp,
+        maximumFractionDigits: dp
+      });
     }
-  });
 
-  const lnrsLayer = L.geoJSON(null, {
-    style: {
-      color: "#2f855a",
-      weight: 1.5,
-      opacity: 0.8,
-      fillOpacity: 0.03
-    },
-    onEachFeature: function (feature, layer) {
-      const p = feature.properties || {};
-      const name =
-        p.LNRS_NAME ||
-        p.LNRS ||
-        p.name ||
-        p.Name ||
-        p.NAME ||
-        "LNRS boundary";
-
-      layer.bindPopup("<strong>LNRS:</strong> " + name);
+    function fmtMoney(n) {
+      return "£" + fmtNum(Number(n || 0) / 1000000, 1) + "m";
     }
-  });
 
-  const [sitesResponse, lpaResponse, lnrsResponse] = await Promise.all([
-    fetch("dashboard-data/bng_sites_enriched.json?v=" + Date.now()),
-    fetch("dashboard-data/boundaries/lpa.geojson?v=" + Date.now()),
-    fetch("dashboard-data/boundaries/lnrs.geojson?v=" + Date.now())
-  ]);
+    function moneyRange(north, south) {
+      return "<strong>" + fmtMoney(north) + " - " + fmtMoney(south) + "</strong>";
+    }
 
-  const sites = await sitesResponse.json();
-  const lpaGeojson = await lpaResponse.json();
-  const lnrsGeojson = await lnrsResponse.json();
+    function datePretty(value) {
+      if (!value) return "";
+      const d = new Date(value + "T00:00:00");
+      if (isNaN(d)) return value;
+      return d.toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "short",
+        year: "numeric"
+      });
+    }
 
-  lpaLayer.addData(lpaGeojson);
-  lnrsLayer.addData(lnrsGeojson);
+    function unitForGroup(group) {
+      return group === "Hedgerow" || group === "Watercourse" ? " km" : " ha";
+    }
 
-  const markers = [];
+    async function loadJson(file) {
+      const response = await fetch(BASE + file + "?v=" + Date.now());
+      if (!response.ok) throw new Error(file + " failed: " + response.status);
+      return response.json();
+    }
 
-  sites
-    .filter(function (site) {
-      return String(site.record_status || "").toLowerCase() !== "removed";
-    })
-    .forEach(function (site) {
-      const lat = Number(site.latitude);
-      const lng = Number(site.longitude);
+    async function initDashboard() {
+      const [summary, value, utilisation, supplyGap, southwest, recent] = await Promise.all([
+        loadJson("dashboard_summary.json"),
+        loadJson("dashboard_market_value.json"),
+        loadJson("dashboard_habitat_utilisation.json"),
+        loadJson("dashboard_supply_gap.json"),
+        loadJson("dashboard_southwest.json"),
+        loadJson("dashboard_recent.json")
+      ]);
 
-      if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+      document.getElementById("summary-kpis").innerHTML = `
+        <div class="card">
+          <div class="card-label">Registered Gain Sites</div>
+          <div class="card-value">${fmtNum(summary.total_gain_sites)}</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Registered Habitat Area</div>
+          <div class="card-value">${fmtNum(summary.registered_habitat_hectares, 0)}</div>
+          <div class="card-unit">hectares</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Registered Hedgerows</div>
+          <div class="card-value">${fmtNum(summary.registered_hedgerow_km, 0)}</div>
+          <div class="card-unit">km</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Registered Watercourses</div>
+          <div class="card-value">${fmtNum(summary.registered_watercourse_km, 0)}</div>
+          <div class="card-unit">km</div>
+        </div>
+      `;
 
-      const sizeNum = Number(site.gainSiteSizeHa || 0);
+      document.getElementById("market-value-table").innerHTML = `
+        <tr>
+          <td>Registered Habitat Value</td>
+          <td class="right">${moneyRange(value.registered_north_value, value.registered_south_value)}</td>
+        </tr>
+        <tr>
+          <td>Allocated Habitat Value</td>
+          <td class="right">${moneyRange(value.allocated_north_value, value.allocated_south_value)}</td>
+        </tr>
+        <tr>
+          <td>Remaining Registered Habitat Value</td>
+          <td class="right">${moneyRange(value.remaining_north_value, value.remaining_south_value)}</td>
+        </tr>
+      `;
 
-      const marker = L.circleMarker([lat, lng], {
-        radius: Math.max(5, Math.min(15, Math.sqrt(sizeNum || 1))),
-        weight: 1,
-        opacity: 0.9,
-        fillOpacity: 0.75
-      }).addTo(markerLayer);
+      const topHabitat = value.top_registered_value_habitats && value.top_registered_value_habitats[0];
 
-      const size = site.gainSiteSizeHa
-        ? Number(site.gainSiteSizeHa).toLocaleString("en-GB", {
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 2
-          }) + " ha"
-        : "";
+      document.getElementById("market-intelligence").innerHTML = `
+        <li>The register currently contains approximately <strong>${fmtMoney(value.registered_south_value)}</strong> of indicative registered habitat value using South England pricing.</li>
+        <li>Approximately <strong>${fmtMoney(value.allocated_south_value)}</strong> of registered habitat value has been allocated to developments.</li>
+        <li>Approximately <strong>${fmtMoney(value.remaining_south_value)}</strong> of indicative registered habitat value remains unallocated by area.</li>
+        ${topHabitat ? `<li><strong>${topHabitat.label}</strong> represents the largest estimated habitat market segment, with approximately <strong>${fmtMoney(topHabitat.registered_south_value)}</strong> of indicative South England value.</li>` : ""}
+        <li>Remaining capacity is reported as area or length, not remaining biodiversity units.</li>
+      `;
 
-      marker.bindPopup(`
-        <strong>${site.code || "BNG site"}</strong><br>
-        ${site.lpa_boundary_name || site.authority || ""}<br>
-        ${site.lnrs_name || ""}<br>
-        ${size ? "Site size: " + size + "<br>" : ""}
-        ${site.link ? `<a href="${site.link}" target="_blank" rel="noopener">View register record</a>` : ""}
-      `);
+      document.getElementById("utilisation-table").innerHTML = utilisation.map(row => {
+        const unit = unitForGroup(row.group);
+        const remaining = row.available_extent !== undefined ? row.available_extent : row.remaining_extent;
 
-      markers.push(marker);
+        return `
+          <tr>
+            <td>${row.group}</td>
+            <td class="right">${fmtNum(row.registered_extent, 2)}${unit}</td>
+            <td class="right">${fmtNum(row.allocated_extent, 2)}${unit}</td>
+            <td class="right">${fmtNum(remaining, 2)}${unit}</td>
+            <td class="right"><strong>${fmtNum(row.utilisation_percent, 1)}%</strong></td>
+          </tr>
+        `;
+      }).join("");
+
+      const ratio = value.allocated_south_value > 0
+        ? value.registered_south_value / value.allocated_south_value
+        : 0;
+
+      document.getElementById("value-kpis").innerHTML = `
+        <div class="card">
+          <div class="card-label">Registered Value</div>
+          <div class="card-value">${fmtMoney(value.registered_south_value)}</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Allocated Value</div>
+          <div class="card-value">${fmtMoney(value.allocated_south_value)}</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Remaining Value</div>
+          <div class="card-value">${fmtMoney(value.remaining_south_value)}</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Registered : Allocated</div>
+          <div class="card-value">${fmtNum(ratio, 1)} : 1</div>
+        </div>
+      `;
+
+      document.getElementById("top-values-table").innerHTML =
+        (value.top_registered_value_habitats || []).slice(0, 5).map(row => {
+          const unit = row.habitat_type === "hedgerow" || row.habitat_type === "watercourse" ? " km" : " ha";
+          return `
+            <tr>
+              <td>${row.label}</td>
+              <td class="right">${fmtNum(row.registered_extent, 2)}${unit}</td>
+              <td class="right">${fmtMoney(row.registered_south_value)}</td>
+            </tr>
+          `;
+        }).join("");
+
+      document.getElementById("supply-gap-table").innerHTML =
+        supplyGap.slice(0, 10).map(row => {
+          const remaining = row.remaining_habitat_area !== undefined ? row.remaining_habitat_area : row.available_habitat_area;
+          return `
+            <tr>
+              <td>${row.lpa}</td>
+              <td class="right">${fmtNum(row.site_count)}</td>
+              <td class="right">${fmtNum(row.registered_habitat_hectares, 2)}</td>
+              <td class="right">${fmtNum(row.allocated_habitat_area, 2)}</td>
+              <td class="right">${fmtNum(remaining, 2)}</td>
+              <td class="right"><strong>${fmtNum(row.utilisation_percent, 1)}%</strong></td>
+            </tr>
+          `;
+        }).join("");
+
+      document.getElementById("southwest-table").innerHTML =
+        southwest.map(row => {
+          const remaining = row.remaining_habitat_area !== undefined ? row.remaining_habitat_area : row.available_habitat_area;
+          return `
+            <tr>
+              <td>${row.area}</td>
+              <td class="right">${fmtNum(row.site_count)}</td>
+              <td class="right">${fmtNum(row.registered_habitat_hectares, 2)}</td>
+              <td class="right">${fmtNum(row.allocated_habitat_area, 2)}</td>
+              <td class="right">${fmtNum(remaining, 2)}</td>
+              <td class="right"><strong>${fmtNum(row.utilisation_percent, 1)}%</strong></td>
+            </tr>
+          `;
+        }).join("");
+
+      const totalSW = southwest.reduce((sum, row) => sum + Number(row.registered_habitat_hectares || 0), 0);
+      const largestSW = [...southwest].sort((a, b) => b.registered_habitat_hectares - a.registered_habitat_hectares)[0];
+      const highestUtilSW = [...southwest].sort((a, b) => b.utilisation_percent - a.utilisation_percent)[0];
+
+      if (largestSW && highestUtilSW && totalSW > 0) {
+        document.getElementById("southwest-insight").innerHTML = `
+          <strong>South West Insight:</strong>
+          ${largestSW.area} currently contains the largest registered habitat supply in this South West snapshot, accounting for approximately ${fmtNum((largestSW.registered_habitat_hectares / totalSW) * 100, 1)}% of registered habitat area. ${highestUtilSW.area} currently shows the highest utilisation rate at ${fmtNum(highestUtilSW.utilisation_percent, 1)}%.
+        `;
+      }
+
+      document.getElementById("recent-table").innerHTML =
+        recent.slice(0, 8).map(row => `
+          <tr>
+            <td>${datePretty(row.first_seen_date)}</td>
+            <td>${row.code || ""}</td>
+            <td>${row.lpa || ""}</td>
+            <td>${row.lnrs || ""}</td>
+            <td class="right">${fmtNum(row.gainSiteSizeHa, 2)} ha</td>
+          </tr>
+        `).join("");
+
+      document.getElementById("key-takeaway").innerHTML = `
+        <strong>Key takeaway:</strong>
+        The register currently contains approximately ${fmtMoney(value.remaining_south_value)} of indicative unallocated registered habitat value using South England pricing. Remaining capacity is reported as remaining registered area or length, not remaining biodiversity units.
+      `;
+    }
+
+    async function initBngMap() {
+      const mapEl = document.getElementById("bng-map");
+      if (!mapEl) return;
+
+      const map = L.map("bng-map", {
+        scrollWheelZoom: false,
+        preferCanvas: true
+      }).setView([52.8, -1.5], 6);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 18,
+        attribution: "&copy; OpenStreetMap contributors"
+      }).addTo(map);
+
+      setTimeout(function () {
+        map.invalidateSize();
+      }, 500);
+
+      const markerLayer = L.layerGroup().addTo(map);
+
+      const lpaLayer = L.geoJSON(null, {
+        interactive: false,
+        style: {
+          color: "#0066cc",
+          weight: 1,
+          opacity: 0.7,
+          fillOpacity: 0
+        }
+      });
+
+      const lnrsLayer = L.geoJSON(null, {
+        interactive: false,
+        style: {
+          color: "#2f855a",
+          weight: 1.5,
+          opacity: 0.8,
+          fillOpacity: 0.03
+        }
+      });
+
+      const [sitesResponse, lpaResponse, lnrsResponse] = await Promise.all([
+        fetch("dashboard-data/bng_sites_enriched.json?v=" + Date.now()),
+        fetch("dashboard-data/boundaries/lpa.geojson?v=" + Date.now()),
+        fetch("dashboard-data/boundaries/lnrs.geojson?v=" + Date.now())
+      ]);
+
+      const sites = await sitesResponse.json();
+      const lpaGeojson = await lpaResponse.json();
+      const lnrsGeojson = await lnrsResponse.json();
+
+      lpaLayer.addData(lpaGeojson);
+      lnrsLayer.addData(lnrsGeojson);
+
+      const markers = [];
+
+      sites
+        .filter(site => String(site.record_status || "").toLowerCase() !== "removed")
+        .forEach(site => {
+          const lat = Number(site.latitude);
+          const lng = Number(site.longitude);
+
+          if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+
+          const marker = L.marker([lat, lng]).addTo(markerLayer);
+
+          const size = site.gainSiteSizeHa
+            ? Number(site.gainSiteSizeHa).toLocaleString("en-GB", {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 2
+              }) + " ha"
+            : "";
+
+          marker.bindPopup(`
+            <strong>${site.code || "BNG site"}</strong><br>
+            <strong>LPA:</strong> ${site.lpa_boundary_name || site.authority || "Unknown"}<br>
+            <strong>LNRS:</strong> ${site.lnrs_name || "Unknown"}<br>
+            ${size ? "<strong>Site size:</strong> " + size + "<br>" : ""}
+            ${site.link ? `<a href="${site.link}" target="_blank" rel="noopener">View register record</a>` : ""}
+          `);
+
+          markers.push(marker);
+        });
+
+      const overlayLayers = {
+        "Gain site markers": markerLayer,
+        "LPA boundaries": lpaLayer,
+        "LNRS boundaries": lnrsLayer
+      };
+
+      L.control.layers({}, overlayLayers, {
+        collapsed: false
+      }).addTo(map);
+
+      markerLayer.addTo(map);
+
+      markerLayer.eachLayer(function (marker) {
+        if (marker.bringToFront) marker.bringToFront();
+      });
+
+      if (markers.length > 0) {
+        const group = L.featureGroup(markers);
+        map.fitBounds(group.getBounds(), { padding: [30, 30] });
+      }
+
+      const mapNote = document.createElement("p");
+      mapNote.className = "note";
+      mapNote.innerHTML =
+        "Map loaded " + markers.length.toLocaleString("en-GB") +
+        " active gain site markers. LPA and LNRS boundaries can be toggled using the layer control.";
+      mapEl.insertAdjacentElement("afterend", mapNote);
+    }
+
+    initDashboard().catch(error => {
+      console.error("Dashboard load failed", error);
+      document.body.insertAdjacentHTML("beforeend", "<p style='color:red;'>Dashboard data could not be loaded.</p>");
     });
 
-  const baseLayers = {};
-  const overlayLayers = {
-    "Gain sites": markerLayer,
-    "LPA boundaries": lpaLayer,
-    "LNRS boundaries": lnrsLayer
-  };
+    initBngMap().catch(error => {
+      console.error("Map load failed", error);
+      const mapEl = document.getElementById("bng-map");
+      if (mapEl) {
+        mapEl.innerHTML = "<p style='padding:20px;'>Map data could not be loaded.</p>";
+      }
+    });
+  </script>
 
-  L.control.layers(baseLayers, overlayLayers, {
-    collapsed: false
-  }).addTo(map);
-
-  markerLayer.addTo(map);
-
-  if (markers.length > 0) {
-    const group = L.featureGroup(markers);
-    map.fitBounds(group.getBounds(), { padding: [30, 30] });
-  }
-
-  const mapNote = document.createElement("p");
-  mapNote.className = "note";
-  mapNote.innerHTML =
-    "Map loaded " + markers.length.toLocaleString("en-GB") +
-    " active gain site markers. LPA and LNRS boundaries can be toggled using the layer control.";
-  mapEl.insertAdjacentElement("afterend", mapNote);
-}
-
-initBngMap().catch(function (error) {
-  console.error("Map load failed", error);
-  const mapEl = document.getElementById("bng-map");
-  if (mapEl) {
-    mapEl.innerHTML = "<p style='padding:20px;'>Map data could not be loaded.</p>";
-  }
-});
-</script>
 </body>
 </html>
