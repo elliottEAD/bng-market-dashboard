@@ -1,11 +1,565 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BNG Market Dashboard</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      color: #27313d;
+      margin: 0;
+      padding: 30px;
+      background: #fff;
+      line-height: 1.45;
+    }
+
+    h2, h3 {
+      color: #2b3138;
+      margin-top: 34px;
+    }
+
+    .section {
+      border-bottom: 3px solid #bfd730;
+      padding-bottom: 28px;
+      margin-bottom: 36px;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin: 24px 0;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 14px;
+      padding: 22px;
+      text-align: center;
+    }
+
+    .card-label {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .card-value {
+      font-size: 38px;
+      font-weight: 700;
+      color: #202833;
+    }
+
+    .card-unit {
+      font-size: 13px;
+      color: #666;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+    }
+
+    th {
+      background: #f5f5f5;
+      text-align: left;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    td {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .right {
+      text-align: right;
+    }
+
+    .note {
+      font-size: 13px;
+      color: #666;
+      margin-top: 12px;
+    }
+
+    .info-box {
+      background: #eef7ff;
+      border-left: 4px solid #0066cc;
+      padding: 18px;
+      margin-top: 20px;
+    }
+
+    .methodology {
+      background: #f8f8f8;
+      border: 1px solid #ddd;
+      border-radius: 14px;
+      padding: 20px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    @media (max-width: 850px) {
+      body {
+        padding: 18px;
+      }
+
+      .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .card-value {
+        font-size: 30px;
+      }
+
+      table {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .kpi-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>BNG Market Dashboard</h1>
-  <p>Dashboard data is updating from the EAD BNG register pipeline.</p>
+
+  <div class="section">
+    <p>
+      Summary of registered biodiversity gain sites and allocations from the public BNG register.
+      Figures update automatically from EAD Ecology's BNG register analysis pipeline.
+    </p>
+
+    <div class="kpi-grid" id="summary-kpis">
+      <div class="card">Loading...</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Indicative Registered Habitat Market Value</h3>
+
+    <p>
+      These estimates apply Biodiversity Units UK indicative pricing guidance from February 2026 to the registered BNG dataset.
+      The North and South values are shown as an indicative pricing range; the calculation does not assign each site to a North or South pricing region.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th class="right">Indicative Value Range</th>
+        </tr>
+      </thead>
+      <tbody id="market-value-table">
+        <tr><td colspan="2">Loading...</td></tr>
+      </tbody>
+    </table>
+
+    <p class="note">
+      Pricing source: Biodiversity Units UK, February 2026. Estimates apply North and South indicative pricing to the same registered dataset to provide a broad value range. Figures are for market intelligence purposes only and are not confirmed transaction values.
+    </p>
+  </div>
+
+  <div class="section">
+    <h3>Market Intelligence</h3>
+    <div class="methodology">
+      <ul id="market-intelligence">
+        <li>Loading...</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Habitat Market Utilisation</h3>
+
+    <p>
+      Registered and allocated extent by broad market group. This shows which parts of the BNG market are being consumed fastest by area or length, not by remaining biodiversity units.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Market Group</th>
+          <th class="right">Registered</th>
+          <th class="right">Allocated</th>
+          <th class="right">Remaining</th>
+          <th class="right">Utilisation</th>
+        </tr>
+      </thead>
+      <tbody id="utilisation-table">
+        <tr><td colspan="5">Loading...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h3>Supply vs Demand Snapshot</h3>
+
+    <div class="kpi-grid" id="value-kpis">
+      <div class="card">Loading...</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Highest Estimated Habitat Values</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Habitat</th>
+          <th class="right">Registered Extent</th>
+          <th class="right">Indicative South Value</th>
+        </tr>
+      </thead>
+      <tbody id="top-values-table">
+        <tr><td colspan="3">Loading...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h3>LPAs with Highest Local Supply Utilisation</h3>
+
+    <p>
+      Areas where allocated habitat area is high relative to registered local habitat supply. These locations may indicate stronger local demand pressure or limited remaining registered habitat area.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>LPA</th>
+          <th class="right">Sites</th>
+          <th class="right">Registered ha</th>
+          <th class="right">Allocated ha</th>
+          <th class="right">Remaining ha</th>
+          <th class="right">Utilisation</th>
+        </tr>
+      </thead>
+      <tbody id="supply-gap-table">
+        <tr><td colspan="6">Loading...</td></tr>
+      </tbody>
+    </table>
+
+    <p class="note">
+      Note: very small registered areas can produce high utilisation percentages. These should be interpreted as local supply utilisation indicators rather than confirmed market shortages.
+    </p>
+  </div>
+
+  <div class="section">
+    <h3>South West Market Snapshot</h3>
+
+    <p>
+      Regional view of registered habitat supply and allocation activity across Devon, Somerset, Dorset and Cornwall.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Area</th>
+          <th class="right">Sites</th>
+          <th class="right">Registered ha</th>
+          <th class="right">Allocated ha</th>
+          <th class="right">Remaining ha</th>
+          <th class="right">Utilisation</th>
+        </tr>
+      </thead>
+      <tbody id="southwest-table">
+        <tr><td colspan="6">Loading...</td></tr>
+      </tbody>
+    </table>
+
+    <div class="info-box" id="southwest-insight">
+      <strong>South West Insight:</strong> Loading...
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Recent Market Activity</h3>
+
+    <p>
+      Recently identified registered biodiversity gain sites.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>First Seen</th>
+          <th>Site</th>
+          <th>LPA</th>
+          <th>LNRS</th>
+          <th class="right">Size</th>
+        </tr>
+      </thead>
+      <tbody id="recent-table">
+        <tr><td colspan="5">Loading...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h3>National Gain Site Map</h3>
+
+    <div style="background:#f7f7f7;border:1px dashed #bbb;border-radius:14px;padding:36px;text-align:center;margin:20px 0;">
+      <h4 style="margin-top:0;">Interactive map coming soon</h4>
+      <p style="max-width:700px;margin:0 auto;color:#555;">
+        A national map layer will be added using the enriched site data. The map will show registered gain sites, site size, LPA, LNRS area and direct register links.
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Methodology and limitations</h3>
+
+    <div class="methodology">
+      <p>
+        Removed records are excluded from the dashboard where they are marked as removed in the source dataset.
+      </p>
+      <p>
+        Registered supply is calculated from proposed habitat, hedgerow and watercourse extents recorded against registered gain sites. Allocated area and length are calculated from allocation component rows. Remaining figures represent remaining registered area or length, not remaining biodiversity units.
+      </p>
+      <p>
+        Allocation unit values are recorded at allocation level and may relate to multiple habitat components. Unit totals are therefore deduplicated at allocation level to avoid counting the same allocation value multiple times across component habitat rows.
+      </p>
+      <p>
+        The public register does not provide sufficient metric data to calculate remaining biodiversity units with confidence. Indicative values are for market intelligence purposes only and are not confirmed transaction values.
+      </p>
+    </div>
+  </div>
+
+  <div class="info-box" id="key-takeaway">
+    <strong>Key takeaway:</strong> Loading...
+  </div>
+
+<script>
+const BASE = "https://elliottEAD.github.io/bng-market-dashboard/dashboard-data/";
+
+function fmtNum(n, dp = 0) {
+  return Number(n || 0).toLocaleString("en-GB", {
+    minimumFractionDigits: dp,
+    maximumFractionDigits: dp
+  });
+}
+
+function fmtMoney(n) {
+  return "£" + fmtNum(Number(n || 0) / 1000000, 1) + "m";
+}
+
+function moneyRange(north, south) {
+  return "<strong>" + fmtMoney(north) + " – " + fmtMoney(south) + "</strong>";
+}
+
+function datePretty(value) {
+  if (!value) return "";
+  const d = new Date(value + "T00:00:00");
+  if (isNaN(d)) return value;
+  return d.toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric"
+  });
+}
+
+function unitForGroup(group) {
+  return group === "Hedgerow" || group === "Watercourse" ? " km" : " ha";
+}
+
+async function loadJson(file) {
+  const response = await fetch(BASE + file + "?v=" + Date.now());
+  if (!response.ok) throw new Error(file + " failed: " + response.status);
+  return response.json();
+}
+
+async function initDashboard() {
+  const [
+    summary,
+    value,
+    utilisation,
+    supplyGap,
+    southwest,
+    recent
+  ] = await Promise.all([
+    loadJson("dashboard_summary.json"),
+    loadJson("dashboard_market_value.json"),
+    loadJson("dashboard_habitat_utilisation.json"),
+    loadJson("dashboard_supply_gap.json"),
+    loadJson("dashboard_southwest.json"),
+    loadJson("dashboard_recent.json")
+  ]);
+
+  document.getElementById("summary-kpis").innerHTML = `
+    <div class="card">
+      <div class="card-label">Registered Gain Sites</div>
+      <div class="card-value">${fmtNum(summary.total_gain_sites)}</div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Registered Habitat Area</div>
+      <div class="card-value">${fmtNum(summary.registered_habitat_hectares, 0)}</div>
+      <div class="card-unit">hectares</div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Registered Hedgerows</div>
+      <div class="card-value">${fmtNum(summary.registered_hedgerow_km, 0)}</div>
+      <div class="card-unit">km</div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Registered Watercourses</div>
+      <div class="card-value">${fmtNum(summary.registered_watercourse_km, 0)}</div>
+      <div class="card-unit">km</div>
+    </div>
+  `;
+
+  document.getElementById("market-value-table").innerHTML = `
+    <tr>
+      <td>Registered Habitat Value</td>
+      <td class="right">${moneyRange(value.registered_north_value, value.registered_south_value)}</td>
+    </tr>
+    <tr>
+      <td>Allocated Habitat Value</td>
+      <td class="right">${moneyRange(value.allocated_north_value, value.allocated_south_value)}</td>
+    </tr>
+    <tr>
+      <td>Remaining Registered Habitat Value</td>
+      <td class="right">${moneyRange(value.remaining_north_value, value.remaining_south_value)}</td>
+    </tr>
+  `;
+
+  const topHabitat = value.top_registered_value_habitats && value.top_registered_value_habitats[0];
+
+  document.getElementById("market-intelligence").innerHTML = `
+    <li>The register currently contains approximately <strong>${fmtMoney(value.registered_south_value)}</strong> of indicative registered habitat value using South England pricing.</li>
+    <li>Approximately <strong>${fmtMoney(value.allocated_south_value)}</strong> of registered habitat value has been allocated to developments.</li>
+    <li>Approximately <strong>${fmtMoney(value.remaining_south_value)}</strong> of indicative registered habitat value remains unallocated by area.</li>
+    ${topHabitat ? `<li><strong>${topHabitat.label}</strong> represents the largest estimated habitat market segment, with approximately <strong>${fmtMoney(topHabitat.registered_south_value)}</strong> of indicative South England value.</li>` : ""}
+    <li>Remaining capacity is reported as area or length, not remaining biodiversity units.</li>
+  `;
+
+  document.getElementById("utilisation-table").innerHTML = utilisation.map(row => {
+    const unit = unitForGroup(row.group);
+    const remaining = row.available_extent !== undefined ? row.available_extent : row.remaining_extent;
+
+    return `
+      <tr>
+        <td>${row.group}</td>
+        <td class="right">${fmtNum(row.registered_extent, 2)}${unit}</td>
+        <td class="right">${fmtNum(row.allocated_extent, 2)}${unit}</td>
+        <td class="right">${fmtNum(remaining, 2)}${unit}</td>
+        <td class="right"><strong>${fmtNum(row.utilisation_percent, 1)}%</strong></td>
+      </tr>
+    `;
+  }).join("");
+
+  const ratio = value.allocated_south_value > 0
+    ? value.registered_south_value / value.allocated_south_value
+    : 0;
+
+  document.getElementById("value-kpis").innerHTML = `
+    <div class="card">
+      <div class="card-label">Registered Value</div>
+      <div class="card-value">${fmtMoney(value.registered_south_value)}</div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Allocated Value</div>
+      <div class="card-value">${fmtMoney(value.allocated_south_value)}</div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Remaining Value</div>
+      <div class="card-value">${fmtMoney(value.remaining_south_value)}</div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Registered : Allocated</div>
+      <div class="card-value">${fmtNum(ratio, 1)} : 1</div>
+    </div>
+  `;
+
+  document.getElementById("top-values-table").innerHTML =
+    (value.top_registered_value_habitats || []).slice(0, 5).map(row => {
+      const unit = row.habitat_type === "hedgerow" || row.habitat_type === "watercourse" ? " km" : " ha";
+
+      return `
+        <tr>
+          <td>${row.label}</td>
+          <td class="right">${fmtNum(row.registered_extent, 2)}${unit}</td>
+          <td class="right">${fmtMoney(row.registered_south_value)}</td>
+        </tr>
+      `;
+    }).join("");
+
+  document.getElementById("supply-gap-table").innerHTML =
+    supplyGap.slice(0, 10).map(row => {
+      const remaining = row.remaining_habitat_area !== undefined ? row.remaining_habitat_area : row.available_habitat_area;
+
+      return `
+        <tr>
+          <td>${row.lpa}</td>
+          <td class="right">${fmtNum(row.site_count)}</td>
+          <td class="right">${fmtNum(row.registered_habitat_hectares, 2)}</td>
+          <td class="right">${fmtNum(row.allocated_habitat_area, 2)}</td>
+          <td class="right">${fmtNum(remaining, 2)}</td>
+          <td class="right"><strong>${fmtNum(row.utilisation_percent, 1)}%</strong></td>
+        </tr>
+      `;
+    }).join("");
+
+  document.getElementById("southwest-table").innerHTML =
+    southwest.map(row => {
+      const remaining = row.remaining_habitat_area !== undefined ? row.remaining_habitat_area : row.available_habitat_area;
+
+      return `
+        <tr>
+          <td>${row.area}</td>
+          <td class="right">${fmtNum(row.site_count)}</td>
+          <td class="right">${fmtNum(row.registered_habitat_hectares, 2)}</td>
+          <td class="right">${fmtNum(row.allocated_habitat_area, 2)}</td>
+          <td class="right">${fmtNum(remaining, 2)}</td>
+          <td class="right"><strong>${fmtNum(row.utilisation_percent, 1)}%</strong></td>
+        </tr>
+      `;
+    }).join("");
+
+  const totalSW = southwest.reduce((sum, row) => sum + Number(row.registered_habitat_hectares || 0), 0);
+  const largestSW = [...southwest].sort((a, b) => b.registered_habitat_hectares - a.registered_habitat_hectares)[0];
+  const highestUtilSW = [...southwest].sort((a, b) => b.utilisation_percent - a.utilisation_percent)[0];
+
+  if (largestSW && highestUtilSW && totalSW > 0) {
+    document.getElementById("southwest-insight").innerHTML = `
+      <strong>South West Insight:</strong>
+      ${largestSW.area} currently contains the largest registered habitat supply in this South West snapshot, accounting for approximately ${fmtNum((largestSW.registered_habitat_hectares / totalSW) * 100, 1)}% of registered habitat area. ${highestUtilSW.area} currently shows the highest utilisation rate at ${fmtNum(highestUtilSW.utilisation_percent, 1)}%.
+    `;
+  }
+
+  document.getElementById("recent-table").innerHTML =
+    recent.slice(0, 8).map(row => `
+      <tr>
+        <td>${datePretty(row.first_seen_date)}</td>
+        <td>${row.code || ""}</td>
+        <td>${row.lpa || ""}</td>
+        <td>${row.lnrs || ""}</td>
+        <td class="right">${fmtNum(row.gainSiteSizeHa, 2)} ha</td>
+      </tr>
+    `).join("");
+
+  document.getElementById("key-takeaway").innerHTML = `
+    <strong>Key takeaway:</strong>
+    The register currently contains approximately ${fmtMoney(value.remaining_south_value)} of indicative unallocated registered habitat value using South England pricing. Remaining capacity is reported as remaining registered area or length, not remaining biodiversity units.
+  `;
+}
+
+initDashboard().catch(error => {
+  console.error("Dashboard load failed", error);
+  document.body.insertAdjacentHTML("beforeend", "<p style='color:red;'>Dashboard data could not be loaded.</p>");
+});
+</script>
+
 </body>
 </html>
