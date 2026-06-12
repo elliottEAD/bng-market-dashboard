@@ -306,18 +306,17 @@ Search a location or click anywhere on the map to find the nearest available gai
   </div>
 
   <div class="section">
-    <h3>Indicative Registered Habitat Market Value</h3>
+<h3>Observed Allocated BNG Market Value</h3>
 
-    <p>
-      These estimates apply Biodiversity Units UK indicative pricing guidance from February 2026 to the registered BNG dataset.
-      The North and South values are shown as an indicative pricing range; the calculation does not assign each site to a North or South pricing region.
-    </p>
+<p>
+  These estimates apply indicative £/biodiversity unit pricing to allocated biodiversity units reported in the public BNG register. Remaining biodiversity units are not calculated because the register does not provide sufficient information to derive them accurately.
+</p>
 
     <table>
       <thead>
         <tr>
           <th>Metric</th>
-          <th class="right">Indicative Value Range</th>
+<th class="right">Allocated Value Range</th>
         </tr>
       </thead>
       <tbody id="market-value-table">
@@ -326,7 +325,8 @@ Search a location or click anywhere on the map to find the nearest available gai
     </table>
 
     <p class="note">
-      Pricing source: Biodiversity Units UK, February 2026. Estimates apply North and South indicative pricing to the same registered dataset to provide a broad value range. Figures are for market intelligence purposes only and are not confirmed transaction values.
+  Source: Biodiversity Units UK, February 2026. Values are indicative only and are calculated from allocated biodiversity units reported on the Biodiversity Gain Site register. Remaining unit availability is not calculated.
+</p>
     </p>
   </div>
 
@@ -368,23 +368,6 @@ Search a location or click anywhere on the map to find the nearest available gai
     <div class="kpi-grid" id="value-kpis">
       <div class="card">Loading...</div>
     </div>
-  </div>
-
-  <div class="section">
-    <h3>Highest Estimated Habitat Values</h3>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Habitat</th>
-          <th class="right">Registered Extent</th>
-          <th class="right">Indicative South Value</th>
-        </tr>
-      </thead>
-      <tbody id="top-values-table">
-        <tr><td colspan="3">Loading...</td></tr>
-      </tbody>
-    </table>
   </div>
 
   <div class="section">
@@ -570,30 +553,20 @@ Search a location or click anywhere on the map to find the nearest available gai
         </div>
       `;
 
-      document.getElementById("market-value-table").innerHTML = `
-        <tr>
-          <td>Registered Habitat Value</td>
-          <td class="right">${moneyRange(value.registered_north_value, value.registered_south_value)}</td>
-        </tr>
-        <tr>
-          <td>Allocated Habitat Value</td>
-          <td class="right">${moneyRange(value.allocated_north_value, value.allocated_south_value)}</td>
-        </tr>
-        <tr>
-          <td>Remaining Registered Habitat Value</td>
-          <td class="right">${moneyRange(value.remaining_north_value, value.remaining_south_value)}</td>
-        </tr>
-      `;
+   document.getElementById("market-value-table").innerHTML = `
+  <tr>
+    <td>Observed Allocated Habitat Units Value</td>
+    <td class="right">${moneyRange(value.allocated_north_value, value.allocated_south_value)}</td>
+  </tr>
+`;
 
-      const topHabitat = value.top_registered_value_habitats && value.top_registered_value_habitats[0];
 
-      document.getElementById("market-intelligence").innerHTML = `
-        <li>The register currently contains approximately <strong>${fmtMoney(value.registered_south_value)}</strong> of indicative registered habitat value using South England pricing.</li>
-        <li>Approximately <strong>${fmtMoney(value.allocated_south_value)}</strong> of registered habitat value has been allocated to developments.</li>
-        <li>Approximately <strong>${fmtMoney(value.remaining_south_value)}</strong> of indicative registered habitat value remains unallocated by area.</li>
-        ${topHabitat ? `<li><strong>${topHabitat.label}</strong> represents the largest estimated habitat market segment, with approximately <strong>${fmtMoney(topHabitat.registered_south_value)}</strong> of indicative South England value.</li>` : ""}
-        <li>Remaining capacity is reported as area or length, not remaining biodiversity units.</li>
-      `;
+document.getElementById("market-intelligence").innerHTML = `
+  <li>Approximately <strong>${fmtMoney(value.allocated_south_value)}</strong> of observed allocated BNG value is recorded using indicative South England pricing.</li>
+  <li>Allocated values are based on reported allocated biodiversity units, deduplicated at allocation level.</li>
+  <li>Remaining habitat capacity is reported as area or length only.</li>
+  <li>The public register does not provide enough information to calculate remaining biodiversity units reliably.</li>
+`;
 
       document.getElementById("utilisation-table").innerHTML = utilisation.map(row => {
         const unit = unitForGroup(row.group);
@@ -610,40 +583,24 @@ Search a location or click anywhere on the map to find the nearest available gai
         `;
       }).join("");
 
-      const ratio = value.allocated_south_value > 0
-        ? value.registered_south_value / value.allocated_south_value
-        : 0;
-
-      document.getElementById("value-kpis").innerHTML = `
-        <div class="card">
-          <div class="card-label">Registered Value</div>
-          <div class="card-value">${fmtMoney(value.registered_south_value)}</div>
-        </div>
-        <div class="card">
-          <div class="card-label">Allocated Value</div>
-          <div class="card-value">${fmtMoney(value.allocated_south_value)}</div>
-        </div>
-        <div class="card">
-          <div class="card-label">Remaining Value</div>
-          <div class="card-value">${fmtMoney(value.remaining_south_value)}</div>
-        </div>
-        <div class="card">
-          <div class="card-label">Registered : Allocated</div>
-          <div class="card-value">${fmtNum(ratio, 1)} : 1</div>
-        </div>
-      `;
-
-      document.getElementById("top-values-table").innerHTML =
-        (value.top_registered_value_habitats || []).slice(0, 5).map(row => {
-          const unit = row.habitat_type === "hedgerow" || row.habitat_type === "watercourse" ? " km" : " ha";
-          return `
-            <tr>
-              <td>${row.label}</td>
-              <td class="right">${fmtNum(row.registered_extent, 2)}${unit}</td>
-              <td class="right">${fmtMoney(row.registered_south_value)}</td>
-            </tr>
-          `;
-        }).join("");
+document.getElementById("value-kpis").innerHTML = `
+  <div class="card">
+    <div class="card-label">Allocated Habitat Units</div>
+    <div class="card-value">${fmtNum(summary.allocated_habitat_units, 1)}</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Allocated Hedgerow Units</div>
+    <div class="card-value">${fmtNum(summary.allocated_hedgerow_units, 1)}</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Allocated Watercourse Units</div>
+    <div class="card-value">${fmtNum(summary.allocated_watercourse_units, 1)}</div>
+  </div>
+  <div class="card">
+    <div class="card-label">Observed Allocated Value</div>
+    <div class="card-value">${fmtMoney(value.allocated_south_value)}</div>
+  </div>
+`;
 
       document.getElementById("supply-gap-table").innerHTML =
         supplyGap.slice(0, 10).map(row => {
@@ -697,10 +654,10 @@ Search a location or click anywhere on the map to find the nearest available gai
           </tr>
         `).join("");
 
-      document.getElementById("key-takeaway").innerHTML = `
-        <strong>Key takeaway:</strong>
-        The register currently contains approximately ${fmtMoney(value.remaining_south_value)} of indicative unallocated registered habitat value using South England pricing. Remaining capacity is reported as remaining registered area or length, not remaining biodiversity units.
-      `;
+document.getElementById("key-takeaway").innerHTML = `
+  <strong>Key takeaway:</strong>
+  The dashboard reports remaining habitat availability as area or length. Observed allocated value is estimated from allocated biodiversity units only; remaining biodiversity units are not calculated from the public register.
+`;
     }
 
 async function initBngMap() {
