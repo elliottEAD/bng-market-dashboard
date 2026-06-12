@@ -772,6 +772,7 @@ function yellowIcon() {
   });
 }
 
+ 
   function redIcon() {
   return new L.Icon({
     iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-red.png",
@@ -1004,7 +1005,7 @@ if (mapStatus) {
   mapStatus.innerHTML =
     "Map showing " +
     visibleSites.length.toLocaleString("en-GB") +
-    " registered gain sites gain site markers" +
+    " registered gain sites" +
     filterText +
     (!selectedBroadGroup && !selectedHabitat
       ? " Red markers indicate sites with no remaining registered habitat availability shown in dashboard data (" +
@@ -1340,9 +1341,17 @@ if (searchMarker) {
   map.removeLayer(searchMarker);
 }
 
-searchMarker = L.marker(latlng)
-  .addTo(map)
-  .bindPopup("<strong>Search location</strong><br>" + result.label);
+searchMarker = L.circleMarker(latlng, {
+  radius: 10,
+  weight: 3,
+  color: "#7e57c2",
+  fillColor: "#7e57c2",
+  fillOpacity: 0.3
+}).addTo(map);
+
+searchMarker.bindPopup(
+  "<strong>Search location</strong><br>" + result.label
+);
 
 searchMarker.openPopup();
 
