@@ -1,324 +1,600 @@
 [
   {
-    "lnrs": "Cheshire",
-    "site_count": 14,
-    "registered_habitat_hectares": 264.85,
-    "registered_hedgerow_km": 14.17,
-    "registered_watercourse_km": 1.51
-  },
-  {
-    "lnrs": "Norfolk",
-    "site_count": 14,
-    "registered_habitat_hectares": 625.36,
-    "registered_hedgerow_km": 16.45,
-    "registered_watercourse_km": 9.53
-  },
-  {
-    "lnrs": "Devon",
-    "site_count": 11,
-    "registered_habitat_hectares": 422.33,
-    "registered_hedgerow_km": 14.07,
-    "registered_watercourse_km": 5.2
-  },
-  {
-    "lnrs": "North Yorkshire and York",
-    "site_count": 11,
-    "registered_habitat_hectares": 259.26,
-    "registered_hedgerow_km": 13.28,
-    "registered_watercourse_km": 5.41
-  },
-  {
-    "lnrs": "East Sussex and Brighton & Hove",
-    "site_count": 10,
-    "registered_habitat_hectares": 244,
-    "registered_hedgerow_km": 8.96,
-    "registered_watercourse_km": 2.32
-  },
-  {
-    "lnrs": "Oxfordshire",
-    "site_count": 10,
-    "registered_habitat_hectares": 200.05,
-    "registered_hedgerow_km": 5.12,
-    "registered_watercourse_km": 0
-  },
-  {
-    "lnrs": "Staffordshire and Stoke-on-Trent",
-    "site_count": 10,
-    "registered_habitat_hectares": 136.43,
-    "registered_hedgerow_km": 3.11,
-    "registered_watercourse_km": 1.05
-  },
-  {
-    "lnrs": "Cambridgeshire and Peterborough",
-    "site_count": 10,
-    "registered_habitat_hectares": 245.68,
-    "registered_hedgerow_km": 7.09,
-    "registered_watercourse_km": 0
-  },
-  {
-    "lnrs": "Buckinghamshire and Milton Keynes",
-    "site_count": 9,
-    "registered_habitat_hectares": 208.21,
-    "registered_hedgerow_km": 3.87,
-    "registered_watercourse_km": 0
-  },
-  {
-    "lnrs": "Greater Essex",
-    "site_count": 9,
-    "registered_habitat_hectares": 453.13,
-    "registered_hedgerow_km": 9.59,
-    "registered_watercourse_km": 1.64
-  },
-  {
-    "lnrs": "Kent and Medway",
-    "site_count": 9,
-    "registered_habitat_hectares": 172.28,
-    "registered_hedgerow_km": 34.66,
-    "registered_watercourse_km": 0.49
-  },
-  {
-    "lnrs": "Somerset",
-    "site_count": 9,
-    "registered_habitat_hectares": 197.02,
-    "registered_hedgerow_km": 11.94,
-    "registered_watercourse_km": 2.03
+    "lnrs": "Tees Valley",
+    "site_count": 5,
+    "allocation_count": 136,
+    "registered_habitat_hectares": 101.28,
+    "allocated_habitat_area": 39.86,
+    "remaining_habitat_area": 61.42,
+    "utilisation_percent": 39.4,
+    "activity_score": 54.8,
+    "pressure_score": 39.4,
+    "opportunity_score": 48.6,
+    "opportunity_rating": "Moderate"
   },
   {
     "lnrs": "North of Tyne",
     "site_count": 8,
-    "registered_habitat_hectares": 346.5,
-    "registered_hedgerow_km": 9.81,
-    "registered_watercourse_km": 3.47
+    "allocation_count": 53,
+    "registered_habitat_hectares": 346.51,
+    "allocated_habitat_area": 103.95,
+    "remaining_habitat_area": 242.55,
+    "utilisation_percent": 30,
+    "activity_score": 59.6,
+    "pressure_score": 30,
+    "opportunity_score": 47.8,
+    "opportunity_rating": "Moderate"
   },
   {
-    "lnrs": "Greater Lincolnshire",
-    "site_count": 7,
-    "registered_habitat_hectares": 395,
-    "registered_hedgerow_km": 4.24,
-    "registered_watercourse_km": 2.42
-  },
-  {
-    "lnrs": "County Durham",
-    "site_count": 7,
-    "registered_habitat_hectares": 306.49,
-    "registered_hedgerow_km": 4.52,
-    "registered_watercourse_km": 1.75
-  },
-  {
-    "lnrs": "West of England",
-    "site_count": 6,
-    "registered_habitat_hectares": 266.32,
-    "registered_hedgerow_km": 12.52,
-    "registered_watercourse_km": 2.27
+    "lnrs": "Norfolk",
+    "site_count": 14,
+    "allocation_count": 199,
+    "registered_habitat_hectares": 625.36,
+    "allocated_habitat_area": 24.54,
+    "remaining_habitat_area": 600.83,
+    "utilisation_percent": 3.9,
+    "activity_score": 65.6,
+    "pressure_score": 3.9,
+    "opportunity_score": 40.9,
+    "opportunity_rating": "Moderate"
   },
   {
     "lnrs": "Greater Manchester",
     "site_count": 6,
+    "allocation_count": 96,
     "registered_habitat_hectares": 123.33,
-    "registered_hedgerow_km": 4.39,
-    "registered_watercourse_km": 1.74
+    "allocated_habitat_area": 32.43,
+    "remaining_habitat_area": 90.9,
+    "utilisation_percent": 26.3,
+    "activity_score": 40.6,
+    "pressure_score": 26.3,
+    "opportunity_score": 34.9,
+    "opportunity_rating": "Emerging"
   },
   {
-    "lnrs": "West Sussex",
-    "site_count": 6,
-    "registered_habitat_hectares": 271.13,
-    "registered_hedgerow_km": 18.58,
-    "registered_watercourse_km": 0.11
+    "lnrs": "East Sussex and Brighton & Hove",
+    "site_count": 10,
+    "allocation_count": 132,
+    "registered_habitat_hectares": 244,
+    "allocated_habitat_area": 22.15,
+    "remaining_habitat_area": 221.86,
+    "utilisation_percent": 9.1,
+    "activity_score": 46.1,
+    "pressure_score": 9.1,
+    "opportunity_score": 31.3,
+    "opportunity_rating": "Emerging"
   },
   {
-    "lnrs": "Hertfordshire",
-    "site_count": 6,
-    "registered_habitat_hectares": 168.23,
-    "registered_hedgerow_km": 8,
-    "registered_watercourse_km": 0.89
-  },
-  {
-    "lnrs": "Warwickshire",
-    "site_count": 5,
-    "registered_habitat_hectares": 97.52,
-    "registered_hedgerow_km": 2.84,
-    "registered_watercourse_km": 1.49
-  },
-  {
-    "lnrs": "Nottinghamshire and Nottingham",
-    "site_count": 5,
-    "registered_habitat_hectares": 133.17,
-    "registered_hedgerow_km": 20.15,
-    "registered_watercourse_km": 1.9
-  },
-  {
-    "lnrs": "Hampshire",
-    "site_count": 5,
-    "registered_habitat_hectares": 171.99,
-    "registered_hedgerow_km": 6.41,
-    "registered_watercourse_km": 0.17
-  },
-  {
-    "lnrs": "Leicestershire, Leicester and Rutland",
-    "site_count": 5,
-    "registered_habitat_hectares": 131.93,
-    "registered_hedgerow_km": 2.9,
-    "registered_watercourse_km": 0
-  },
-  {
-    "lnrs": "Tees Valley",
-    "site_count": 5,
-    "registered_habitat_hectares": 101.28,
-    "registered_hedgerow_km": 3.15,
-    "registered_watercourse_km": 1.28
-  },
-  {
-    "lnrs": "Surrey",
-    "site_count": 5,
-    "registered_habitat_hectares": 145.01,
-    "registered_hedgerow_km": 3.28,
-    "registered_watercourse_km": 1
-  },
-  {
-    "lnrs": "South Yorkshire",
-    "site_count": 4,
-    "registered_habitat_hectares": 69.97,
-    "registered_hedgerow_km": 2.45,
-    "registered_watercourse_km": 0.25
-  },
-  {
-    "lnrs": "Gloucestershire",
-    "site_count": 4,
-    "registered_habitat_hectares": 70.71,
-    "registered_hedgerow_km": 3.34,
-    "registered_watercourse_km": 0.24
-  },
-  {
-    "lnrs": "Bedfordshire",
-    "site_count": 4,
-    "registered_habitat_hectares": 49.55,
-    "registered_hedgerow_km": 3.51,
-    "registered_watercourse_km": 0.16
-  },
-  {
-    "lnrs": "West Yorkshire",
-    "site_count": 4,
-    "registered_habitat_hectares": 106.44,
-    "registered_hedgerow_km": 1.11,
-    "registered_watercourse_km": 1.7
-  },
-  {
-    "lnrs": "Lancashire",
-    "site_count": 4,
-    "registered_habitat_hectares": 56.01,
-    "registered_hedgerow_km": 1.69,
-    "registered_watercourse_km": 1.21
-  },
-  {
-    "lnrs": "Cornwall and the Isles of Scilly",
-    "site_count": 4,
-    "registered_habitat_hectares": 54.18,
-    "registered_hedgerow_km": 0.89,
-    "registered_watercourse_km": 0
-  },
-  {
-    "lnrs": "Derbyshire",
-    "site_count": 4,
-    "registered_habitat_hectares": 74.2,
-    "registered_hedgerow_km": 0.89,
-    "registered_watercourse_km": 0
-  },
-  {
-    "lnrs": "Suffolk",
-    "site_count": 3,
-    "registered_habitat_hectares": 47.77,
-    "registered_hedgerow_km": 2.76,
-    "registered_watercourse_km": 0.53
-  },
-  {
-    "lnrs": "Dorset",
-    "site_count": 3,
-    "registered_habitat_hectares": 116.81,
-    "registered_hedgerow_km": 1.82,
-    "registered_watercourse_km": 1.98
-  },
-  {
-    "lnrs": "Shropshire and Telford & Wrekin",
-    "site_count": 3,
-    "registered_habitat_hectares": 91.85,
-    "registered_hedgerow_km": 0.43,
-    "registered_watercourse_km": 0.11
+    "lnrs": "Oxfordshire",
+    "site_count": 10,
+    "allocation_count": 99,
+    "registered_habitat_hectares": 200.05,
+    "allocated_habitat_area": 23.52,
+    "remaining_habitat_area": 176.53,
+    "utilisation_percent": 11.8,
+    "activity_score": 37.5,
+    "pressure_score": 11.8,
+    "opportunity_score": 27.2,
+    "opportunity_rating": "Emerging"
   },
   {
     "lnrs": "Worcestershire",
     "site_count": 3,
+    "allocation_count": 59,
     "registered_habitat_hectares": 38.42,
-    "registered_hedgerow_km": 0.49,
-    "registered_watercourse_km": 0
-  },
-  {
-    "lnrs": "North Northamptonshire",
-    "site_count": 3,
-    "registered_habitat_hectares": 210.78,
-    "registered_hedgerow_km": 8.18,
-    "registered_watercourse_km": 1.16
-  },
-  {
-    "lnrs": "Isle of Wight",
-    "site_count": 3,
-    "registered_habitat_hectares": 69.64,
-    "registered_hedgerow_km": 2.72,
-    "registered_watercourse_km": 0.21
-  },
-  {
-    "lnrs": "Berkshire",
-    "site_count": 3,
-    "registered_habitat_hectares": 166.22,
-    "registered_hedgerow_km": 7.49,
-    "registered_watercourse_km": 0
-  },
-  {
-    "lnrs": "South of Tyne and Wear",
-    "site_count": 3,
-    "registered_habitat_hectares": 17.53,
-    "registered_hedgerow_km": 0.37,
-    "registered_watercourse_km": 0
-  },
-  {
-    "lnrs": "Hull and East Yorkshire",
-    "site_count": 2,
-    "registered_habitat_hectares": 53.89,
-    "registered_hedgerow_km": 2.91,
-    "registered_watercourse_km": 1.25
-  },
-  {
-    "lnrs": "West Northamptonshire",
-    "site_count": 2,
-    "registered_habitat_hectares": 61.79,
-    "registered_hedgerow_km": 4.8,
-    "registered_watercourse_km": 0
-  },
-  {
-    "lnrs": "Wiltshire and Swindon",
-    "site_count": 2,
-    "registered_habitat_hectares": 86.7,
-    "registered_hedgerow_km": 2.69,
-    "registered_watercourse_km": 1.56
-  },
-  {
-    "lnrs": "Greater London",
-    "site_count": 2,
-    "registered_habitat_hectares": 29.83,
-    "registered_hedgerow_km": 0.74,
-    "registered_watercourse_km": 0
-  },
-  {
-    "lnrs": "Cumbria",
-    "site_count": 1,
-    "registered_habitat_hectares": 12.98,
-    "registered_hedgerow_km": 0,
-    "registered_watercourse_km": 0
+    "allocated_habitat_area": 12.63,
+    "remaining_habitat_area": 25.79,
+    "utilisation_percent": 32.9,
+    "activity_score": 21.8,
+    "pressure_score": 32.9,
+    "opportunity_score": 26.2,
+    "opportunity_rating": "Emerging"
   },
   {
     "lnrs": "Liverpool City Region",
     "site_count": 1,
+    "allocation_count": 10,
     "registered_habitat_hectares": 12.41,
-    "registered_hedgerow_km": 2,
-    "registered_watercourse_km": 0
+    "allocated_habitat_area": 6.73,
+    "remaining_habitat_area": 5.68,
+    "utilisation_percent": 54.2,
+    "activity_score": 5.7,
+    "pressure_score": 54.2,
+    "opportunity_score": 25.1,
+    "opportunity_rating": "Emerging"
+  },
+  {
+    "lnrs": "South Yorkshire",
+    "site_count": 4,
+    "allocation_count": 46,
+    "registered_habitat_hectares": 69.97,
+    "allocated_habitat_area": 20.58,
+    "remaining_habitat_area": 49.39,
+    "utilisation_percent": 29.4,
+    "activity_score": 21.6,
+    "pressure_score": 29.4,
+    "opportunity_score": 24.7,
+    "opportunity_rating": "Emerging"
+  },
+  {
+    "lnrs": "North Yorkshire and York",
+    "site_count": 11,
+    "allocation_count": 92,
+    "registered_habitat_hectares": 259.26,
+    "allocated_habitat_area": 18.3,
+    "remaining_habitat_area": 240.95,
+    "utilisation_percent": 7.1,
+    "activity_score": 33.4,
+    "pressure_score": 7.1,
+    "opportunity_score": 22.8,
+    "opportunity_rating": "Emerging"
+  },
+  {
+    "lnrs": "Greater Lincolnshire",
+    "site_count": 7,
+    "allocation_count": 70,
+    "registered_habitat_hectares": 395,
+    "allocated_habitat_area": 21.89,
+    "remaining_habitat_area": 373.12,
+    "utilisation_percent": 5.5,
+    "activity_score": 28.8,
+    "pressure_score": 5.5,
+    "opportunity_score": 19.5,
+    "opportunity_rating": "Emerging"
+  },
+  {
+    "lnrs": "Devon",
+    "site_count": 11,
+    "allocation_count": 72,
+    "registered_habitat_hectares": 422.33,
+    "allocated_habitat_area": 16.15,
+    "remaining_habitat_area": 406.17,
+    "utilisation_percent": 3.8,
+    "activity_score": 26.9,
+    "pressure_score": 3.8,
+    "opportunity_score": 17.7,
+    "opportunity_rating": "Emerging"
+  },
+  {
+    "lnrs": "Buckinghamshire and Milton Keynes",
+    "site_count": 10,
+    "allocation_count": 65,
+    "registered_habitat_hectares": 210.51,
+    "allocated_habitat_area": 12.13,
+    "remaining_habitat_area": 198.38,
+    "utilisation_percent": 5.8,
+    "activity_score": 23.2,
+    "pressure_score": 5.8,
+    "opportunity_score": 16.2,
+    "opportunity_rating": "Emerging"
+  },
+  {
+    "lnrs": "Bedfordshire",
+    "site_count": 4,
+    "allocation_count": 55,
+    "registered_habitat_hectares": 49.55,
+    "allocated_habitat_area": 6.43,
+    "remaining_habitat_area": 43.12,
+    "utilisation_percent": 13,
+    "activity_score": 18,
+    "pressure_score": 13,
+    "opportunity_score": 16,
+    "opportunity_rating": "Emerging"
+  },
+  {
+    "lnrs": "Surrey",
+    "site_count": 5,
+    "allocation_count": 53,
+    "registered_habitat_hectares": 145.01,
+    "allocated_habitat_area": 12.96,
+    "remaining_habitat_area": 132.05,
+    "utilisation_percent": 8.9,
+    "activity_score": 20.3,
+    "pressure_score": 8.9,
+    "opportunity_score": 15.7,
+    "opportunity_rating": "Emerging"
+  },
+  {
+    "lnrs": "Cheshire",
+    "site_count": 14,
+    "allocation_count": 50,
+    "registered_habitat_hectares": 264.85,
+    "allocated_habitat_area": 17.2,
+    "remaining_habitat_area": 247.65,
+    "utilisation_percent": 6.5,
+    "activity_score": 21.3,
+    "pressure_score": 6.5,
+    "opportunity_score": 15.4,
+    "opportunity_rating": "Emerging"
+  },
+  {
+    "lnrs": "Lancashire",
+    "site_count": 4,
+    "allocation_count": 48,
+    "registered_habitat_hectares": 56.01,
+    "allocated_habitat_area": 7.37,
+    "remaining_habitat_area": 48.64,
+    "utilisation_percent": 13.2,
+    "activity_score": 16.5,
+    "pressure_score": 13.2,
+    "opportunity_score": 15.1,
+    "opportunity_rating": "Emerging"
+  },
+  {
+    "lnrs": "Cambridgeshire and Peterborough",
+    "site_count": 10,
+    "allocation_count": 47,
+    "registered_habitat_hectares": 245.68,
+    "allocated_habitat_area": 15.87,
+    "remaining_habitat_area": 229.81,
+    "utilisation_percent": 6.5,
+    "activity_score": 19.9,
+    "pressure_score": 6.5,
+    "opportunity_score": 14.5,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "Dorset",
+    "site_count": 3,
+    "allocation_count": 53,
+    "registered_habitat_hectares": 116.8,
+    "allocated_habitat_area": 8.52,
+    "remaining_habitat_area": 108.28,
+    "utilisation_percent": 7.3,
+    "activity_score": 18.3,
+    "pressure_score": 7.3,
+    "opportunity_score": 13.9,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "Greater Essex",
+    "site_count": 9,
+    "allocation_count": 46,
+    "registered_habitat_hectares": 453.13,
+    "allocated_habitat_area": 11.28,
+    "remaining_habitat_area": 441.85,
+    "utilisation_percent": 2.5,
+    "activity_score": 17.6,
+    "pressure_score": 2.5,
+    "opportunity_score": 11.6,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "Shropshire and Telford & Wrekin",
+    "site_count": 3,
+    "allocation_count": 38,
+    "registered_habitat_hectares": 91.85,
+    "allocated_habitat_area": 6.32,
+    "remaining_habitat_area": 85.53,
+    "utilisation_percent": 6.9,
+    "activity_score": 13.2,
+    "pressure_score": 6.9,
+    "opportunity_score": 10.7,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "West of England",
+    "site_count": 6,
+    "allocation_count": 46,
+    "registered_habitat_hectares": 266.32,
+    "allocated_habitat_area": 6.51,
+    "remaining_habitat_area": 259.81,
+    "utilisation_percent": 2.4,
+    "activity_score": 15.5,
+    "pressure_score": 2.4,
+    "opportunity_score": 10.3,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "County Durham",
+    "site_count": 7,
+    "allocation_count": 25,
+    "registered_habitat_hectares": 306.49,
+    "allocated_habitat_area": 12.49,
+    "remaining_habitat_area": 293.99,
+    "utilisation_percent": 4.1,
+    "activity_score": 12.3,
+    "pressure_score": 4.1,
+    "opportunity_score": 9,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "West Sussex",
+    "site_count": 6,
+    "allocation_count": 32,
+    "registered_habitat_hectares": 271.13,
+    "allocated_habitat_area": 6.25,
+    "remaining_habitat_area": 264.88,
+    "utilisation_percent": 2.3,
+    "activity_score": 11.6,
+    "pressure_score": 2.3,
+    "opportunity_score": 7.9,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "Leicestershire, Leicester and Rutland",
+    "site_count": 5,
+    "allocation_count": 32,
+    "registered_habitat_hectares": 131.93,
+    "allocated_habitat_area": 4.21,
+    "remaining_habitat_area": 127.72,
+    "utilisation_percent": 3.2,
+    "activity_score": 10.7,
+    "pressure_score": 3.2,
+    "opportunity_score": 7.7,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "Wiltshire and Swindon",
+    "site_count": 2,
+    "allocation_count": 32,
+    "registered_habitat_hectares": 86.7,
+    "allocated_habitat_area": 3.35,
+    "remaining_habitat_area": 83.34,
+    "utilisation_percent": 3.9,
+    "activity_score": 10.3,
+    "pressure_score": 3.9,
+    "opportunity_score": 7.7,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "Warwickshire",
+    "site_count": 5,
+    "allocation_count": 18,
+    "registered_habitat_hectares": 97.52,
+    "allocated_habitat_area": 6.18,
+    "remaining_habitat_area": 91.35,
+    "utilisation_percent": 6.3,
+    "activity_score": 7.6,
+    "pressure_score": 6.3,
+    "opportunity_score": 7.1,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "West Northamptonshire",
+    "site_count": 2,
+    "allocation_count": 12,
+    "registered_habitat_hectares": 61.79,
+    "allocated_habitat_area": 5.35,
+    "remaining_habitat_area": 56.43,
+    "utilisation_percent": 8.7,
+    "activity_score": 5.6,
+    "pressure_score": 8.7,
+    "opportunity_score": 6.8,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "Isle of Wight",
+    "site_count": 3,
+    "allocation_count": 17,
+    "registered_habitat_hectares": 69.64,
+    "allocated_habitat_area": 4.01,
+    "remaining_habitat_area": 65.63,
+    "utilisation_percent": 5.8,
+    "activity_score": 6.4,
+    "pressure_score": 5.8,
+    "opportunity_score": 6.2,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "Hampshire",
+    "site_count": 5,
+    "allocation_count": 18,
+    "registered_habitat_hectares": 171.99,
+    "allocated_habitat_area": 6.24,
+    "remaining_habitat_area": 165.75,
+    "utilisation_percent": 3.6,
+    "activity_score": 7.7,
+    "pressure_score": 3.6,
+    "opportunity_score": 6.1,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "Somerset",
+    "site_count": 9,
+    "allocation_count": 23,
+    "registered_habitat_hectares": 197.02,
+    "allocated_habitat_area": 3.13,
+    "remaining_habitat_area": 193.89,
+    "utilisation_percent": 1.6,
+    "activity_score": 7.7,
+    "pressure_score": 1.6,
+    "opportunity_score": 5.3,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "Kent and Medway",
+    "site_count": 9,
+    "allocation_count": 17,
+    "registered_habitat_hectares": 172.28,
+    "allocated_habitat_area": 5.09,
+    "remaining_habitat_area": 167.19,
+    "utilisation_percent": 3,
+    "activity_score": 6.9,
+    "pressure_score": 3,
+    "opportunity_score": 5.3,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "Hertfordshire",
+    "site_count": 6,
+    "allocation_count": 11,
+    "registered_habitat_hectares": 168.23,
+    "allocated_habitat_area": 6.77,
+    "remaining_habitat_area": 161.45,
+    "utilisation_percent": 4,
+    "activity_score": 6,
+    "pressure_score": 4,
+    "opportunity_score": 5.2,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "Cornwall and the Isles of Scilly",
+    "site_count": 4,
+    "allocation_count": 9,
+    "registered_habitat_hectares": 54.18,
+    "allocated_habitat_area": 2.83,
+    "remaining_habitat_area": 51.35,
+    "utilisation_percent": 5.2,
+    "activity_score": 3.7,
+    "pressure_score": 5.2,
+    "opportunity_score": 4.3,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "Berkshire",
+    "site_count": 3,
+    "allocation_count": 10,
+    "registered_habitat_hectares": 166.22,
+    "allocated_habitat_area": 3.88,
+    "remaining_habitat_area": 162.34,
+    "utilisation_percent": 2.3,
+    "activity_score": 4.4,
+    "pressure_score": 2.3,
+    "opportunity_score": 3.6,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "Staffordshire and Stoke-on-Trent",
+    "site_count": 10,
+    "allocation_count": 11,
+    "registered_habitat_hectares": 136.43,
+    "allocated_habitat_area": 2.97,
+    "remaining_habitat_area": 133.45,
+    "utilisation_percent": 2.2,
+    "activity_score": 4.3,
+    "pressure_score": 2.2,
+    "opportunity_score": 3.5,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "North Northamptonshire",
+    "site_count": 3,
+    "allocation_count": 4,
+    "registered_habitat_hectares": 210.78,
+    "allocated_habitat_area": 5.07,
+    "remaining_habitat_area": 205.72,
+    "utilisation_percent": 2.4,
+    "activity_score": 3.3,
+    "pressure_score": 2.4,
+    "opportunity_score": 2.9,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "Derbyshire",
+    "site_count": 4,
+    "allocation_count": 6,
+    "registered_habitat_hectares": 74.2,
+    "allocated_habitat_area": 2.22,
+    "remaining_habitat_area": 71.98,
+    "utilisation_percent": 3,
+    "activity_score": 2.6,
+    "pressure_score": 3,
+    "opportunity_score": 2.8,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "Greater London",
+    "site_count": 2,
+    "allocation_count": 3,
+    "registered_habitat_hectares": 29.83,
+    "allocated_habitat_area": 1.4,
+    "remaining_habitat_area": 28.43,
+    "utilisation_percent": 4.7,
+    "activity_score": 1.4,
+    "pressure_score": 4.7,
+    "opportunity_score": 2.7,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "West Yorkshire",
+    "site_count": 4,
+    "allocation_count": 1,
+    "registered_habitat_hectares": 106.44,
+    "allocated_habitat_area": 3.97,
+    "remaining_habitat_area": 102.47,
+    "utilisation_percent": 3.7,
+    "activity_score": 2,
+    "pressure_score": 3.7,
+    "opportunity_score": 2.7,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "Suffolk",
+    "site_count": 3,
+    "allocation_count": 9,
+    "registered_habitat_hectares": 47.77,
+    "allocated_habitat_area": 0.98,
+    "remaining_habitat_area": 46.79,
+    "utilisation_percent": 2,
+    "activity_score": 2.9,
+    "pressure_score": 2,
+    "opportunity_score": 2.6,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "South of Tyne and Wear",
+    "site_count": 3,
+    "allocation_count": 1,
+    "registered_habitat_hectares": 17.53,
+    "allocated_habitat_area": 0.6,
+    "remaining_habitat_area": 16.93,
+    "utilisation_percent": 3.4,
+    "activity_score": 0.5,
+    "pressure_score": 3.4,
+    "opportunity_score": 1.7,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "Nottinghamshire and Nottingham",
+    "site_count": 5,
+    "allocation_count": 1,
+    "registered_habitat_hectares": 133.17,
+    "allocated_habitat_area": 1.71,
+    "remaining_habitat_area": 131.46,
+    "utilisation_percent": 1.3,
+    "activity_score": 1,
+    "pressure_score": 1.3,
+    "opportunity_score": 1.1,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "Hull and East Yorkshire",
+    "site_count": 2,
+    "allocation_count": 2,
+    "registered_habitat_hectares": 53.89,
+    "allocated_habitat_area": 0.32,
+    "remaining_habitat_area": 53.57,
+    "utilisation_percent": 0.6,
+    "activity_score": 0.7,
+    "pressure_score": 0.6,
+    "opportunity_score": 0.6,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "Gloucestershire",
+    "site_count": 4,
+    "allocation_count": 0,
+    "registered_habitat_hectares": 70.71,
+    "allocated_habitat_area": 0,
+    "remaining_habitat_area": 70.71,
+    "utilisation_percent": 0,
+    "activity_score": 0,
+    "pressure_score": 0,
+    "opportunity_score": 0,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "Cumbria",
+    "site_count": 1,
+    "allocation_count": 0,
+    "registered_habitat_hectares": 12.98,
+    "allocated_habitat_area": 0,
+    "remaining_habitat_area": 12.98,
+    "utilisation_percent": 0,
+    "activity_score": 0,
+    "pressure_score": 0,
+    "opportunity_score": 0,
+    "opportunity_rating": "Low"
   }
 ]
