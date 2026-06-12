@@ -648,6 +648,14 @@
     "utilisation_percent": 1.4
   },
   {
+    "lpa": "Somerset West and Taunton LPA",
+    "site_count": 5,
+    "registered_habitat_hectares": 59.76,
+    "allocated_habitat_area": 0.8,
+    "remaining_habitat_area": 58.95,
+    "utilisation_percent": 1.3
+  },
+  {
     "lpa": "North Devon LPA",
     "site_count": 3,
     "registered_habitat_hectares": 285.92,
@@ -678,14 +686,6 @@
     "allocated_habitat_area": 1.05,
     "remaining_habitat_area": 87.92,
     "utilisation_percent": 1.2
-  },
-  {
-    "lpa": "Somerset West and Taunton LPA",
-    "site_count": 5,
-    "registered_habitat_hectares": 129.56,
-    "allocated_habitat_area": 1.09,
-    "remaining_habitat_area": 128.46,
-    "utilisation_percent": 0.8
   },
   {
     "lpa": "Rotherham LPA",
@@ -754,9 +754,9 @@
   {
     "lpa": "Peak District National Park LPA",
     "site_count": 3,
-    "registered_habitat_hectares": 10.74,
+    "registered_habitat_hectares": 8.85,
     "allocated_habitat_area": 0,
-    "remaining_habitat_area": 10.74,
+    "remaining_habitat_area": 8.85,
     "utilisation_percent": 0
   },
   {
@@ -946,9 +946,9 @@
   {
     "lpa": "Bolsover LPA",
     "site_count": 1,
-    "registered_habitat_hectares": 0,
+    "registered_habitat_hectares": 6.41,
     "allocated_habitat_area": 0,
-    "remaining_habitat_area": 0,
+    "remaining_habitat_area": 6.41,
     "utilisation_percent": 0
   },
   {
