@@ -552,9 +552,21 @@ Search a location or click anywhere on the map to find the nearest available gai
         </div>
       `;
 
-   document.getElementById("market-value-table").innerHTML = `
+document.getElementById("market-value-table").innerHTML = `
   <tr>
     <td>Indicative Allocated Habitat Units Value</td>
+    <td class="right">${moneyRange(value.allocated_habitat_north_value, value.allocated_habitat_south_value)}</td>
+  </tr>
+  <tr>
+    <td>Indicative Allocated Hedgerow Units Value</td>
+    <td class="right">${moneyRange(value.allocated_hedgerow_north_value, value.allocated_hedgerow_south_value)}</td>
+  </tr>
+  <tr>
+    <td>Indicative Allocated Watercourse Units Value</td>
+    <td class="right">${moneyRange(value.allocated_watercourse_north_value, value.allocated_watercourse_south_value)}</td>
+  </tr>
+  <tr>
+    <td><strong>Total Indicative Allocated Value</strong></td>
     <td class="right">${moneyRange(value.allocated_north_value, value.allocated_south_value)}</td>
   </tr>
 `;
