@@ -7406,56 +7406,10 @@
     "lpa": "King’s Lynn and West Norfolk LPA",
     "lnrs": "Norfolk",
     "authority": "RSK Biocensus Limited",
-    "sizeHa": 34.8,
+    "sizeHa": 0,
     "first_seen_date": "2026-06-09",
     "record_status": "existing",
-    "remaining": [
-      {
-        "habitat": "Grassland - Other neutral grassland",
-        "condition": "Good",
-        "habitat_type": "habitat",
-        "unit": "ha",
-        "proposed_extent": 21.5557,
-        "allocated_extent": 0,
-        "remaining_extent": 21.5557
-      },
-      {
-        "habitat": "Wetland - Reedbeds",
-        "condition": "Moderate",
-        "habitat_type": "habitat",
-        "unit": "ha",
-        "proposed_extent": 0.2716,
-        "allocated_extent": 0,
-        "remaining_extent": 0.2716
-      },
-      {
-        "habitat": "Heathland and shrub - Mixed scrub",
-        "condition": "Good",
-        "habitat_type": "habitat",
-        "unit": "ha",
-        "proposed_extent": 12.906,
-        "allocated_extent": 0,
-        "remaining_extent": 12.906
-      },
-      {
-        "habitat": "Lakes - Ponds (Priority Habitat)",
-        "condition": "Moderate",
-        "habitat_type": "habitat",
-        "unit": "ha",
-        "proposed_extent": 0.0676,
-        "allocated_extent": 0,
-        "remaining_extent": 0.0676
-      },
-      {
-        "habitat": "Ditches",
-        "condition": "Moderate",
-        "habitat_type": "watercourse",
-        "unit": "km",
-        "proposed_extent": 0.2365,
-        "allocated_extent": 0,
-        "remaining_extent": 0.2365
-      }
-    ]
+    "remaining": []
   },
   {
     "code": "BGS-150725001",
@@ -9763,7 +9717,7 @@
     "authority": "Buckinghamshire LPA",
     "sizeHa": 2.3,
     "first_seen_date": "2026-06-12",
-    "record_status": "new",
+    "record_status": "existing",
     "remaining": [
       {
         "habitat": "Grassland - Other neutral grassland",
@@ -17550,10 +17504,38 @@
     "lpa": "Somerset West and Taunton LPA",
     "lnrs": "Somerset",
     "authority": "Somerset LPA",
-    "sizeHa": 0,
+    "sizeHa": 17,
     "first_seen_date": "2026-05-26",
     "record_status": "existing",
-    "remaining": []
+    "remaining": [
+      {
+        "habitat": "Grassland - Other neutral grassland",
+        "condition": "Good",
+        "habitat_type": "habitat",
+        "unit": "ha",
+        "proposed_extent": 16.802,
+        "allocated_extent": 0,
+        "remaining_extent": 16.802
+      },
+      {
+        "habitat": "Native hedgerow with trees",
+        "condition": "Good",
+        "habitat_type": "hedgerow",
+        "unit": "km",
+        "proposed_extent": 1.032,
+        "allocated_extent": 0,
+        "remaining_extent": 1.032
+      },
+      {
+        "habitat": "Native Hedgerow",
+        "condition": "Good",
+        "habitat_type": "hedgerow",
+        "unit": "km",
+        "proposed_extent": 0.412,
+        "allocated_extent": 0,
+        "remaining_extent": 0.412
+      }
+    ]
   },
   {
     "code": "BGS-080225001",

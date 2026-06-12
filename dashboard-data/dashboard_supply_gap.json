@@ -592,6 +592,14 @@
     "utilisation_percent": 2.5
   },
   {
+    "lpa": "King’s Lynn and West Norfolk LPA",
+    "site_count": 4,
+    "registered_habitat_hectares": 151.31,
+    "allocated_habitat_area": 3.83,
+    "remaining_habitat_area": 147.48,
+    "utilisation_percent": 2.5
+  },
+  {
     "lpa": "West Berkshire LPA",
     "site_count": 2,
     "registered_habitat_hectares": 165.75,
@@ -606,14 +614,6 @@
     "allocated_habitat_area": 0.58,
     "remaining_habitat_area": 25.04,
     "utilisation_percent": 2.2
-  },
-  {
-    "lpa": "King’s Lynn and West Norfolk LPA",
-    "site_count": 4,
-    "registered_habitat_hectares": 186.11,
-    "allocated_habitat_area": 3.83,
-    "remaining_habitat_area": 182.28,
-    "utilisation_percent": 2.1
   },
   {
     "lpa": "Newark and Sherwood LPA",
@@ -682,10 +682,10 @@
   {
     "lpa": "Somerset West and Taunton LPA",
     "site_count": 5,
-    "registered_habitat_hectares": 112.75,
+    "registered_habitat_hectares": 129.56,
     "allocated_habitat_area": 1.09,
-    "remaining_habitat_area": 111.66,
-    "utilisation_percent": 1
+    "remaining_habitat_area": 128.46,
+    "utilisation_percent": 0.8
   },
   {
     "lpa": "Rotherham LPA",
