@@ -28,6 +28,16 @@
       margin-bottom: 36px;
     }
 
+    #location-search:focus,
+#location-search-button:focus,
+select:focus {
+  outline: 2px solid #bfd730;
+  outline-offset: 2px;
+}
+
+#location-search-button:hover {
+  background: #f3f3f3;
+}
     .kpi-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -219,6 +229,30 @@
     </p>
 
     <div class="methodology" style="margin-bottom:14px;">
+  <label for="location-search"><strong>Search location or postcode:</strong></label>
+
+  <div style="display:grid;grid-template-columns:1fr auto;gap:10px;margin-top:8px;">
+    <input
+      id="location-search"
+      type="text"
+      placeholder="e.g. Exeter, PL6 8BX, Bristol"
+      style="padding:9px;border:1px solid #aaa;border-radius:4px;"
+    >
+    <button
+      id="location-search-button"
+      type="button"
+      style="padding:9px 16px;border:1px solid #aaa;border-radius:4px;background:#fff;cursor:pointer;"
+    >
+      Search
+    </button>
+  </div>
+
+<p class="note" id="location-search-status">
+  Search a UK postcode or place name to find the nearest available gain sites.
+</p>
+</div>
+    
+    <div class="methodology" style="margin-bottom:14px;">
 <div class="filter-grid">
   <div>
     <label for="broad-habitat-filter"><strong>Broad habitat type:</strong></label>
@@ -245,6 +279,12 @@
 
     <p class="note" id="map-status">Loading map...</p>
 
+<div class="note" style="display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-top:10px;">
+  <span><span style="display:inline-block;width:12px;height:12px;background:#2b6cb0;border-radius:50%;margin-right:5px;"></span>Available site</span>
+  <span><span style="display:inline-block;width:12px;height:12px;background:#d73027;border-radius:50%;margin-right:5px;"></span>Fully allocated / no remaining availability</span>
+  <span><span style="display:inline-block;width:12px;height:12px;background:#f6c343;border-radius:50%;margin-right:5px;"></span>Nearest 5 selected sites</span>
+</div>
+    
     <p class="note">
       Red markers indicate sites with no remaining registered habitat availability shown in the dashboard data. These sites are shown on the unfiltered map for completeness, but are excluded from habitat filters and nearest-site search results.
     </p>
@@ -254,7 +294,7 @@
   <div id="nearest-panel" class="methodology">
         <strong>Nearest gain sites</strong>
         <p class="note">
-          Click anywhere on the map to find the nearest gain sites. Results prioritise sites in the same LPA or LNRS, then sort by distance.
+Search a location or click anywhere on the map to find the nearest available gain sites. Fully allocated sites are excluded from nearest-site results.
         </p>
       </div>
     </div>
@@ -720,7 +760,7 @@ async function initBngMap() {
   const habitatFilter = document.getElementById("habitat-filter");
   const nearestPanel = document.getElementById("nearest-panel");
   const mapStatus = document.getElementById("map-status");
-
+let hasInitialMapZoom = false;
 function yellowIcon() {
   return new L.Icon({
     iconUrl: "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-yellow.png",
@@ -964,7 +1004,7 @@ if (mapStatus) {
   mapStatus.innerHTML =
     "Map showing " +
     visibleSites.length.toLocaleString("en-GB") +
-    " mapped gain site markers" +
+    " registered gain sites gain site markers" +
     filterText +
     (!selectedBroadGroup && !selectedHabitat
       ? " Red markers indicate sites with no remaining registered habitat availability shown in dashboard data (" +
@@ -973,13 +1013,19 @@ if (mapStatus) {
       : "");
 }
 
-    if (visibleSites.length > 0) {
-      const group = L.featureGroup(markerLayer.getLayers());
-      map.fitBounds(group.getBounds(), { padding: [30, 30] });
-    }
-  }
+if (!hasInitialMapZoom && visibleSites.length > 0) {
+  const group = L.featureGroup(markerLayer.getLayers());
 
-  function getFeatureName(feature) {
+  map.fitBounds(group.getBounds(), {
+    padding: [30, 30]
+  });
+
+  hasInitialMapZoom = true;
+}
+
+}
+
+function getFeatureName(feature) {
     const p = feature.properties || {};
     return (
       p.LPA23NM ||
@@ -1060,6 +1106,98 @@ if (mapStatus) {
     return R * 2 * Math.atan2(Math.sqrt(x), Math.sqrt(1 - x));
   }
 
+function looksLikeUkPostcode(query) {
+  return /^[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}$/i.test(query.trim());
+}
+
+async function geocodePostcode(query) {
+  const clean = query.replace(/\s+/g, "").toUpperCase();
+
+  const response = await fetch(
+    "https://api.postcodes.io/postcodes/" + encodeURIComponent(clean)
+  );
+
+  if (!response.ok) {
+    throw new Error("Postcode lookup failed");
+  }
+
+  const data = await response.json();
+
+  if (!data.result) {
+    throw new Error("Postcode not found");
+  }
+
+  return {
+    lat: Number(data.result.latitude),
+    lng: Number(data.result.longitude),
+    label: data.result.postcode
+  };
+}
+
+async function geocodeLocation(query) {
+  if (looksLikeUkPostcode(query)) {
+    return geocodePostcode(query);
+  }
+
+  const url =
+    "https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=gb&q=" +
+    encodeURIComponent(query);
+
+  const response = await fetch(url, {
+    headers: {
+      "Accept": "application/json"
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error("Location search failed");
+  }
+
+  const results = await response.json();
+
+  if (!results.length) {
+    throw new Error("No location found");
+  }
+
+  return {
+    lat: Number(results[0].lat),
+    lng: Number(results[0].lon),
+    label: results[0].display_name
+  };
+}
+
+function availabilityList(site, selectedBroadGroup, selectedHabitat) {
+  const rows = (site.remaining || []).filter(row => {
+    const matchesBroad =
+      !selectedBroadGroup ||
+      rowBroadGroup(row) === selectedBroadGroup;
+
+    const matchesHabitat =
+      !selectedHabitat ||
+      row.habitat === selectedHabitat;
+
+    return matchesBroad && matchesHabitat && Number(row.remaining_extent || 0) > 0;
+  });
+
+  if (!rows.length) {
+    return "<span class='note'>No matching remaining availability.</span>";
+  }
+
+  return `
+    <details style="margin-top:6px;">
+      <summary>Show available habitats (${rows.length})</summary>
+      <ul style="margin:8px 0 0 18px;padding:0;">
+        ${rows.slice(0, 8).map(row => `
+          <li>
+            ${row.habitat}${row.condition ? " (" + row.condition + ")" : ""}: ${formatExtent(row)}
+          </li>
+        `).join("")}
+      </ul>
+      ${rows.length > 8 ? `<p class="note">Showing first 8 habitat rows.</p>` : ""}
+    </details>
+  `;
+}
+  
   function normaliseName(value) {
     return String(value || "").toLowerCase().trim();
   }
@@ -1081,34 +1219,34 @@ if (mapStatus) {
     return "Outside selected LPA/LNRS";
   }
 
-  function remainingSummary(site, selectedBroadGroup, selectedHabitat) {
-    const rows = (site.remaining || []).filter(row => {
-      const matchesBroad = !selectedBroadGroup || rowBroadGroup(row) === selectedBroadGroup;
-      const matchesHabitat = !selectedHabitat || row.habitat === selectedHabitat;
-      return matchesBroad && matchesHabitat;
-    });
+function remainingSummary(site, selectedBroadGroup, selectedHabitat) {
+  const rows = (site.remaining || []).filter(row => {
+    const matchesBroad =
+      !selectedBroadGroup ||
+      rowBroadGroup(row) === selectedBroadGroup;
 
-    if (!rows.length) return "No remaining habitat rows.";
+    const matchesHabitat =
+      !selectedHabitat ||
+      row.habitat === selectedHabitat;
 
-    if (selectedHabitat) {
-      return rows.map(row =>
-        `${row.habitat}: ${formatExtent(row)}`
-      ).join("<br>");
-    }
+    return matchesBroad && matchesHabitat && Number(row.remaining_extent || 0) > 0;
+  });
 
-    const largest = [...rows].sort((a, b) =>
-      Number(b.remaining_extent || 0) - Number(a.remaining_extent || 0)
-    )[0];
+  if (!rows.length) return "No remaining habitat rows.";
 
-    return rows.length +
-      " remaining habitat type" +
-      (rows.length === 1 ? "" : "s") +
-      ". Largest: " +
-      largest.habitat +
-      " (" +
-      formatExtent(largest) +
-      ").";
-  }
+  const largest = [...rows].sort((a, b) =>
+    Number(b.remaining_extent || 0) - Number(a.remaining_extent || 0)
+  )[0];
+
+  return rows.length +
+    " available habitat type" +
+    (rows.length === 1 ? "" : "s") +
+    ". Largest: " +
+    largest.habitat +
+    " (" +
+    formatExtent(largest) +
+    ").";
+}
 
   function renderNearestPanel(latlng) {
     const selectedBroadGroup = broadHabitatFilter.value;
@@ -1158,8 +1296,9 @@ highlightNearestMarkers(candidates);
           <strong>${index + 1}. ${item.site.code}</strong><br>
           ${item.distance.toLocaleString("en-GB", { maximumFractionDigits: 1 })} km - ${matchLabel(item.priority)}<br>
           <span class="note">${item.site.lpa || "Unknown LPA"} / ${item.site.lnrs || "Unknown LNRS"}</span><br>
-          <span class="note">${remainingSummary(item.site, selectedBroadGroup, selectedHabitat)}</span><br>
-          ${item.site.link ? `<a href="${item.site.link}" target="_blank" rel="noopener">View register record</a>` : ""}
+<span class="note">${remainingSummary(item.site, selectedBroadGroup, selectedHabitat)}</span>
+${availabilityList(item.site, selectedBroadGroup, selectedHabitat)}
+${item.site.link ? `<br><a href="${item.site.link}" target="_blank" rel="noopener">View register record</a>` : ""}
         </div>
       `).join("")}
     `;
@@ -1176,6 +1315,56 @@ habitatFilter.addEventListener("change", function () {
   renderMarkers();
 });
 
+const locationSearchInput = document.getElementById("location-search");
+const locationSearchButton = document.getElementById("location-search-button");
+const locationSearchStatus = document.getElementById("location-search-status");
+
+  let searchMarker = null;
+async function runLocationSearch() {
+  const query = locationSearchInput.value.trim();
+
+  if (!query) {
+    locationSearchStatus.innerHTML = "Enter a location or postcode.";
+    return;
+  }
+
+  locationSearchStatus.innerHTML = "Searching...";
+
+  try {
+    const result = await geocodeLocation(query);
+    const latlng = L.latLng(result.lat, result.lng);
+
+    map.setView(latlng, 11);
+
+if (searchMarker) {
+  map.removeLayer(searchMarker);
+}
+
+searchMarker = L.marker(latlng)
+  .addTo(map)
+  .bindPopup("<strong>Search location</strong><br>" + result.label);
+
+searchMarker.openPopup();
+
+    renderNearestPanel(latlng);
+
+    locationSearchStatus.innerHTML =
+      "Showing nearest available gain sites to: " + result.label;
+  } catch (error) {
+    console.error(error);
+    locationSearchStatus.innerHTML =
+      "Location not found. Try a town, city or postcode.";
+  }
+}
+
+locationSearchButton.addEventListener("click", runLocationSearch);
+
+locationSearchInput.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    runLocationSearch();
+  }
+});
+  
   map.on("click", function (event) {
     renderNearestPanel(event.latlng);
   });
