@@ -306,10 +306,10 @@ Search a location or click anywhere on the map to find the nearest available gai
   </div>
 
   <div class="section">
-<h3>Observed Allocated BNG Market Value</h3>
+<h3>Indicative Allocated BNG Market Value</h3>
 
 <p>
-  These estimates apply indicative £/biodiversity unit pricing to allocated biodiversity units reported in the public BNG register. Remaining biodiversity units are not calculated because the register does not provide sufficient information to derive them accurately.
+  These estimates apply average indicative £/biodiversity unit pricing to allocated biodiversity units reported in the Biodiversity Gain Site Register.
 </p>
 
     <table>
@@ -325,9 +325,8 @@ Search a location or click anywhere on the map to find the nearest available gai
     </table>
 
     <p class="note">
-  Source: Biodiversity Units UK, February 2026. Values are indicative only and are calculated from allocated biodiversity units reported on the Biodiversity Gain Site register. Remaining unit availability is not calculated.
+ Source: Biodiversity Units UK, February 2026. Values are indicative only and are calculated from allocated biodiversity units reported on the Biodiversity Gain Site register using average indicative unit pricing by broad unit category. Where an allocation contains multiple habitat components, units are not apportioned between habitat types because the register does not provide sufficient information. Remaining unit availability is not calculated.
 </p>
-    </p>
   </div>
 
   <div class="section">
@@ -463,7 +462,7 @@ Search a location or click anywhere on the map to find the nearest available gai
         Allocation unit values are recorded at allocation level and may relate to multiple habitat components. Unit totals are therefore deduplicated at allocation level to avoid counting the same allocation value multiple times across component habitat rows.
       </p>
       <p>
-        The public register does not provide sufficient metric data to calculate remaining biodiversity units with confidence. Indicative values are for market intelligence purposes only and are not confirmed transaction values.
+        The public register does not provide sufficient metric data to calculate remaining biodiversity units with confidence. Indicative allocated values are estimated from allocated biodiversity units using average Biodiversity Units UK indicative unit pricing by broad unit category. Values are for market intelligence purposes only and are not confirmed transaction values.
       </p>
     </div>
   </div>
@@ -555,14 +554,14 @@ Search a location or click anywhere on the map to find the nearest available gai
 
    document.getElementById("market-value-table").innerHTML = `
   <tr>
-    <td>Observed Allocated Habitat Units Value</td>
+    <td>Indicative Allocated Habitat Units Value</td>
     <td class="right">${moneyRange(value.allocated_north_value, value.allocated_south_value)}</td>
   </tr>
 `;
 
 
 document.getElementById("market-intelligence").innerHTML = `
-  <li>Approximately <strong>${fmtMoney(value.allocated_south_value)}</strong> of observed allocated BNG value is recorded using indicative South England pricing.</li>
+  <li>Approximately <strong>${fmtMoney(value.allocated_south_value)}</strong> of indicative allocated BNG value is recorded using indicative South England pricing.</li>
   <li>Allocated values are based on reported allocated biodiversity units, deduplicated at allocation level.</li>
   <li>Remaining habitat capacity is reported as area or length only.</li>
   <li>The public register does not provide enough information to calculate remaining biodiversity units reliably.</li>
@@ -597,7 +596,7 @@ document.getElementById("value-kpis").innerHTML = `
     <div class="card-value">${fmtNum(summary.allocated_watercourse_units, 1)}</div>
   </div>
   <div class="card">
-    <div class="card-label">Observed Allocated Value</div>
+    <div class="card-label">Indicative Allocated Value</div>
     <div class="card-value">${fmtMoney(value.allocated_south_value)}</div>
   </div>
 `;
@@ -656,7 +655,7 @@ document.getElementById("value-kpis").innerHTML = `
 
 document.getElementById("key-takeaway").innerHTML = `
   <strong>Key takeaway:</strong>
-  The dashboard reports remaining habitat availability as area or length. Observed allocated value is estimated from allocated biodiversity units only; remaining biodiversity units are not calculated from the public register.
+  The dashboard reports remaining habitat availability as area or length. Indicative allocated value is estimated from allocated biodiversity units only; remaining biodiversity units are not calculated from the public register.
 `;
     }
 
