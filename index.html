@@ -309,7 +309,7 @@ Search a location or click anywhere on the map to find the nearest available gai
 <h3>Indicative Allocated BNG Market Value</h3>
 
 <p>
-  These estimates apply average indicative £/biodiversity unit pricing to allocated biodiversity units reported in the Biodiversity Gain Site Register.
+  These estimates apply indicative biodiversity unit pricing to allocated biodiversity units reported in the Biodiversity Gain Site Register. Habitat values are shown as minimum, average and maximum pricing scenarios because the public register does not provide enough information to apportion mixed allocation unit values between individual habitat types.
 </p>
 
     <table>
@@ -554,29 +554,45 @@ Search a location or click anywhere on the map to find the nearest available gai
 
 document.getElementById("market-value-table").innerHTML = `
   <tr>
-    <td>Indicative Allocated Habitat Units Value</td>
-    <td class="right">${moneyRange(value.allocated_habitat_north_value, value.allocated_habitat_south_value)}</td>
+    <td>Minimum Indicative Habitat Value</td>
+    <td class="right">${fmtMoney(value.allocated_habitat_min_value)}</td>
   </tr>
   <tr>
-    <td>Indicative Allocated Hedgerow Units Value</td>
+    <td>Average Indicative Habitat Value</td>
+    <td class="right">${fmtMoney(value.allocated_habitat_avg_value)}</td>
+  </tr>
+  <tr>
+    <td>Maximum Indicative Habitat Value</td>
+    <td class="right">${fmtMoney(value.allocated_habitat_max_value)}</td>
+  </tr>
+  <tr>
+    <td>Indicative Hedgerow Value</td>
     <td class="right">${moneyRange(value.allocated_hedgerow_north_value, value.allocated_hedgerow_south_value)}</td>
   </tr>
   <tr>
-    <td>Indicative Allocated Watercourse Units Value</td>
+    <td>Indicative Watercourse Value</td>
     <td class="right">${moneyRange(value.allocated_watercourse_north_value, value.allocated_watercourse_south_value)}</td>
   </tr>
   <tr>
-    <td><strong>Total Indicative Allocated Value</strong></td>
-    <td class="right">${moneyRange(value.allocated_north_value, value.allocated_south_value)}</td>
+    <td><strong>Total Minimum Indicative Value</strong></td>
+    <td class="right">${fmtMoney(value.allocated_min_value)}</td>
+  </tr>
+  <tr>
+    <td><strong>Total Average Indicative Value</strong></td>
+    <td class="right">${fmtMoney(value.allocated_avg_value)}</td>
+  </tr>
+  <tr>
+    <td><strong>Total Maximum Indicative Value</strong></td>
+    <td class="right">${fmtMoney(value.allocated_max_value)}</td>
   </tr>
 `;
 
 
 document.getElementById("market-intelligence").innerHTML = `
-  <li>Approximately <strong>${fmtMoney(value.allocated_south_value)}</strong> of indicative allocated BNG value is recorded using indicative South England pricing.</li>
-  <li>Allocated values are based on reported allocated biodiversity units, deduplicated at allocation level.</li>
-  <li>Remaining habitat capacity is reported as area or length only.</li>
-  <li>The public register does not provide enough information to calculate remaining biodiversity units reliably.</li>
+  <li>The average indicative allocated BNG value is approximately <strong>${fmtMoney(value.allocated_avg_value)}</strong>.</li>
+  <li>The indicative valuation range is approximately <strong>${fmtMoney(value.allocated_min_value)}</strong> to <strong>${fmtMoney(value.allocated_max_value)}</strong>, reflecting uncertainty in habitat unit pricing where allocations contain multiple habitat components.</li>
+  <li>Allocated unit totals are based on reported biodiversity units, deduplicated at allocation level.</li>
+  <li>Remaining habitat capacity is reported as area or length only; remaining biodiversity units and remaining market values are not calculated.</li>
 `;
 
       document.getElementById("utilisation-table").innerHTML = utilisation.map(row => {
@@ -608,8 +624,8 @@ document.getElementById("value-kpis").innerHTML = `
     <div class="card-value">${fmtNum(summary.allocated_watercourse_units, 1)}</div>
   </div>
   <div class="card">
-    <div class="card-label">Indicative Allocated Value</div>
-    <div class="card-value">${fmtMoney(value.allocated_south_value)}</div>
+    <div class="card-label">Indicative Average Allocation Value</div>
+    <div class="card-value">${fmtMoney(value.allocated_avg_value)}</div>
   </div>
 `;
 
