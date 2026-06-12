@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T09:17:29.472Z",
+  "generated_at": "2026-06-12T11:18:31.562Z",
   "removed_records_excluded": true,
   "allocation_area_based_capacity": true,
   "allocation_unit_based_capacity": false,
@@ -16,6 +16,6 @@
     "Remaining capacity is calculated as proposed extent minus allocated extent.",
     "Remaining capacity is area or length only, not biodiversity units.",
     "Allocation unit values may relate to multiple habitat components and are deduplicated at allocation level.",
-    "Observed allocated market values are calculated from allocated biodiversity units only using average indicative unit pricing by broad unit category derived from Biodiversity Units UK February 2026 pricing. Where a single allocation relates to multiple habitat components, units are not split between habitats because the BGS register does not provide sufficient information. Registered and remaining market values are not calculated."
+    "Indicative allocated market values are calculated from allocated biodiversity units only. Habitat values are presented as minimum, average and maximum pricing scenarios because allocation unit values may relate to multiple habitat components and the Biodiversity Gain Site Register does not provide sufficient information to apportion units between habitats. Hedgerow and watercourse values are shown as indicative north and south pricing ranges. Registered and remaining market values are not calculated."
   ]
 }
