@@ -574,15 +574,6 @@ const [
   loadJson("dashboard_opportunity_areas.json"),
   loadJson("dashboard_habitat_demand.json")
 ]);
-  loadJson("dashboard_summary.json"),
-  loadJson("dashboard_market_value.json"),
-  loadJson("dashboard_habitat_utilisation.json"),
-  loadJson("dashboard_supply_gap.json"),
-  loadJson("dashboard_southwest.json"),
-  loadJson("dashboard_recent.json"),
-  loadJson("dashboard_opportunity_areas.json"),
-  loadJson("dashboard_habitat_demand.json")
-]);
 
       document.getElementById("last-updated").innerHTML =
   "Last register scrape: " +
@@ -857,11 +848,11 @@ async function initBngMap() {
     }
   });
 
-  const [sitesResponse, lpaResponse, lnrsResponse] = await Promise.all([
-    fetch("dashboard-data/dashboard_map_sites.json?v=" + Date.now()),
-    fetch("dashboard-data/boundaries/lpa.geojson?v=" + Date.now()),
-    fetch("dashboard-data/boundaries/lnrs.geojson?v=" + Date.now())
-  ]);
+const [sitesResponse, lpaResponse, lnrsResponse] = await Promise.all([
+  fetch(BASE + "dashboard_map_sites.json?v=" + Date.now()),
+  fetch(BASE + "boundaries/lpa.geojson?v=" + Date.now()),
+  fetch(BASE + "boundaries/lnrs.geojson?v=" + Date.now())
+]);
 
   const sites = await sitesResponse.json();
   const lpaGeojson = await lpaResponse.json();
