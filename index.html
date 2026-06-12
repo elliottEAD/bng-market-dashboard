@@ -361,41 +361,78 @@ Search a location or click anywhere on the map to find the nearest available gai
     </table>
   </div>
 
-  <div class="section">
-    <h3>Supply vs Demand Snapshot</h3>
+<div class="section">
+  <h3>Market Activity Trends</h3>
 
-    <div class="kpi-grid" id="value-kpis">
-      <div class="card">Loading...</div>
-    </div>
+  <p>
+    Allocation activity based on records first seen by the scraper. Tracking began on 26 May 2026, so longer periods currently represent the full tracked history.
+  </p>
+
+  <div class="kpi-grid" id="activity-kpis">
+    <div class="card">Loading...</div>
   </div>
 
+  <p class="note" id="tracking-note"></p>
+</div>
+
+<div class="section">
+  <h3>National Habitat Opportunity</h3>
+
+  <p>
+    Habitat market signals based on recorded allocation activity, allocated extent and registered remaining supply. These are area or length based indicators, not remaining biodiversity unit estimates.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Habitat</th>
+        <th>Group</th>
+        <th class="right">Allocations</th>
+        <th class="right">Allocated</th>
+        <th class="right">Remaining</th>
+        <th class="right">Demand</th>
+        <th class="right">Pressure</th>
+        <th class="right">Opportunity</th>
+      </tr>
+    </thead>
+    <tbody id="habitat-demand-table">
+      <tr><td colspan="8">Loading...</td></tr>
+    </tbody>
+  </table>
+
+  <p class="note">
+    Demand reflects allocation count and allocated extent. Pressure reflects utilisation of registered supply. Opportunity combines both signals.
+  </p>
+</div>  
   <div class="section">
-    <h3>LPAs with Highest Local Supply Utilisation</h3>
+  <h3>Highest Opportunity LNRS Areas</h3>
 
-    <p>
-      Areas where allocated habitat area is high relative to registered local habitat supply. These locations may indicate stronger local demand pressure or limited remaining registered habitat area.
-    </p>
+  <p>
+    LNRS areas ranked by observed allocation activity and registered habitat supply utilisation. This is intended to identify active BNG markets, not to estimate remaining biodiversity units.
+  </p>
 
-    <table>
-      <thead>
-        <tr>
-          <th>LPA</th>
-          <th class="right">Sites</th>
-          <th class="right">Registered ha</th>
-          <th class="right">Allocated ha</th>
-          <th class="right">Remaining ha</th>
-          <th class="right">Utilisation</th>
-        </tr>
-      </thead>
-      <tbody id="supply-gap-table">
-        <tr><td colspan="6">Loading...</td></tr>
-      </tbody>
-    </table>
+  <table>
+    <thead>
+      <tr>
+        <th>LNRS</th>
+        <th class="right">Sites</th>
+        <th class="right">Allocations</th>
+        <th class="right">Last 7d</th>
+        <th class="right">Allocated ha</th>
+        <th class="right">Remaining ha</th>
+        <th class="right">Utilisation</th>
+        <th class="right">Opportunity</th>
+      </tr>
+    </thead>
+    <tbody id="opportunity-table">
+      <tr><td colspan="8">Loading...</td></tr>
+    </tbody>
+  </table>
 
-    <p class="note">
-      Note: very small registered areas can produce high utilisation percentages. These should be interpreted as local supply utilisation indicators rather than confirmed market shortages.
-    </p>
-  </div>
+  <p class="note">
+    Opportunity combines market activity and pressure. Small areas with high utilisation should still be interpreted carefully.
+  </p>
+</div>
 
   <div class="section">
     <h3>South West Market Snapshot</h3>
@@ -406,17 +443,18 @@ Search a location or click anywhere on the map to find the nearest available gai
 
     <table>
       <thead>
-        <tr>
-          <th>Area</th>
-          <th class="right">Sites</th>
-          <th class="right">Registered ha</th>
-          <th class="right">Allocated ha</th>
-          <th class="right">Remaining ha</th>
-          <th class="right">Utilisation</th>
-        </tr>
+<tr>
+  <th>Area</th>
+  <th class="right">Sites</th>
+  <th class="right">Allocations</th>
+  <th class="right">Last 7d</th>
+  <th class="right">Remaining ha</th>
+  <th class="right">Utilisation</th>
+  <th class="right">Opportunity</th>
+</tr>
       </thead>
       <tbody id="southwest-table">
-        <tr><td colspan="6">Loading...</td></tr>
+        <tr><td colspan="7">Loading...</td></tr>
       </tbody>
     </table>
 
@@ -464,6 +502,9 @@ Search a location or click anywhere on the map to find the nearest available gai
       <p>
         The public register does not provide sufficient metric data to calculate remaining biodiversity units with confidence. Indicative allocated values are estimated from allocated biodiversity units using average Biodiversity Units UK indicative unit pricing by broad unit category. Values are for market intelligence purposes only and are not confirmed transaction values.
       </p>
+            <p>
+        Opportunity scores are market intelligence indicators derived from observed allocation activity, allocation frequency and registered habitat supply utilisation. They are intended to highlight potentially active BNG markets and habitat types, but do not represent confirmed future demand, biodiversity unit shortages, habitat suitability, land availability or commercial pricing.
+      </p>
     </div>
   </div>
 
@@ -506,6 +547,11 @@ Search a location or click anywhere on the map to find the nearest available gai
       return group === "Hedgerow" || group === "Watercourse" ? " km" : " ha";
     }
 
+    function ratingLabel(row) {
+  return row.opportunity_rating
+    ? `${row.opportunity_rating} (${fmtNum(row.opportunity_score, 1)})`
+    : fmtNum(row.opportunity_score, 1);
+}
     async function loadJson(file) {
       const response = await fetch(BASE + file + "?v=" + Date.now());
       if (!response.ok) throw new Error(file + " failed: " + response.status);
@@ -513,14 +559,30 @@ Search a location or click anywhere on the map to find the nearest available gai
     }
 
     async function initDashboard() {
-      const [summary, value, utilisation, supplyGap, southwest, recent] = await Promise.all([
-        loadJson("dashboard_summary.json"),
-        loadJson("dashboard_market_value.json"),
-        loadJson("dashboard_habitat_utilisation.json"),
-        loadJson("dashboard_supply_gap.json"),
-        loadJson("dashboard_southwest.json"),
-        loadJson("dashboard_recent.json")
-      ]);
+const [
+  summary,
+  value,
+  utilisation,
+  recent,
+  opportunityAreas,
+  habitatDemand
+] = await Promise.all([
+  loadJson("dashboard_summary.json"),
+  loadJson("dashboard_market_value.json"),
+  loadJson("dashboard_habitat_utilisation.json"),
+  loadJson("dashboard_recent.json"),
+  loadJson("dashboard_opportunity_areas.json"),
+  loadJson("dashboard_habitat_demand.json")
+]);
+  loadJson("dashboard_summary.json"),
+  loadJson("dashboard_market_value.json"),
+  loadJson("dashboard_habitat_utilisation.json"),
+  loadJson("dashboard_supply_gap.json"),
+  loadJson("dashboard_southwest.json"),
+  loadJson("dashboard_recent.json"),
+  loadJson("dashboard_opportunity_areas.json"),
+  loadJson("dashboard_habitat_demand.json")
+]);
 
       document.getElementById("last-updated").innerHTML =
   "Last register scrape: " +
@@ -610,65 +672,132 @@ document.getElementById("market-intelligence").innerHTML = `
         `;
       }).join("");
 
-document.getElementById("value-kpis").innerHTML = `
+const totalAllocationsLast7 = opportunityAreas.reduce(
+  (sum, row) => sum + Number(row.allocations_last_7_days || 0),
+  0
+);
+
+const totalAllocationsLast30 = opportunityAreas.reduce(
+  (sum, row) => sum + Number(row.allocations_last_30_days || 0),
+  0
+);
+
+const totalAreaLast7 = opportunityAreas.reduce(
+  (sum, row) => sum + Number(row.allocated_area_last_7_days || 0),
+  0
+);
+
+const totalAreaLast30 = opportunityAreas.reduce(
+  (sum, row) => sum + Number(row.allocated_area_last_30_days || 0),
+  0
+);
+
+   document.getElementById("habitat-demand-table").innerHTML =
+  habitatDemand
+    .filter(row => Number(row.allocation_count || 0) > 0)
+    .slice(0, 15)
+    .map(row => {
+      const unit = row.habitat_type === "hedgerow" || row.habitat_type === "watercourse"
+        ? " km"
+        : " ha";
+
+      return `
+        <tr>
+          <td>${row.habitat}</td>
+          <td>${row.habitat_group || ""}</td>
+          <td class="right">${fmtNum(row.allocation_count)}</td>
+          <td class="right">${fmtNum(row.allocated_extent, 2)}${unit}</td>
+          <td class="right">${fmtNum(row.remaining_extent, 2)}${unit}</td>
+          <td class="right">${fmtNum(row.demand_score, 1)}</td>
+          <td class="right">${fmtNum(row.pressure_score, 1)}</td>
+          <td class="right"><strong>${ratingLabel(row)}</strong></td>
+        </tr>
+      `;
+    }).join("");   
+      
+document.getElementById("activity-kpis").innerHTML = `
   <div class="card">
-    <div class="card-label">Allocated Habitat Units</div>
-    <div class="card-value">${fmtNum(summary.allocated_habitat_units, 1)}</div>
+    <div class="card-label">Allocations Last 7 Days</div>
+    <div class="card-value">${fmtNum(totalAllocationsLast7)}</div>
   </div>
   <div class="card">
-    <div class="card-label">Allocated Hedgerow Units</div>
-    <div class="card-value">${fmtNum(summary.allocated_hedgerow_units, 1)}</div>
+    <div class="card-label">Allocations Last 30 Days</div>
+    <div class="card-value">${fmtNum(totalAllocationsLast30)}</div>
   </div>
   <div class="card">
-    <div class="card-label">Allocated Watercourse Units</div>
-    <div class="card-value">${fmtNum(summary.allocated_watercourse_units, 1)}</div>
+    <div class="card-label">Allocated Area Last 7 Days</div>
+    <div class="card-value">${fmtNum(totalAreaLast7, 1)}</div>
+    <div class="card-unit">ha</div>
   </div>
   <div class="card">
-    <div class="card-label">Indicative Average Allocation Value</div>
-    <div class="card-value">${fmtMoney(value.allocated_avg_value)}</div>
+    <div class="card-label">Allocated Area Last 30 Days</div>
+    <div class="card-value">${fmtNum(totalAreaLast30, 1)}</div>
+    <div class="card-unit">ha</div>
   </div>
 `;
 
-      document.getElementById("supply-gap-table").innerHTML =
-        supplyGap.slice(0, 10).map(row => {
-          const remaining = row.remaining_habitat_area !== undefined ? row.remaining_habitat_area : row.available_habitat_area;
-          return `
-            <tr>
-              <td>${row.lpa}</td>
-              <td class="right">${fmtNum(row.site_count)}</td>
-              <td class="right">${fmtNum(row.registered_habitat_hectares, 2)}</td>
-              <td class="right">${fmtNum(row.allocated_habitat_area, 2)}</td>
-              <td class="right">${fmtNum(remaining, 2)}</td>
-              <td class="right"><strong>${fmtNum(row.utilisation_percent, 1)}%</strong></td>
-            </tr>
-          `;
-        }).join("");
+document.getElementById("tracking-note").innerHTML =
+  summary.temporal_analysis_note || "";
 
-      document.getElementById("southwest-table").innerHTML =
-        southwest.map(row => {
-          const remaining = row.remaining_habitat_area !== undefined ? row.remaining_habitat_area : row.available_habitat_area;
-          return `
-            <tr>
-              <td>${row.area}</td>
-              <td class="right">${fmtNum(row.site_count)}</td>
-              <td class="right">${fmtNum(row.registered_habitat_hectares, 2)}</td>
-              <td class="right">${fmtNum(row.allocated_habitat_area, 2)}</td>
-              <td class="right">${fmtNum(remaining, 2)}</td>
-              <td class="right"><strong>${fmtNum(row.utilisation_percent, 1)}%</strong></td>
-            </tr>
-          `;
-        }).join("");
+document.getElementById("opportunity-table").innerHTML =
+  opportunityAreas.slice(0, 15).map(row => `
+    <tr>
+      <td>${row.lnrs}</td>
+      <td class="right">${fmtNum(row.site_count)}</td>
+      <td class="right">${fmtNum(row.allocation_count)}</td>
+      <td class="right">${fmtNum(row.allocations_last_7_days)}</td>
+      <td class="right">${fmtNum(row.allocated_habitat_area, 2)}</td>
+      <td class="right">${fmtNum(row.remaining_habitat_area, 2)}</td>
+      <td class="right">${fmtNum(row.utilisation_percent, 1)}%</td>
+      <td class="right"><strong>${ratingLabel(row)}</strong></td>
+    </tr>
+  `).join("");
 
-      const totalSW = southwest.reduce((sum, row) => sum + Number(row.registered_habitat_hectares || 0), 0);
-      const largestSW = [...southwest].sort((a, b) => b.registered_habitat_hectares - a.registered_habitat_hectares)[0];
-      const highestUtilSW = [...southwest].sort((a, b) => b.utilisation_percent - a.utilisation_percent)[0];
+ const southWestLnrsNames = [
+  "Devon",
+  "Somerset",
+  "Dorset",
+  "Cornwall and the Isles of Scilly",
+  "West of England",
+  "Wiltshire and Swindon",
+  "Gloucestershire"
+];
 
-      if (largestSW && highestUtilSW && totalSW > 0) {
-        document.getElementById("southwest-insight").innerHTML = `
-          <strong>South West Insight:</strong>
-          ${largestSW.area} currently contains the largest registered habitat supply in this South West snapshot, accounting for approximately ${fmtNum((largestSW.registered_habitat_hectares / totalSW) * 100, 1)}% of registered habitat area. ${highestUtilSW.area} currently shows the highest utilisation rate at ${fmtNum(highestUtilSW.utilisation_percent, 1)}%.
-        `;
-      }
+const southWestOpportunity = opportunityAreas
+  .filter(row => southWestLnrsNames.includes(row.lnrs));
+
+document.getElementById("southwest-table").innerHTML =
+  southWestOpportunity.map(row => `
+    <tr>
+      <td>${row.lnrs}</td>
+      <td class="right">${fmtNum(row.site_count)}</td>
+      <td class="right">${fmtNum(row.allocation_count)}</td>
+      <td class="right">${fmtNum(row.allocations_last_7_days)}</td>
+      <td class="right">${fmtNum(row.remaining_habitat_area, 2)}</td>
+      <td class="right">${fmtNum(row.utilisation_percent, 1)}%</td>
+      <td class="right"><strong>${ratingLabel(row)}</strong></td>
+    </tr>
+  `).join("");
+
+ const strongestSW = [...southWestOpportunity].sort(
+  (a, b) => b.opportunity_score - a.opportunity_score
+)[0];
+
+const mostActiveSW = [...southWestOpportunity].sort(
+  (a, b) => b.allocation_count - a.allocation_count
+)[0];
+
+const mostRecentSW = [...southWestOpportunity].sort(
+  (a, b) => b.allocations_last_7_days - a.allocations_last_7_days
+)[0];
+
+if (strongestSW && mostActiveSW && mostRecentSW) {
+  document.getElementById("southwest-insight").innerHTML = `
+    <strong>South West Insight:</strong>
+    ${strongestSW.lnrs} currently has the highest opportunity score in the South West dataset.
+    ${mostActiveSW.lnrs} has the highest recorded allocation count, while ${mostRecentSW.lnrs} has the highest number of allocations first seen in the last 7 days.
+  `;
+}
 
       document.getElementById("recent-table").innerHTML =
         recent.slice(0, 8).map(row => `
