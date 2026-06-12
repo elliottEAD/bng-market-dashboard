@@ -15779,10 +15779,38 @@
     "lpa": "South Norfolk LPA",
     "lnrs": "Norfolk",
     "authority": "South Norfolk LPA",
-    "sizeHa": 0,
+    "sizeHa": 25.15,
     "first_seen_date": "2026-05-26",
     "record_status": "existing",
-    "remaining": []
+    "remaining": [
+      {
+        "habitat": "Heathland and shrub - Mixed scrub",
+        "condition": "Good",
+        "habitat_type": "habitat",
+        "unit": "ha",
+        "proposed_extent": 9.4401,
+        "allocated_extent": 4.3629,
+        "remaining_extent": 5.0772
+      },
+      {
+        "habitat": "Grassland - Other neutral grassland",
+        "condition": "Good",
+        "habitat_type": "habitat",
+        "unit": "ha",
+        "proposed_extent": 15.7066,
+        "allocated_extent": 7.3018,
+        "remaining_extent": 8.4048
+      },
+      {
+        "habitat": "Species-rich native hedgerow with trees",
+        "condition": "Good",
+        "habitat_type": "hedgerow",
+        "unit": "km",
+        "proposed_extent": 0.5078,
+        "allocated_extent": 0.2022,
+        "remaining_extent": 0.3056
+      }
+    ]
   },
   {
     "code": "BGS-261125001",
