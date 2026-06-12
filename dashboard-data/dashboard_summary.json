@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T14:14:42.789Z",
+  "generated_at": "2026-06-12T14:43:07.920Z",
   "last_scrape_date": "2026-06-12",
   "total_gain_sites": 265,
   "registered_habitat_hectares": 7586.48,
@@ -14,5 +14,7 @@
   "allocated_habitat_units": 2249.62,
   "allocated_hedgerow_units": 30.89,
   "allocated_watercourse_units": 11.14,
-  "remaining_units_calculated": false
+  "remaining_units_calculated": false,
+  "allocation_tracking_start_date": "2026-05-26",
+  "temporal_analysis_note": "Temporal allocation metrics use first_seen_date from the scraper. Tracking began on 26 May 2026, so longer periods may currently equal the full tracked history."
 }
