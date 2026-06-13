@@ -9044,10 +9044,92 @@
     "lpa": "Braintree LPA",
     "lnrs": "Greater Essex",
     "authority": "Plantlife",
-    "sizeHa": 0,
+    "sizeHa": 63.38,
     "first_seen_date": "2026-05-26",
     "record_status": "existing",
-    "remaining": []
+    "remaining": [
+      {
+        "habitat": "Lakes - Ponds (non-priority habitat)",
+        "condition": "Good",
+        "habitat_type": "habitat",
+        "unit": "ha",
+        "proposed_extent": 0.508,
+        "allocated_extent": 0,
+        "remaining_extent": 0.508
+      },
+      {
+        "habitat": "Heathland and shrub - Mixed scrub",
+        "condition": "Good",
+        "habitat_type": "habitat",
+        "unit": "ha",
+        "proposed_extent": 14.976,
+        "allocated_extent": 0,
+        "remaining_extent": 14.976
+      },
+      {
+        "habitat": "Grassland - Other neutral grassland",
+        "condition": "Good",
+        "habitat_type": "habitat",
+        "unit": "ha",
+        "proposed_extent": 24.552,
+        "allocated_extent": 0.3545,
+        "remaining_extent": 24.1975
+      },
+      {
+        "habitat": "Woodland and forest - Lowland mixed deciduous woodland",
+        "condition": "Good",
+        "habitat_type": "habitat",
+        "unit": "ha",
+        "proposed_extent": 14.068,
+        "allocated_extent": 0,
+        "remaining_extent": 14.068
+      },
+      {
+        "habitat": "Woodland and forest - Other woodland; broadleaved",
+        "condition": "Good",
+        "habitat_type": "habitat",
+        "unit": "ha",
+        "proposed_extent": 8.242,
+        "allocated_extent": 0,
+        "remaining_extent": 8.242
+      },
+      {
+        "habitat": "Grassland - Traditional orchards",
+        "condition": "Moderate",
+        "habitat_type": "habitat",
+        "unit": "ha",
+        "proposed_extent": 0.679,
+        "allocated_extent": 0,
+        "remaining_extent": 0.679
+      },
+      {
+        "habitat": "Species-rich native hedgerow with trees",
+        "condition": "Good",
+        "habitat_type": "hedgerow",
+        "unit": "km",
+        "proposed_extent": 1.406,
+        "allocated_extent": 0,
+        "remaining_extent": 1.406
+      },
+      {
+        "habitat": "Species-rich native hedgerow with trees - associated with bank or ditch",
+        "condition": "Good",
+        "habitat_type": "hedgerow",
+        "unit": "km",
+        "proposed_extent": 0.702,
+        "allocated_extent": 0,
+        "remaining_extent": 0.702
+      },
+      {
+        "habitat": "Native Hedgerow",
+        "condition": "Good",
+        "habitat_type": "hedgerow",
+        "unit": "km",
+        "proposed_extent": 0.292,
+        "allocated_extent": 0,
+        "remaining_extent": 0.292
+      }
+    ]
   },
   {
     "code": "BGS-221025001",
@@ -14846,7 +14928,7 @@
     "authority": "Northumberland LPA",
     "sizeHa": 74.51,
     "first_seen_date": "2026-06-13",
-    "record_status": "new",
+    "record_status": "existing",
     "remaining": [
       {
         "habitat": "Woodland and forest - Lowland mixed deciduous woodland",

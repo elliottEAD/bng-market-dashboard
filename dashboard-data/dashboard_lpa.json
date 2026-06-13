@@ -704,6 +704,14 @@
     "utilisation_percent": 0.8
   },
   {
+    "lpa": "Braintree LPA",
+    "site_count": 3,
+    "registered_habitat_hectares": 76.14,
+    "allocated_habitat_area": 0.36,
+    "remaining_habitat_area": 75.78,
+    "utilisation_percent": 0.5
+  },
+  {
     "lpa": "Cherwell LPA",
     "site_count": 2,
     "registered_habitat_hectares": 35.74,
@@ -837,14 +845,6 @@
     "registered_habitat_hectares": 31.93,
     "allocated_habitat_area": 0,
     "remaining_habitat_area": 31.93,
-    "utilisation_percent": 0
-  },
-  {
-    "lpa": "Braintree LPA",
-    "site_count": 3,
-    "registered_habitat_hectares": 13.11,
-    "allocated_habitat_area": 0,
-    "remaining_habitat_area": 13.11,
     "utilisation_percent": 0
   },
   {

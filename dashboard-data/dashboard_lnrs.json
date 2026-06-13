@@ -249,14 +249,14 @@
   {
     "lnrs": "Greater Essex",
     "site_count": 9,
-    "allocation_count": 44,
-    "registered_habitat_hectares": 390.11,
-    "allocated_habitat_area": 10.93,
-    "remaining_habitat_area": 379.18,
-    "utilisation_percent": 2.8,
-    "activity_score": 16.9,
-    "pressure_score": 2.8,
-    "opportunity_score": 11.2,
+    "allocation_count": 46,
+    "registered_habitat_hectares": 453.13,
+    "allocated_habitat_area": 11.28,
+    "remaining_habitat_area": 441.85,
+    "utilisation_percent": 2.5,
+    "activity_score": 17.6,
+    "pressure_score": 2.5,
+    "opportunity_score": 11.5,
     "opportunity_rating": "Low"
   },
   {
