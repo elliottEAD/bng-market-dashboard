@@ -9024,65 +9024,10 @@
     "lpa": "Hartlepool LPA",
     "lnrs": "Tees Valley",
     "authority": "RSK Biocensus Limited",
-    "sizeHa": 13.78,
+    "sizeHa": 0,
     "first_seen_date": "2026-05-26",
     "record_status": "existing",
-    "remaining": [
-      {
-        "habitat": "Grassland - Lowland meadows",
-        "condition": "Moderate",
-        "habitat_type": "habitat",
-        "unit": "ha",
-        "proposed_extent": 4.2277,
-        "allocated_extent": 0.4473,
-        "remaining_extent": 3.7804
-      },
-      {
-        "habitat": "Grassland - Traditional orchards",
-        "condition": "Moderate",
-        "habitat_type": "habitat",
-        "unit": "ha",
-        "proposed_extent": 0.2516,
-        "allocated_extent": 0,
-        "remaining_extent": 0.2516
-      },
-      {
-        "habitat": "Lakes - Ponds (Priority Habitat)",
-        "condition": "Good",
-        "habitat_type": "habitat",
-        "unit": "ha",
-        "proposed_extent": 0.099,
-        "allocated_extent": 0,
-        "remaining_extent": 0.099
-      },
-      {
-        "habitat": "Grassland - Other neutral grassland",
-        "condition": "Good",
-        "habitat_type": "habitat",
-        "unit": "ha",
-        "proposed_extent": 7.7325,
-        "allocated_extent": 0.7656,
-        "remaining_extent": 6.9669
-      },
-      {
-        "habitat": "Heathland and shrub - Mixed scrub",
-        "condition": "Good",
-        "habitat_type": "habitat",
-        "unit": "ha",
-        "proposed_extent": 1.4736,
-        "allocated_extent": 0,
-        "remaining_extent": 1.4736
-      },
-      {
-        "habitat": "Species-rich native hedgerow",
-        "condition": "Good",
-        "habitat_type": "hedgerow",
-        "unit": "km",
-        "proposed_extent": 0.2583,
-        "allocated_extent": 0.1374,
-        "remaining_extent": 0.1209
-      }
-    ]
+    "remaining": []
   },
   {
     "code": "BGS-211025001",

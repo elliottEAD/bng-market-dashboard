@@ -376,14 +376,6 @@
     "utilisation_percent": 8.8
   },
   {
-    "lpa": "Hartlepool LPA",
-    "site_count": 1,
-    "registered_habitat_hectares": 13.78,
-    "allocated_habitat_area": 1.21,
-    "remaining_habitat_area": 12.57,
-    "utilisation_percent": 8.8
-  },
-  {
     "lpa": "South Northamptonshire LPA",
     "site_count": 2,
     "registered_habitat_hectares": 61.79,
@@ -949,6 +941,14 @@
     "registered_habitat_hectares": 113.53,
     "allocated_habitat_area": 0,
     "remaining_habitat_area": 113.53,
+    "utilisation_percent": 0
+  },
+  {
+    "lpa": "Hartlepool LPA",
+    "site_count": 1,
+    "registered_habitat_hectares": 0,
+    "allocated_habitat_area": 0,
+    "remaining_habitat_area": 0,
     "utilisation_percent": 0
   },
   {
