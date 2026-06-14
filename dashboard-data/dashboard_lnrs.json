@@ -364,19 +364,6 @@
     "opportunity_rating": "Low"
   },
   {
-    "lnrs": "Hampshire",
-    "site_count": 5,
-    "allocation_count": 19,
-    "registered_habitat_hectares": 171.99,
-    "allocated_habitat_area": 6.25,
-    "remaining_habitat_area": 165.74,
-    "utilisation_percent": 3.6,
-    "activity_score": 7.9,
-    "pressure_score": 3.6,
-    "opportunity_score": 6.2,
-    "opportunity_rating": "Low"
-  },
-  {
     "lnrs": "Isle of Wight",
     "site_count": 3,
     "allocation_count": 17,
@@ -386,6 +373,19 @@
     "utilisation_percent": 5.8,
     "activity_score": 6.4,
     "pressure_score": 5.8,
+    "opportunity_score": 6.2,
+    "opportunity_rating": "Low"
+  },
+  {
+    "lnrs": "Hampshire",
+    "site_count": 5,
+    "allocation_count": 19,
+    "registered_habitat_hectares": 171.99,
+    "allocated_habitat_area": 6.25,
+    "remaining_habitat_area": 165.74,
+    "utilisation_percent": 3.6,
+    "activity_score": 7.9,
+    "pressure_score": 3.6,
     "opportunity_score": 6.2,
     "opportunity_rating": "Low"
   },
